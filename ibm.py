@@ -554,17 +554,27 @@ def create_styled_excel(
     last_col = ws.max_column
     for col in range(1, last_col + 1):
         ws.cell(row=border_row, column=col).border = bottom_border
-    # --- Second sheet: raw IBM Terms text (last page) ---
-    terms_ws = wb.create_sheet(title="IBM Terms")
-    terms_ws.sheet_view.showGridLines = False
-    terms_ws.column_dimensions["A"].width = 120
-    terms_ws["A1"] = "IBM Terms and Conditions"
-    terms_ws["A1"].font = Font(bold=True, size=14, color="1F497D")
-    for idx, line in enumerate(ibm_terms_text.splitlines(), start=3):
-        cell = terms_ws[f"A{idx}"]
-        cell.value = line
-        cell.alignment = Alignment(wrap_text=True, vertical="top")
-        cell.font = Font(size=11, color="1F497D")
+    
+    # --- Add IBM Terms to the same sheet (below the main content) ---
+    current_row = ws.max_row + 3  # Add some spacing
+    
+    # IBM Terms header
+    ibm_header_cell = ws[f"B{current_row}"]
+    ibm_header_cell.value = "IBM Terms and Conditions"
+    ibm_header_cell.font = Font(bold=True, size=14, color="1F497D")
+    current_row += 2
+    
+    # Add IBM Terms content
+    for line in ibm_terms_text.splitlines():
+        if line.strip():  # Only add non-empty lines
+            cell = ws[f"B{current_row}"]
+            cell.value = line.strip()
+            cell.alignment = Alignment(wrap_text=True, vertical="top")
+            cell.font = Font(size=10, color="1F497D")
+            current_row += 1
+    
+    # Set column width for IBM terms section
+    ws.column_dimensions["B"].width = max(ws.column_dimensions["B"].width or 20, 120)
     first_col = 1  # B
     last_col = 9   # I (adjust if your table has more columns)
     last_row = ws.max_row
