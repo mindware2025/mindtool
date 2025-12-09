@@ -1,7 +1,9 @@
 import streamlit as st
 import pandas as pd
 from io import BytesIO
-from ibm import extract_ibm_data_from_pdf, create_styled_excel, correct_descriptions, extract_last_page_text
+from ibm import extract_ibm_data_from_pdf, create_styled_excel, create_styled_excel_template2, correct_descriptions, extract_last_page_text
+from ibm_template2 import extract_ibm_template2_from_pdf, get_extraction_debug
+from template_detector import detect_ibm_template
 
 # ✅ Must be first Streamlit command
 st.set_page_config(page_title="IBM Quotation Extractor", layout="wide")
@@ -79,13 +81,25 @@ if uploaded_file:
     col1, col2 = st.columns([3, 1])
     
     with col1:
-        # Use default IBM template (single template system)
-        template_type = 'template1'
-        template_info = {
-            'name': 'IBM Quotation Template',
-            'description': 'Standard IBM quotation extraction',
-            'icon': '📦'
-        }
+        # Detect template type
+        file_bytes = uploaded_file.read()
+        uploaded_file.seek(0)  # Reset file pointer
+        
+        template_type = detect_ibm_template(BytesIO(file_bytes))
+        
+        # Set template info based on detection
+        if template_type == 'template2':
+            template_info = {
+                'name': 'IBM Software as a Service',
+                'description': 'Subscription-based service quotation',
+                'icon': '☁️'
+            }
+        else:
+            template_info = {
+                'name': 'IBM Parts Information',
+                'description': 'Parts-based quotation with coverage dates',
+                'icon': '📦'
+            }
         
         # Show detected template with nice styling
         st.markdown(f"""
@@ -113,20 +127,26 @@ if uploaded_file:
     # Extract data from PDF
     with st.spinner("📄 Extracting data from PDF..."):
         try:
-            file_bytes = uploaded_file.read()
-            
-            # Use existing IBM extractor
-            data, header_info = extract_ibm_data_from_pdf(BytesIO(file_bytes))
-            
-            # Extract IBM terms from last page
-            ibm_terms_text = extract_last_page_text(BytesIO(file_bytes))
-            debug_messages = ["Extraction completed successfully"]
+            # Use appropriate extractor based on template
+            if template_type == 'template2':
+                st.write(f"🔍 DEBUG: Using Template 2 extractor")
+                data, header_info = extract_ibm_template2_from_pdf(BytesIO(file_bytes))
+                debug_messages = get_extraction_debug()
+                st.write(f"🔍 DEBUG: Got {len(debug_messages)} debug messages")
+                st.write(f"🔍 DEBUG: Extracted {len(data)} line items")
+                ibm_terms_text = extract_last_page_text(BytesIO(file_bytes))
+            else:
+                data, header_info = extract_ibm_data_from_pdf(BytesIO(file_bytes))
+                ibm_terms_text = extract_last_page_text(BytesIO(file_bytes))
+                debug_messages = ["Template 1 extraction - check pdf_extraction_debug.log for details"]
             
         except Exception as e:
             st.error(f"❌ Error extracting data: {str(e)}")
+            import traceback
+            st.error(f"Full traceback: {traceback.format_exc()}")
             data = []
             header_info = {}
-            debug_messages = [f"Error: {str(e)}"]
+            debug_messages = [f"Error: {str(e)}", traceback.format_exc()]
     
     if data and len(data) > 0:
         # Success metrics
@@ -160,7 +180,37 @@ if uploaded_file:
                 st.text(f"Opportunity: {header_info.get('IBM Opportunity Number', 'N/A')}")
                 st.text(f"Territory: {header_info.get('Select Territory', 'N/A')}")
 
-        # 🔍 NEW: Data Extraction Viewer
+        # 🔍 Debug Log Viewer for Template 2
+        if template_type == 'template2':
+            with st.expander("🔍 Detailed Extraction Log (Template 2)", expanded=False):
+                st.markdown("### 📝 Debug Information")
+                st.info("This log shows exactly what the extractor found in the PDF and how it processed each line item.")
+                
+                # Show log in a text area
+                if debug_messages:
+                    log_text = "\n".join(debug_messages)
+                    st.text_area(
+                        "Extraction Debug Log",
+                        value=log_text,
+                        height=600,
+                        help="Detailed step-by-step extraction log"
+                    )
+                    
+                    # Download button for log
+                    st.download_button(
+                        label="📥 Download Full Debug Log",
+                        data=log_text,
+                        file_name="template2_extraction_log.txt",
+                        mime="text/plain",
+                        help="Save the complete extraction log for analysis"
+                    )
+                    
+                    # Show log file path
+                    st.info("💾 A copy is also saved to: `template2_extraction_debug.log`")
+                else:
+                    st.warning("No debug information available")
+        
+        # 🔍 Raw Extraction Analysis
         with st.expander("🔍 Raw Extraction Analysis", expanded=False):
             st.markdown("### 📊 Extraction Details")
             
@@ -181,10 +231,19 @@ if uploaded_file:
             # Raw data table
             st.markdown("### 📋 Raw Extracted Data")
             if data:
-                df_raw = pd.DataFrame(data, columns=[
-                    "SKU", "Description", "Quantity", "Start Date", "End Date",
-                    "Unit Price (AED)", "Total Price (AED)"
-                ])
+                # Create DataFrame based on template type
+                if template_type == 'template2':
+                    # Template 2: [sku, desc, qty, duration, start_date, end_date, bid_unit_aed, bid_total_aed, partner_price_aed]
+                    df_raw = pd.DataFrame(data, columns=[
+                        "SKU", "Description", "Quantity", "Duration", "Start Date", "End Date",
+                        "Unit Price (AED)", "Total Price (AED)", "Partner Price (AED)"
+                    ])
+                else:
+                    # Template 1: [sku, desc, qty, start_date, end_date, bid_unit_aed, bid_total_aed]
+                    df_raw = pd.DataFrame(data, columns=[
+                        "SKU", "Description", "Quantity", "Start Date", "End Date",
+                        "Unit Price (AED)", "Total Price (AED)"
+                    ])
                 
                 # Add row numbers for reference
                 df_raw.index = range(1, len(df_raw) + 1)
@@ -263,9 +322,24 @@ if uploaded_file:
         
         # Show extracted data preview
         with st.expander("📊 Preview Extracted Line Items"):
-            preview_df = pd.DataFrame(data, columns=[
-                "SKU", "Description", "Qty", "Start Date", "End Date", "Unit Price AED", "Total Price AED"
-            ])
+            # Use different column headers based on template type
+            if template_type == 'template2':
+                # Template 2: Show without Start/End Date
+                preview_data = []
+                for row in data:
+                    preview_row = [row[0], row[1], row[2], row[3], row[6], row[7]]  # Skip start_date, end_date
+                    preview_data.append(preview_row)
+                
+                preview_columns = [
+                    "SKU", "Description", "Qty", "Duration", "Unit Price AED", "Total Price AED"
+                ]
+                preview_df = pd.DataFrame(preview_data, columns=preview_columns)
+            else:
+                preview_columns = [
+                    "SKU", "Description", "Qty", "Start Date", "End Date", "Unit Price AED", "Total Price AED"
+                ]
+                preview_df = pd.DataFrame(data, columns=preview_columns)
+            
             st.dataframe(preview_df, use_container_width=True)
         
         # Master CSV analysis
@@ -299,113 +373,154 @@ if uploaded_file:
         
         st.markdown("---")
         
-        # Apply description corrections
-        with st.spinner("🔄 Applying description corrections..."):
-            corrected_data = correct_descriptions(data, master_data=master_data)
+        # Apply description corrections (only for Template 1)
+        if template_type == 'template1':
+            with st.spinner("🔄 Applying description corrections..."):
+                corrected_data = correct_descriptions(data, master_data=master_data)
+        else:
+            # For Template 2, use data as-is (descriptions are already complete)
+            corrected_data = data
+            st.info("📝 Template 2: Using extracted descriptions as-is (no CSV correction needed)")
         
-        # 📊 NEW: Data Correction Analysis
-        with st.expander("🔄 Description Correction Analysis", expanded=False):
-            st.markdown("### 📈 Correction Summary")
-            
-            # Calculate correction statistics
-            corrections_made = 0
-            corrections_blank = 0
-            no_corrections = 0
-            
-            correction_details = []
-            
-            for i, (original_row, final_row) in enumerate(zip(data, corrected_data)):
-                original_desc = original_row[1] if len(original_row) > 1 else ""
-                final_desc = final_row[1] if len(final_row) > 1 else ""
-                sku = final_row[0] if len(final_row) > 0 else ""
+        # 📊 Data Correction Analysis (only for Template 1)
+        if template_type == 'template1':
+            with st.expander("🔄 Description Correction Analysis", expanded=False):
+                st.markdown("### 📈 Correction Summary")
                 
-                if final_desc and final_desc != original_desc:
-                    corrections_made += 1
-                    status = "✅ Updated from Master CSV"
-                    color = "green"
-                elif not final_desc:
-                    corrections_blank += 1
-                    status = "⚠️ Set to blank (SKU not found)"
-                    color = "orange"
-                else:
-                    no_corrections += 1
-                    status = "📄 No change needed"
-                    color = "blue"
+                # Calculate correction statistics
+                corrections_made = 0
+                corrections_blank = 0
+                no_corrections = 0
                 
-                correction_details.append({
-                    "Row": i + 1,
-                    "SKU": sku,
-                    "Status": status,
-                    "Original Description": original_desc[:50] + "..." if len(original_desc) > 50 else original_desc,
-                    "Final Description": final_desc[:50] + "..." if len(final_desc) > 50 else final_desc,
-                    "Color": color
-                })
-            
-            # Display summary metrics
-            col1, col2, col3, col4 = st.columns(4)
-            with col1:
-                st.metric("✅ Corrected", corrections_made)
-            with col2:
-                st.metric("⚠️ Set to Blank", corrections_blank)
-            with col3:
-                st.metric("📄 No Change", no_corrections)
-            with col4:
-                st.metric("📊 Total Rows", len(data))
-            
-            # Show detailed correction table
-            st.markdown("### 📋 Detailed Correction Log")
-            if correction_details:
-                correction_df = pd.DataFrame(correction_details)
+                correction_details = []
                 
-                # Color-code the status
-                def highlight_status(row):
-                    color_map = {
-                        'green': 'background-color: #d4edda; color: #155724;',
-                        'orange': 'background-color: #fff3cd; color: #856404;',
-                        'blue': 'background-color: #d1ecf1; color: #0c5460;'
-                    }
-                    return [''] * len(row) if row['Color'] not in color_map else [color_map[row['Color']] if i == 2 else '' for i in range(len(row))]
+                for i, (original_row, final_row) in enumerate(zip(data, corrected_data)):
+                    original_desc = original_row[1] if len(original_row) > 1 else ""
+                    final_desc = final_row[1] if len(final_row) > 1 else ""
+                    sku = final_row[0] if len(final_row) > 0 else ""
+                    
+                    if final_desc and final_desc != original_desc:
+                        corrections_made += 1
+                        status = "✅ Updated from Master CSV"
+                        color = "green"
+                    elif not final_desc:
+                        corrections_blank += 1
+                        status = "⚠️ Set to blank (SKU not found)"
+                        color = "orange"
+                    else:
+                        no_corrections += 1
+                        status = "📄 No change needed"
+                        color = "blue"
+                    
+                    correction_details.append({
+                        "Row": i + 1,
+                        "SKU": sku,
+                        "Status": status,
+                        "Original Description": original_desc[:50] + "..." if len(original_desc) > 50 else original_desc,
+                        "Final Description": final_desc[:50] + "..." if len(final_desc) > 50 else final_desc,
+                        "Color": color
+                    })
                 
-                # Display without the color column
-                display_df = correction_df.drop('Color', axis=1)
-                st.dataframe(display_df, use_container_width=True, height=400)
-                
-                # Export correction log
-                csv_corrections = correction_df.drop('Color', axis=1).to_csv(index=False)
-                st.download_button(
-                    label="📥 Download Correction Log (CSV)",
-                    data=csv_corrections,
-                    file_name="ibm_correction_log.csv",
-                    mime="text/csv",
-                    help="Download detailed log of all description corrections"
-                )
-            
-            # Master CSV usage statistics
-            if master_data is not None:
-                st.markdown("### 📊 Master CSV Usage Stats")
-                pdf_skus = [row[0] for row in data if len(row) > 0]
-                total_master_skus = len(master_data)
-                used_skus = [sku for sku in pdf_skus if sku in master_data['SKU'].values]
-                
-                col1, col2, col3 = st.columns(3)
+                # Display summary metrics
+                col1, col2, col3, col4 = st.columns(4)
                 with col1:
-                    st.metric("📦 Total Master SKUs", total_master_skus)
+                    st.metric("✅ Corrected", corrections_made)
                 with col2:
-                    st.metric("🎯 SKUs Used", len(used_skus))
+                    st.metric("⚠️ Set to Blank", corrections_blank)
                 with col3:
-                    usage_rate = (len(used_skus) / len(pdf_skus) * 100) if pdf_skus else 0
-                    st.metric("📈 Usage Rate", f"{usage_rate:.1f}%")
+                    st.metric("📄 No Change", no_corrections)
+                with col4:
+                    st.metric("📊 Total Rows", len(data))
+                
+                # Show detailed correction table
+                st.markdown("### 📋 Detailed Correction Log")
+                if correction_details:
+                    correction_df = pd.DataFrame(correction_details)
+                    
+                    # Color-code the status
+                    def highlight_status(row):
+                        color_map = {
+                            'green': 'background-color: #d4edda; color: #155724;',
+                            'orange': 'background-color: #fff3cd; color: #856404;',
+                            'blue': 'background-color: #d1ecf1; color: #0c5460;'
+                        }
+                        return [''] * len(row) if row['Color'] not in color_map else [color_map[row['Color']] if i == 2 else '' for i in range(len(row))]
+                    
+                    # Display without the color column
+                    display_df = correction_df.drop('Color', axis=1)
+                    st.dataframe(display_df, use_container_width=True, height=400)
+                    
+                    # Export correction log
+                    csv_corrections = correction_df.drop('Color', axis=1).to_csv(index=False)
+                    st.download_button(
+                        label="📥 Download Correction Log (CSV)",
+                        data=csv_corrections,
+                        file_name="ibm_correction_log.csv",
+                        mime="text/csv",
+                        help="Download detailed log of all description corrections"
+                    )
+                
+                # Master CSV usage statistics
+                if master_data is not None:
+                    st.markdown("### 📊 Master CSV Usage Stats")
+                    pdf_skus = [row[0] for row in data if len(row) > 0]
+                    total_master_skus = len(master_data)
+                    used_skus = [sku for sku in pdf_skus if sku in master_data['SKU'].values]
+                    
+                    col1, col2, col3 = st.columns(3)
+                    with col1:
+                        st.metric("📦 Total Master SKUs", total_master_skus)
+                    with col2:
+                        st.metric("🎯 SKUs Used", len(used_skus))
+                    with col3:
+                        usage_rate = (len(used_skus) / len(pdf_skus) * 100) if pdf_skus else 0
+                        st.metric("📈 Usage Rate", f"{usage_rate:.1f}%")
+        else:
+            # Template 2 - Show different analysis
+            with st.expander("📊 Template 2 Data Analysis", expanded=False):
+                st.markdown("### 📝 Description Analysis")
+                st.info("Template 2 uses complete service blocks as descriptions - no CSV correction needed")
+                
+                # Show description lengths
+                desc_lengths = [len(row[1]) if len(row) > 1 and row[1] else 0 for row in data]
+                if desc_lengths:
+                    col1, col2, col3 = st.columns(3)
+                    with col1:
+                        st.metric("📏 Avg Description Length", f"{sum(desc_lengths) / len(desc_lengths):.0f} chars")
+                    with col2:
+                        st.metric("📄 Max Description Length", f"{max(desc_lengths)} chars")
+                    with col3:
+                        st.metric("📋 Min Description Length", f"{min(desc_lengths)} chars")
         
         # Show corrected data
         st.subheader("📊 Final BoQ Data")
-        final_df = pd.DataFrame(corrected_data, columns=[
-            "SKU", "Product Description", "Quantity", "Start Date", "End Date",
-            "Unit Price in AED", "Total Price in AED"
-        ])
+        
+        # Use different column headers based on template type
+        if template_type == 'template2':
+            # Template 2: [sku, desc, qty, duration, start_date, end_date, bid_unit_aed, bid_total_aed, partner_price_aed]
+            # Display: SKU, Description, Quantity, Duration, Unit Price, Total Price, Partner Price
+            display_data = []
+            for row in corrected_data:
+                # Include Partner Price (index 8) in display
+                display_row = [row[0], row[1], row[2], row[3], row[6], row[7], row[8] if len(row) > 8 else None]
+                display_data.append(display_row)
+            
+            columns = [
+                "SKU", "Product Description", "Quantity", "Duration", 
+                "Unit Price in AED", "Total Price in AED", "Partner Price in AED"
+            ]
+            final_df = pd.DataFrame(display_data, columns=columns)
+        else:
+            # Template 1: [sku, desc, qty, start_date, end_date, bid_unit_aed, bid_total_aed]
+            columns = [
+                "SKU", "Product Description", "Quantity", "Start Date", "End Date",
+                "Unit Price in AED", "Total Price in AED"
+            ]
+            final_df = pd.DataFrame(corrected_data, columns=columns)
         st.dataframe(final_df, use_container_width=True)
         
-        # Show description correction summary
-        if master_data is not None:
+        # Show description correction summary (Template 1 only)
+        if master_data is not None and template_type == 'template1':
             with st.expander("🔍 Debug: Description Correction Summary"):
                 for i, (original_row, final_row) in enumerate(zip(data, corrected_data)):
                     original_desc = original_row[1]
@@ -431,17 +546,28 @@ if uploaded_file:
                     try:
                         output = BytesIO()
                         
-                        # Create Excel using the same function for both templates
-                        create_styled_excel(
-                            corrected_data, 
-                            header_info, 
-                            logo_path, 
-                            output, 
-                            compliance_text, 
-                            ibm_terms_text
-                        )
-                        
-                        # Download button
+                        if template_type == 'template2':
+                            # Use dedicated Template 2 Excel generator with full 9-column data
+                            # Template 2 data: [sku, desc, qty, duration, start_date, end_date, bid_unit_aed, bid_total_aed, partner_price_aed]
+                            st.info("🎯 Using Template 2 Excel generation function...")
+                            create_styled_excel_template2(
+                                corrected_data, 
+                                header_info, 
+                                logo_path, 
+                                output, 
+                                compliance_text, 
+                                ibm_terms_text
+                            )
+                        else:
+                            # Use Template 1 Excel generator
+                            create_styled_excel(
+                                corrected_data, 
+                                header_info, 
+                                logo_path, 
+                                output, 
+                                compliance_text, 
+                                ibm_terms_text
+                            )                        # Download button
                         bid_number = header_info.get('Bid Number', 'output')
                         filename = f"IBM_Quotation_{bid_number}.xlsx"
                         
