@@ -1389,7 +1389,10 @@ def create_styled_excel_template2(
         desc = row[1] if len(row) > 1 else ""
         qty = row[2] if len(row) > 2 else 0
         duration = row[3] if len(row) > 3 else ""
-        extracted_total_usd = row[7] if len(row) > 7 else 0  # Original extracted total in USD
+        bid_total_aed_extracted = row[7] if len(row) > 7 else 0  # Already converted AED amount
+        
+        # Convert back to USD to use in the H formula
+        extracted_total_usd = round(bid_total_aed_extracted / 3.6725, 2) if bid_total_aed_extracted else 0
         
         # Fill basic data in columns C, D, E, F (no formulas)
         basic_data = [sku, desc, qty, duration]
