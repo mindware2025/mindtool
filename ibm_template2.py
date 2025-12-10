@@ -149,7 +149,9 @@ def extract_ibm_template2_from_pdf(file_like) -> tuple[list, dict]:
         "IBM Opportunity Number": "",
         "Reseller Name": "",
         "City": "",
-        "Country": ""
+        "Country": "",
+        "Bid Expiration Date": "",
+        "Maximum End User Price (MEP)": ""
     }
     
     # Parse header fields
@@ -160,8 +162,10 @@ def extract_ibm_template2_from_pdf(file_like) -> tuple[list, dict]:
             header_info["City"] = lines[i + 1] if i + 1 < len(lines) else ""
         elif "Country:" in line:
             header_info["Country"] = lines[i + 1] if i + 1 < len(lines) else ""
-        elif "Bid Number:" in line:
+        elif "Bid Number:" in line or "Quote Number:" in line:
             header_info["Bid Number"] = lines[i + 1] if i + 1 < len(lines) else ""
+        elif "Bid Expiration Date:" in line or "Quote Expiration Date:" in line:
+            header_info["Bid Expiration Date"] = lines[i + 1] if i + 1 < len(lines) else ""
         elif "IBM Agreement Number:" in line or "PA Agreement Number:" in line:
             header_info["PA Agreement Number"] = lines[i + 1] if i + 1 < len(lines) else ""
         elif "IBM Site Number:" in line or "PA Site Number:" in line:
@@ -172,6 +176,21 @@ def extract_ibm_template2_from_pdf(file_like) -> tuple[list, dict]:
             header_info["Government Entity (GOE)"] = lines[i + 1] if i + 1 < len(lines) else ""
         elif "Reseller Name:" in line:
             header_info["Reseller Name"] = lines[i + 1] if i + 1 < len(lines) else ""
+        elif "Maximum End User Price" in line or "MEP" in line:
+            # Look for MEP value in same line or next line
+            if ":" in line:
+                mep_part = line.split(":", 1)[1].strip()
+                if mep_part:
+                    mep_clean = re.sub(r'\s*(USD|AED|EUR).*$', '', mep_part).strip()
+                    mep_value = parse_number(mep_clean)
+                    if mep_value:
+                        header_info["Maximum End User Price (MEP)"] = f"{mep_value:,.2f}"
+            elif i + 1 < len(lines):
+                next_line = lines[i + 1].strip()
+                mep_clean = re.sub(r'\s*(USD|AED|EUR).*$', '', next_line).strip()
+                mep_value = parse_number(mep_clean)
+                if mep_value:
+                    header_info["Maximum End User Price (MEP)"] = f"{mep_value:,.2f}"
         elif "IBM Opportunity Number:" in line:
             # Extract the opportunity number from the same or next line
             opp_match = re.search(r'[A-Z0-9]{10,}', line)

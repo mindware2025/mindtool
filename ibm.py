@@ -1340,14 +1340,16 @@ def create_styled_excel_template2(
     
     # --- Template 2 Table Headers (8 columns ONLY) ---
     headers = [
-        "Sl",                      # Column B (2)
+        "SI",                      # Column B (2)
         "SKU",                     # Column C (3)
         "Product Description",     # Column D (4)
         "Quantity",                # Column E (5)
         "Duration",                # Column F (6)
-        "Unit Price in AED",       # Column G (7)
-        "Total Price in AED",      # Column H (8)
-        "Partner Price in AED"     # Column I (9)
+        "Unit Price\nin AED",      # Column G (7)
+        "cost",                    # Column H (8)
+        "Total Price\nin AED",     # Column I (9)
+        "Partner disc",            # Column J (10)
+        "Partner Price\nin AED"    # Column K (11)
     ]
     header_fill = PatternFill(start_color="F2F2F2", end_color="F2F2F2", fill_type="solid")
     for col, header in enumerate(headers, start=2):
@@ -1411,10 +1413,15 @@ def create_styled_excel_template2(
         ws.cell(row=excel_row, column=7, value=unit_price_formula)  # Column G
         add_debug(f"[TEMPLATE2 FORMULA] Unit Price AED: {unit_price_formula}")
         
-        # I (Partner Price AED) = ROUNDUP(Unit Price * MARGIN_DISCOUNT, 2) * Quantity
-        partner_price_formula = f"=ROUNDUP(G{excel_row}*{margin_discount},2)*E{excel_row}"
-        ws.cell(row=excel_row, column=9, value=partner_price_formula)  # Column I
-        add_debug(f"[TEMPLATE2 FORMULA] Partner Price: {partner_price_formula} (discount: {channel_discount_str})")
+        # J (Partner disc) = ROUNDUP(Unit Price * 0.99, 2)
+        partner_disc_formula = f"=ROUNDUP(G{excel_row}*0.99,2)"
+        ws.cell(row=excel_row, column=10, value=partner_disc_formula)  # Column J
+        add_debug(f"[TEMPLATE2 FORMULA] Partner disc: {partner_disc_formula}")
+        
+        # K (Partner Price in AED) = Partner disc * Quantity
+        partner_price_formula = f"=J{excel_row}*E{excel_row}"
+        ws.cell(row=excel_row, column=11, value=partner_price_formula)  # Column K
+        add_debug(f"[TEMPLATE2 FORMULA] Partner Price in AED: {partner_price_formula}")
         
         # Special formatting for description (column D) - left align and wrap
         ws.cell(row=excel_row, column=4).alignment = Alignment(wrap_text=True, horizontal="left", vertical="center")
