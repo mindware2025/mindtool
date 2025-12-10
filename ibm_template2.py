@@ -197,8 +197,8 @@ def extract_ibm_template2_from_pdf(file_like) -> tuple[list, dict]:
     add_debug("STARTING LINE ITEM EXTRACTION")
     add_debug("="*80)
     
-    # Pattern for subscription part numbers (like D1009ZX, D100AZX)
-    subscription_part_re = re.compile(r'\b[A-Z]\d{3,4}[A-Z]{2,3}\b')
+    # Pattern for subscription part numbers (like D1009ZX, D100AZX, D28B4LL)
+    subscription_part_re = re.compile(r'\b[A-Z][A-Z0-9]{4,8}\b')  # More flexible: 1 letter + 4-8 alphanumeric chars
     date_pattern = re.compile(r'\b\d{2}-[A-Za-z]{3}-\d{4}\b')
     
     add_debug(f"Subscription Part Pattern: {subscription_part_re.pattern}")
