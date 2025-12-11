@@ -353,7 +353,7 @@ def extract_ibm_data_from_pdf(file_like) -> tuple[list, dict]:
         "PA Site Number": "",
         "Select Territory": "",
         "Government Entity (GOE)": "",
-        "IBM Opportunity Number": "",
+       
         "Reseller Name": "",
         "City": "",
         "Country": "",
@@ -382,9 +382,7 @@ def extract_ibm_data_from_pdf(file_like) -> tuple[list, dict]:
         if "Government Entity" in line:
             header_info["Government Entity (GOE)"] = lines[i + 1].strip() if i + 1 < len(lines) else ""
             header_fields_found += 1
-        if "IBM Opportunity Number:" in line:
-            header_info["IBM Opportunity Number"] = lines[i + 1].strip() if i + 1 < len(lines) else ""
-            header_fields_found += 1
+       
         if "City:" in line:
             header_info["City"] = lines[i + 1].strip() if i + 1 < len(lines) else ""
             header_fields_found += 1
@@ -895,12 +893,7 @@ def create_styled_excel(
         if value:
             ws[f"D{row}"] = value
             ws[f"D{row}"].font = Font(color="1F497D")
-    
-    # IBM Opp no.
-    ws["C14"] = "IBM Opportunity Number: "  # Move up by 1 row
-    ws["C14"].font = Font(bold=True, underline="single", color="000000")
-    ws["D14"] = header_info.get('IBM Opportunity Number', '')
-    ws["D14"].font = Font(bold=True, italic=True, underline="single", color="000000")
+   
     
     # Right block
     right_labels = [
@@ -1015,12 +1008,14 @@ def create_styled_excel(
         ws.cell(row=excel_row, column=10).alignment = Alignment(horizontal="center", vertical="center")
         
         # Column K: Partner Discount = Unit Price (H) * 0.99 (1% discount)
-        discount_formula = f"=H{excel_row}*0.99"
+       
+        discount_formula = f"=ROUNDUP(H{excel_row}*0.99,2)"
         ws.cell(row=excel_row, column=11, value=discount_formula)
         ws.cell(row=excel_row, column=11).font = Font(size=11, color="1F497D")
         ws.cell(row=excel_row, column=11).alignment = Alignment(horizontal="center", vertical="center")
         
         # Column L: Partner Price in AED = Partner Discount (K) * Quantity (E)
+        
         partner_price_formula = f"=K{excel_row}*E{excel_row}"
         ws.cell(row=excel_row, column=12, value=partner_price_formula)
         ws.cell(row=excel_row, column=12).font = Font(size=11, color="1F497D")
@@ -1308,28 +1303,10 @@ def create_styled_excel_template2(
             ws[f"D{row}"] = value
             ws[f"D{row}"].font = Font(color="1F497D")
     
-    # IBM Opp no. (EXACT COPY FROM TEMPLATE 1)
-    ws["C14"] = "IBM Opportunity Number: "  # Move up by 1 row
-    ws["C14"].font = Font(bold=True, underline="single", color="000000")
+   
     
     # Get IBM Opportunity Number from header, or extract from first data row description
-    ibm_opp_number = header_info.get('IBM Opportunity Number', '')
-    if not ibm_opp_number and data:
-        # Try to extract from first data row description (Template 2 format)
-        first_desc = data[0][1] if len(data[0]) > 1 else ''
-        # Look for the pattern in the description
-        opp_match = re.search(r'IBM Opportunity Number:\s*([A-Za-z0-9]{10,})', first_desc)
-        if opp_match:
-            ibm_opp_number = opp_match.group(1)
-        else:
-            # Fallback: just search for any alphanumeric string 10+ chars
-            opp_match = re.search(r'[A-Za-z0-9]{10,}', first_desc)
-            if opp_match:
-                ibm_opp_number = opp_match.group()
-    
-    print(f"🔥 [EXCEL] IBM Opportunity Number value: '{ibm_opp_number}'")
-    ws["D14"] = ibm_opp_number
-    ws["D14"].font = Font(bold=True, italic=True, underline="single", color="000000")
+   
     
     # Right block (EXACT COPY FROM TEMPLATE 1)
     right_labels = [
