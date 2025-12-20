@@ -5,6 +5,14 @@ from io import BytesIO
 from ibm import extract_ibm_data_from_pdf, create_styled_excel, create_styled_excel_template2, correct_descriptions, extract_last_page_text
 from ibm_template2 import extract_ibm_template2_from_pdf, get_extraction_debug
 from template_detector import detect_ibm_template
+import logging
+
+# Configure logging
+logging.basicConfig(
+    filename="output_log.log",
+    level=logging.DEBUG,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
 
 # ✅ Must be first Streamlit command
 st.set_page_config(page_title="IBM Quotation Extractor", layout="wide")
@@ -124,43 +132,41 @@ elif tool_choice == "IBM Excel to Excel (New)":
 
         # Extract header info from PDF if uploaded
         if uploaded_pdf:
-            _, extracted_header_info = extract_ibm_data_from_pdf(uploaded_pdf)
-            header_info.update(extracted_header_info)
+            try:
+                _, extracted_header_info = extract_ibm_data_from_pdf(uploaded_pdf)
+                header_info.update(extracted_header_info)
+                logging.info("Header information extracted from PDF: %s", header_info)
+            except Exception as e:
+                logging.error("Failed to extract header information from PDF: %s", e)
 
-        # Extract table data from Excel if uploaded
+        # Updated to use the centralized `parse_uploaded_excel` function from `ibm_v2`
         if uploaded_excel:
-            file_type = uploaded_excel.type
-            file_name = uploaded_excel.name.lower()
-            if file_type == "application/vnd.ms-excel" or file_name.endswith(".xls"):
-                try:
-                    xls = pd.ExcelFile(uploaded_excel, engine="xlrd")
-                    if len(xls.sheet_names) < 2:
-                        st.error("❌ The uploaded Excel file does not have a second sheet.")
-                    else:
-                        df = xls.parse(xls.sheet_names[1])
-                        data = df.values.tolist()  # Convert DataFrame to list of lists
-                except Exception as e:
-                    st.error(f"❌ Failed to read Excel file: {e}")
-            else:
-                try:
-                    xls = pd.ExcelFile(uploaded_excel)
-                    if len(xls.sheet_names) < 2:
-                        st.error("❌ The uploaded Excel file does not have a second sheet.")
-                    else:
-                        df = xls.parse(xls.sheet_names[1])
-                        data = df.values.tolist()  # Convert DataFrame to list of lists
-                except Exception as e:
-                    st.error(f"❌ Failed to read Excel file: {e}")
+            try:
+                from sales.ibm_v2 import parse_uploaded_excel
+
+                # Save the uploaded file to a temporary location
+                with open("temp_uploaded_excel.xlsx", "wb") as f:
+                    f.write(uploaded_excel.getbuffer())
+
+                # Use the centralized function to parse the Excel file
+                data = parse_uploaded_excel("temp_uploaded_excel.xlsx")
+                logging.info("Data extracted from Excel using ibm_v2: %s", data)
+            except Exception as e:
+                logging.error("Failed to extract data from Excel: %s", e)
 
         # Call the function to create the styled Excel file
-        create_styled_excel_v2(
-            data=data,
-            header_info=header_info,
-            logo_path=logo_path,
-            output=output,
-            compliance_text=compliance_text,
-            ibm_terms_text=""
-        )
+        try:
+            create_styled_excel_v2(
+                data=data,
+                header_info=header_info,
+                logo_path=logo_path,
+                output=output,
+                compliance_text=compliance_text,
+                ibm_terms_text=""
+            )
+            logging.info("Styled Excel file created successfully.")
+        except Exception as e:
+            logging.error("Failed to create styled Excel file: %s", e)
 
         # Provide download link for the generated Excel file
         st.download_button(

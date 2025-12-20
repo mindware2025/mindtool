@@ -7,6 +7,7 @@ from openpyxl.styles import Font, Alignment, PatternFill, Border, Side
 from openpyxl.drawing.image import Image
 from openpyxl.utils import get_column_letter
 from terms_template import get_terms_section
+import logging
 
 
 USD_TO_AED = 3.6725
@@ -234,23 +235,68 @@ def parse_uploaded_excel(file_path):
     """
     parsed_data = []
 
-    # Read the log file as a DataFrame
-    df = pd.read_csv(file_path, sep="\t", header=None, skiprows=12, engine="python")
+    # Read the Excel file as a DataFrame
+    xls = pd.ExcelFile(file_path)
 
+    # Ensure the file has at least two sheets
+    if len(xls.sheet_names) < 2:
+        raise ValueError("The uploaded Excel file does not have a second sheet.")
+
+    # Parse the second sheet, skipping the first 9 rows
+    df = xls.parse(xls.sheet_names[1], skiprows=9, header=None)  # Skip first 9 rows, no header
+    logging.info("Initial DataFrame loaded: %s", df.head())
+
+    # Manually assign column names
+    expected_columns = [
+        'Part number', 'Part description', 'Brand', 'Part type', 'SW Value Plus product group',
+        'SW Value Plus terms', 'Quantity', 'Start date', 'End date', 'Prorate months',
+        'Compressed coverage months', 'Renewal quote number', 'Item points', 'Entitled unit price',
+        'Total points', 'Bid unit price', 'Entitled extended price', 'End user discount',
+        'Bid extended price', 'BP discount', 'BP override discount', 'BP extended price',
+        'Total line discount', 'Recomm. Reseller / Entitled price', 'Is BP discount QP?'
+    ]
+
+    if len(df.columns) >= len(expected_columns):
+        df.columns = expected_columns[:len(df.columns)]
+        logging.info("Manually assigned column names: %s", df.columns.tolist())
+    else:
+        raise ValueError("The Excel file does not have enough columns to match the expected structure.")
+
+    # Filter out rows with missing or irrelevant part numbers
+    df = df[df['Part number'].notna()]
+    logging.info("Filtered DataFrame with valid 'Part number': %s", df.head())
+
+    # Select relevant columns
+    columns_to_keep = [
+        'Part number', 'Part description', 'Quantity', 'Start date', 'End date',
+        'Bid extended price'
+    ]
+
+    missing_columns = [col for col in columns_to_keep if col not in df.columns]
+    if missing_columns:
+        raise ValueError(f"The following required columns are missing: {missing_columns}")
+
+    df = df[columns_to_keep]
+    logging.info("DataFrame with selected columns: %s", df.head())
+
+    # Drop summary rows (e.g., "Total for Software Parts")
+    df = df[~df['Part number'].str.contains("Total", na=False)]
+    logging.info("DataFrame after removing summary rows: %s", df.head())
+
+    
+    # Convert DataFrame to list of lists
     for _, row in df.iterrows():
         try:
-            # Extract relevant columns
-            sku = row[0] if not pd.isna(row[0]) else ""
-            description = row[1] if not pd.isna(row[1]) else ""
-            quantity = int(row[6]) if not pd.isna(row[6]) else 0
-            start_date = row[7] if not pd.isna(row[7]) else ""
-            end_date = row[8] if not pd.isna(row[8]) else ""
-            cost = float(row[16]) if not pd.isna(row[16]) else 0.0
+            sku = row['Part number']
+            description = row['Part description']
+            quantity = int(row['Quantity'])
+            start_date = row['Start date']
+            end_date = row['End date']
+            cost = float(row['Bid extended price'])
 
-            # Append to parsed data
             parsed_data.append([sku, description, quantity, start_date, end_date, cost])
         except Exception as e:
-            # Log or handle any row-specific errors
-            print(f"Error parsing row: {row}, Error: {e}")
+            logging.error("Error parsing row: %s, Error: %s", row, e)
 
+    logging.info("Final parsed data: %s", parsed_data)
     return parsed_data

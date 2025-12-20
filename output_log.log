@@ -1,0 +1,1320 @@
+2025-12-21 00:52:44,650 - INFO - Initial DataFrame loaded:         0                                                  1                   2   ...       22  23  24
+0  D29HYLL  IBM Maximo Application Suite per AppPoint from...  Internet of Things  ...  0.67117 NaN NaN
+1  E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  Internet of Things  ...  0.60061 NaN NaN
+2  E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  Internet of Things  ...  0.57913 NaN NaN
+3  D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...  Internet of Things  ...  0.94817 NaN NaN
+4  E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...  Internet of Things  ...  0.89153 NaN NaN
+
+[5 rows x 25 columns]
+2025-12-21 00:52:44,702 - INFO - Manually assigned column names: ['Part number', 'Part description', 'Brand', 'Part type', 'SW Value Plus product group', 'SW Value Plus terms', 'Quantity', 'Start date', 'End date', 'Prorate months', 'Compressed coverage months', 'Renewal quote number', 'Item points', 'Entitled unit price', 'Total points', 'Bid unit price', 'Entitled extended price', 'End user discount', 'Bid extended price', 'BP discount', 'BP override discount', 'BP extended price', 'Total line discount', 'Recomm. Reseller / Entitled price', 'Is BP discount QP?']
+2025-12-21 00:52:44,703 - INFO - Filtered DataFrame with valid 'Part number':   Part number                                   Part description  ... Recomm. Reseller / Entitled price Is BP discount QP?
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...  ...                               NaN                NaN
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  ...                               NaN                NaN
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  ...                               NaN                NaN
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...  ...                               NaN                NaN
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...  ...                               NaN                NaN
+
+[5 rows x 25 columns]
+2025-12-21 00:52:44,761 - INFO - DataFrame with selected columns:   Part number                                   Part description  Quantity   Start date     End date  Entitled unit price  Entitled extended price
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...     315.0  19-Dec-2025  31-Dec-2026                733.0                 230895.0
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2027  31-Dec-2027                543.0                 171045.0
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2028  31-Dec-2028                271.5                  85522.5
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...     280.0  19-Dec-2025  31-Dec-2026                733.0                 205240.0
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...     280.0  01-Jan-2027  31-Dec-2027                543.0                 152040.0
+2025-12-21 00:52:44,781 - INFO - DataFrame after removing summary rows:   Part number                                   Part description  Quantity   Start date     End date  Entitled unit price  Entitled extended price
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...     315.0  19-Dec-2025  31-Dec-2026                733.0                 230895.0
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2027  31-Dec-2027                543.0                 171045.0
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2028  31-Dec-2028                271.5                  85522.5
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...     280.0  19-Dec-2025  31-Dec-2026                733.0                 205240.0
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...     280.0  01-Jan-2027  31-Dec-2027                543.0                 152040.0
+2025-12-21 00:52:44,800 - INFO - Final parsed data: [['D29HYLL', 'IBM Maximo Application Suite per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 315, '19-Dec-2025', '31-Dec-2026', 230895.0], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2027', '31-Dec-2027', 171045.0], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2028', '31-Dec-2028', 85522.5], ['D0GL1ZX', 'IBM Maximo IT per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 280, '19-Dec-2025', '31-Dec-2026', 205240.0], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2027', '31-Dec-2027', 152040.0], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2028', '31-Dec-2028', 76020.0]]
+2025-12-21 00:52:44,801 - INFO - Data extracted from Excel using ibm_v2: [['D29HYLL', 'IBM Maximo Application Suite per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 315, '19-Dec-2025', '31-Dec-2026', 230895.0], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2027', '31-Dec-2027', 171045.0], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2028', '31-Dec-2028', 85522.5], ['D0GL1ZX', 'IBM Maximo IT per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 280, '19-Dec-2025', '31-Dec-2026', 205240.0], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2027', '31-Dec-2027', 152040.0], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2028', '31-Dec-2028', 76020.0]]
+2025-12-21 00:52:44,805 - DEBUG - STREAM b'IHDR' 16 13
+2025-12-21 00:52:44,805 - DEBUG - STREAM b'sRGB' 41 1
+2025-12-21 00:52:44,805 - DEBUG - STREAM b'gAMA' 54 4
+2025-12-21 00:52:44,806 - DEBUG - STREAM b'pHYs' 70 9
+2025-12-21 00:52:44,806 - DEBUG - STREAM b'IDAT' 91 10912
+2025-12-21 00:52:44,893 - DEBUG - STREAM b'IHDR' 16 13
+2025-12-21 00:52:44,894 - DEBUG - STREAM b'sRGB' 41 1
+2025-12-21 00:52:44,894 - DEBUG - STREAM b'gAMA' 54 4
+2025-12-21 00:52:44,894 - DEBUG - STREAM b'pHYs' 70 9
+2025-12-21 00:52:44,894 - DEBUG - STREAM b'IDAT' 91 10912
+2025-12-21 00:52:44,903 - INFO - Styled Excel file created successfully.
+2025-12-21 00:52:45,868 - INFO - Initial DataFrame loaded:         0                                                  1                   2   ...       22  23  24
+0  D29HYLL  IBM Maximo Application Suite per AppPoint from...  Internet of Things  ...  0.67117 NaN NaN
+1  E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  Internet of Things  ...  0.60061 NaN NaN
+2  E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  Internet of Things  ...  0.57913 NaN NaN
+3  D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...  Internet of Things  ...  0.94817 NaN NaN
+4  E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...  Internet of Things  ...  0.89153 NaN NaN
+
+[5 rows x 25 columns]
+2025-12-21 00:52:45,897 - INFO - Manually assigned column names: ['Part number', 'Part description', 'Brand', 'Part type', 'SW Value Plus product group', 'SW Value Plus terms', 'Quantity', 'Start date', 'End date', 'Prorate months', 'Compressed coverage months', 'Renewal quote number', 'Item points', 'Entitled unit price', 'Total points', 'Bid unit price', 'Entitled extended price', 'End user discount', 'Bid extended price', 'BP discount', 'BP override discount', 'BP extended price', 'Total line discount', 'Recomm. Reseller / Entitled price', 'Is BP discount QP?']
+2025-12-21 00:52:45,897 - INFO - Filtered DataFrame with valid 'Part number':   Part number                                   Part description  ... Recomm. Reseller / Entitled price Is BP discount QP?
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...  ...                               NaN                NaN
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  ...                               NaN                NaN
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  ...                               NaN                NaN
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...  ...                               NaN                NaN
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...  ...                               NaN                NaN
+
+[5 rows x 25 columns]
+2025-12-21 00:52:45,925 - INFO - DataFrame with selected columns:   Part number                                   Part description  Quantity   Start date     End date  Entitled unit price  Entitled extended price
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...     315.0  19-Dec-2025  31-Dec-2026                733.0                 230895.0
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2027  31-Dec-2027                543.0                 171045.0
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2028  31-Dec-2028                271.5                  85522.5
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...     280.0  19-Dec-2025  31-Dec-2026                733.0                 205240.0
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...     280.0  01-Jan-2027  31-Dec-2027                543.0                 152040.0
+2025-12-21 00:52:45,941 - INFO - DataFrame after removing summary rows:   Part number                                   Part description  Quantity   Start date     End date  Entitled unit price  Entitled extended price
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...     315.0  19-Dec-2025  31-Dec-2026                733.0                 230895.0
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2027  31-Dec-2027                543.0                 171045.0
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2028  31-Dec-2028                271.5                  85522.5
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...     280.0  19-Dec-2025  31-Dec-2026                733.0                 205240.0
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...     280.0  01-Jan-2027  31-Dec-2027                543.0                 152040.0
+2025-12-21 00:52:45,955 - INFO - Final parsed data: [['D29HYLL', 'IBM Maximo Application Suite per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 315, '19-Dec-2025', '31-Dec-2026', 230895.0], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2027', '31-Dec-2027', 171045.0], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2028', '31-Dec-2028', 85522.5], ['D0GL1ZX', 'IBM Maximo IT per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 280, '19-Dec-2025', '31-Dec-2026', 205240.0], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2027', '31-Dec-2027', 152040.0], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2028', '31-Dec-2028', 76020.0]]
+2025-12-21 00:52:45,955 - INFO - Data extracted from Excel using ibm_v2: [['D29HYLL', 'IBM Maximo Application Suite per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 315, '19-Dec-2025', '31-Dec-2026', 230895.0], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2027', '31-Dec-2027', 171045.0], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2028', '31-Dec-2028', 85522.5], ['D0GL1ZX', 'IBM Maximo IT per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 280, '19-Dec-2025', '31-Dec-2026', 205240.0], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2027', '31-Dec-2027', 152040.0], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2028', '31-Dec-2028', 76020.0]]
+2025-12-21 00:52:45,958 - DEBUG - STREAM b'IHDR' 16 13
+2025-12-21 00:52:45,958 - DEBUG - STREAM b'sRGB' 41 1
+2025-12-21 00:52:45,958 - DEBUG - STREAM b'gAMA' 54 4
+2025-12-21 00:52:45,958 - DEBUG - STREAM b'pHYs' 70 9
+2025-12-21 00:52:45,958 - DEBUG - STREAM b'IDAT' 91 10912
+2025-12-21 00:52:46,023 - DEBUG - STREAM b'IHDR' 16 13
+2025-12-21 00:52:46,024 - DEBUG - STREAM b'sRGB' 41 1
+2025-12-21 00:52:46,024 - DEBUG - STREAM b'gAMA' 54 4
+2025-12-21 00:52:46,024 - DEBUG - STREAM b'pHYs' 70 9
+2025-12-21 00:52:46,024 - DEBUG - STREAM b'IDAT' 91 10912
+2025-12-21 00:52:46,031 - INFO - Styled Excel file created successfully.
+2025-12-21 00:54:24,861 - INFO - Initial DataFrame loaded:         0                                                  1                   2   ...       22  23  24
+0  D29HYLL  IBM Maximo Application Suite per AppPoint from...  Internet of Things  ...  0.67117 NaN NaN
+1  E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  Internet of Things  ...  0.60061 NaN NaN
+2  E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  Internet of Things  ...  0.57913 NaN NaN
+3  D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...  Internet of Things  ...  0.94817 NaN NaN
+4  E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...  Internet of Things  ...  0.89153 NaN NaN
+
+[5 rows x 25 columns]
+2025-12-21 00:54:24,903 - INFO - Manually assigned column names: ['Part number', 'Part description', 'Brand', 'Part type', 'SW Value Plus product group', 'SW Value Plus terms', 'Quantity', 'Start date', 'End date', 'Prorate months', 'Compressed coverage months', 'Renewal quote number', 'Item points', 'Entitled unit price', 'Total points', 'Bid unit price', 'Entitled extended price', 'End user discount', 'Bid extended price', 'BP discount', 'BP override discount', 'BP extended price', 'Total line discount', 'Recomm. Reseller / Entitled price', 'Is BP discount QP?']
+2025-12-21 00:54:24,904 - INFO - Filtered DataFrame with valid 'Part number':   Part number                                   Part description  ... Recomm. Reseller / Entitled price Is BP discount QP?
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...  ...                               NaN                NaN
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  ...                               NaN                NaN
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  ...                               NaN                NaN
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...  ...                               NaN                NaN
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...  ...                               NaN                NaN
+
+[5 rows x 25 columns]
+2025-12-21 00:54:24,941 - INFO - DataFrame with selected columns:   Part number                                   Part description  Quantity   Start date     End date  Entitled unit price  Entitled extended price
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...     315.0  19-Dec-2025  31-Dec-2026                733.0                 230895.0
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2027  31-Dec-2027                543.0                 171045.0
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2028  31-Dec-2028                271.5                  85522.5
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...     280.0  19-Dec-2025  31-Dec-2026                733.0                 205240.0
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...     280.0  01-Jan-2027  31-Dec-2027                543.0                 152040.0
+2025-12-21 00:54:24,958 - INFO - DataFrame after removing summary rows:   Part number                                   Part description  Quantity   Start date     End date  Entitled unit price  Entitled extended price
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...     315.0  19-Dec-2025  31-Dec-2026                733.0                 230895.0
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2027  31-Dec-2027                543.0                 171045.0
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2028  31-Dec-2028                271.5                  85522.5
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...     280.0  19-Dec-2025  31-Dec-2026                733.0                 205240.0
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...     280.0  01-Jan-2027  31-Dec-2027                543.0                 152040.0
+2025-12-21 00:54:24,974 - ERROR - Error parsing row: Part number                                                          D29HYLL
+Part description           IBM Maximo Application Suite per AppPoint from...
+Quantity                                                               315.0
+Start date                                                       19-Dec-2025
+End date                                                         31-Dec-2026
+Entitled unit price                                                    733.0
+Entitled extended price                                             230895.0
+Name: 0, dtype: object, Error: 'Bid extended price'
+2025-12-21 00:54:24,975 - ERROR - Error parsing row: Part number                                                          E0R1HLL
+Part description           IBM Maximo Application Suite per AppPoint Annu...
+Quantity                                                               315.0
+Start date                                                       01-Jan-2027
+End date                                                         31-Dec-2027
+Entitled unit price                                                    543.0
+Entitled extended price                                             171045.0
+Name: 1, dtype: object, Error: 'Bid extended price'
+2025-12-21 00:54:24,976 - ERROR - Error parsing row: Part number                                                          E0R1HLL
+Part description           IBM Maximo Application Suite per AppPoint Annu...
+Quantity                                                               315.0
+Start date                                                       01-Jan-2028
+End date                                                         31-Dec-2028
+Entitled unit price                                                    271.5
+Entitled extended price                                              85522.5
+Name: 2, dtype: object, Error: 'Bid extended price'
+2025-12-21 00:54:24,978 - ERROR - Error parsing row: Part number                                                          D0GL1ZX
+Part description           IBM Maximo IT per AppPoint from Eligible Progr...
+Quantity                                                               280.0
+Start date                                                       19-Dec-2025
+End date                                                         31-Dec-2026
+Entitled unit price                                                    733.0
+Entitled extended price                                             205240.0
+Name: 3, dtype: object, Error: 'Bid extended price'
+2025-12-21 00:54:24,979 - ERROR - Error parsing row: Part number                                                          E0GKGZX
+Part description           IBM Maximo IT per AppPoint Annual SW Subscript...
+Quantity                                                               280.0
+Start date                                                       01-Jan-2027
+End date                                                         31-Dec-2027
+Entitled unit price                                                    543.0
+Entitled extended price                                             152040.0
+Name: 4, dtype: object, Error: 'Bid extended price'
+2025-12-21 00:54:24,980 - ERROR - Error parsing row: Part number                                                          E0GKGZX
+Part description           IBM Maximo IT per AppPoint Annual SW Subscript...
+Quantity                                                               280.0
+Start date                                                       01-Jan-2028
+End date                                                         31-Dec-2028
+Entitled unit price                                                    271.5
+Entitled extended price                                              76020.0
+Name: 5, dtype: object, Error: 'Bid extended price'
+2025-12-21 00:54:24,981 - INFO - Final parsed data: []
+2025-12-21 00:54:24,982 - INFO - Data extracted from Excel using ibm_v2: []
+2025-12-21 00:54:24,989 - DEBUG - STREAM b'IHDR' 16 13
+2025-12-21 00:54:24,989 - DEBUG - STREAM b'sRGB' 41 1
+2025-12-21 00:54:24,989 - DEBUG - STREAM b'gAMA' 54 4
+2025-12-21 00:54:24,989 - DEBUG - STREAM b'pHYs' 70 9
+2025-12-21 00:54:24,990 - DEBUG - STREAM b'IDAT' 91 10912
+2025-12-21 00:54:25,031 - DEBUG - STREAM b'IHDR' 16 13
+2025-12-21 00:54:25,031 - DEBUG - STREAM b'sRGB' 41 1
+2025-12-21 00:54:25,031 - DEBUG - STREAM b'gAMA' 54 4
+2025-12-21 00:54:25,032 - DEBUG - STREAM b'pHYs' 70 9
+2025-12-21 00:54:25,032 - DEBUG - STREAM b'IDAT' 91 10912
+2025-12-21 00:54:25,047 - INFO - Styled Excel file created successfully.
+2025-12-21 00:54:26,546 - INFO - Initial DataFrame loaded:         0                                                  1                   2   ...       22  23  24
+0  D29HYLL  IBM Maximo Application Suite per AppPoint from...  Internet of Things  ...  0.67117 NaN NaN
+1  E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  Internet of Things  ...  0.60061 NaN NaN
+2  E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  Internet of Things  ...  0.57913 NaN NaN
+3  D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...  Internet of Things  ...  0.94817 NaN NaN
+4  E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...  Internet of Things  ...  0.89153 NaN NaN
+
+[5 rows x 25 columns]
+2025-12-21 00:54:26,577 - INFO - Manually assigned column names: ['Part number', 'Part description', 'Brand', 'Part type', 'SW Value Plus product group', 'SW Value Plus terms', 'Quantity', 'Start date', 'End date', 'Prorate months', 'Compressed coverage months', 'Renewal quote number', 'Item points', 'Entitled unit price', 'Total points', 'Bid unit price', 'Entitled extended price', 'End user discount', 'Bid extended price', 'BP discount', 'BP override discount', 'BP extended price', 'Total line discount', 'Recomm. Reseller / Entitled price', 'Is BP discount QP?']
+2025-12-21 00:54:26,577 - INFO - Filtered DataFrame with valid 'Part number':   Part number                                   Part description  ... Recomm. Reseller / Entitled price Is BP discount QP?
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...  ...                               NaN                NaN
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  ...                               NaN                NaN
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  ...                               NaN                NaN
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...  ...                               NaN                NaN
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...  ...                               NaN                NaN
+
+[5 rows x 25 columns]
+2025-12-21 00:54:26,611 - INFO - DataFrame with selected columns:   Part number                                   Part description  Quantity   Start date     End date  Entitled unit price  Entitled extended price
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...     315.0  19-Dec-2025  31-Dec-2026                733.0                 230895.0
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2027  31-Dec-2027                543.0                 171045.0
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2028  31-Dec-2028                271.5                  85522.5
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...     280.0  19-Dec-2025  31-Dec-2026                733.0                 205240.0
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...     280.0  01-Jan-2027  31-Dec-2027                543.0                 152040.0
+2025-12-21 00:54:26,623 - INFO - DataFrame after removing summary rows:   Part number                                   Part description  Quantity   Start date     End date  Entitled unit price  Entitled extended price
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...     315.0  19-Dec-2025  31-Dec-2026                733.0                 230895.0
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2027  31-Dec-2027                543.0                 171045.0
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2028  31-Dec-2028                271.5                  85522.5
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...     280.0  19-Dec-2025  31-Dec-2026                733.0                 205240.0
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...     280.0  01-Jan-2027  31-Dec-2027                543.0                 152040.0
+2025-12-21 00:54:26,634 - ERROR - Error parsing row: Part number                                                          D29HYLL
+Part description           IBM Maximo Application Suite per AppPoint from...
+Quantity                                                               315.0
+Start date                                                       19-Dec-2025
+End date                                                         31-Dec-2026
+Entitled unit price                                                    733.0
+Entitled extended price                                             230895.0
+Name: 0, dtype: object, Error: 'Bid extended price'
+2025-12-21 00:54:26,635 - ERROR - Error parsing row: Part number                                                          E0R1HLL
+Part description           IBM Maximo Application Suite per AppPoint Annu...
+Quantity                                                               315.0
+Start date                                                       01-Jan-2027
+End date                                                         31-Dec-2027
+Entitled unit price                                                    543.0
+Entitled extended price                                             171045.0
+Name: 1, dtype: object, Error: 'Bid extended price'
+2025-12-21 00:54:26,637 - ERROR - Error parsing row: Part number                                                          E0R1HLL
+Part description           IBM Maximo Application Suite per AppPoint Annu...
+Quantity                                                               315.0
+Start date                                                       01-Jan-2028
+End date                                                         31-Dec-2028
+Entitled unit price                                                    271.5
+Entitled extended price                                              85522.5
+Name: 2, dtype: object, Error: 'Bid extended price'
+2025-12-21 00:54:26,638 - ERROR - Error parsing row: Part number                                                          D0GL1ZX
+Part description           IBM Maximo IT per AppPoint from Eligible Progr...
+Quantity                                                               280.0
+Start date                                                       19-Dec-2025
+End date                                                         31-Dec-2026
+Entitled unit price                                                    733.0
+Entitled extended price                                             205240.0
+Name: 3, dtype: object, Error: 'Bid extended price'
+2025-12-21 00:54:26,640 - ERROR - Error parsing row: Part number                                                          E0GKGZX
+Part description           IBM Maximo IT per AppPoint Annual SW Subscript...
+Quantity                                                               280.0
+Start date                                                       01-Jan-2027
+End date                                                         31-Dec-2027
+Entitled unit price                                                    543.0
+Entitled extended price                                             152040.0
+Name: 4, dtype: object, Error: 'Bid extended price'
+2025-12-21 00:54:26,641 - ERROR - Error parsing row: Part number                                                          E0GKGZX
+Part description           IBM Maximo IT per AppPoint Annual SW Subscript...
+Quantity                                                               280.0
+Start date                                                       01-Jan-2028
+End date                                                         31-Dec-2028
+Entitled unit price                                                    271.5
+Entitled extended price                                              76020.0
+Name: 5, dtype: object, Error: 'Bid extended price'
+2025-12-21 00:54:26,642 - INFO - Final parsed data: []
+2025-12-21 00:54:26,643 - INFO - Data extracted from Excel using ibm_v2: []
+2025-12-21 00:54:26,647 - DEBUG - STREAM b'IHDR' 16 13
+2025-12-21 00:54:26,647 - DEBUG - STREAM b'sRGB' 41 1
+2025-12-21 00:54:26,648 - DEBUG - STREAM b'gAMA' 54 4
+2025-12-21 00:54:26,648 - DEBUG - STREAM b'pHYs' 70 9
+2025-12-21 00:54:26,648 - DEBUG - STREAM b'IDAT' 91 10912
+2025-12-21 00:54:26,676 - DEBUG - STREAM b'IHDR' 16 13
+2025-12-21 00:54:26,676 - DEBUG - STREAM b'sRGB' 41 1
+2025-12-21 00:54:26,677 - DEBUG - STREAM b'gAMA' 54 4
+2025-12-21 00:54:26,677 - DEBUG - STREAM b'pHYs' 70 9
+2025-12-21 00:54:26,677 - DEBUG - STREAM b'IDAT' 91 10912
+2025-12-21 00:54:26,683 - INFO - Styled Excel file created successfully.
+2025-12-21 00:54:46,241 - INFO - Initial DataFrame loaded:         0                                                  1                   2   ...       22  23  24
+0  D29HYLL  IBM Maximo Application Suite per AppPoint from...  Internet of Things  ...  0.67117 NaN NaN
+1  E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  Internet of Things  ...  0.60061 NaN NaN
+2  E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  Internet of Things  ...  0.57913 NaN NaN
+3  D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...  Internet of Things  ...  0.94817 NaN NaN
+4  E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...  Internet of Things  ...  0.89153 NaN NaN
+
+[5 rows x 25 columns]
+2025-12-21 00:54:46,281 - INFO - Manually assigned column names: ['Part number', 'Part description', 'Brand', 'Part type', 'SW Value Plus product group', 'SW Value Plus terms', 'Quantity', 'Start date', 'End date', 'Prorate months', 'Compressed coverage months', 'Renewal quote number', 'Item points', 'Entitled unit price', 'Total points', 'Bid unit price', 'Entitled extended price', 'End user discount', 'Bid extended price', 'BP discount', 'BP override discount', 'BP extended price', 'Total line discount', 'Recomm. Reseller / Entitled price', 'Is BP discount QP?']
+2025-12-21 00:54:46,281 - INFO - Filtered DataFrame with valid 'Part number':   Part number                                   Part description  ... Recomm. Reseller / Entitled price Is BP discount QP?
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...  ...                               NaN                NaN
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  ...                               NaN                NaN
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  ...                               NaN                NaN
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...  ...                               NaN                NaN
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...  ...                               NaN                NaN
+
+[5 rows x 25 columns]
+2025-12-21 00:54:46,317 - INFO - DataFrame with selected columns:   Part number                                   Part description  Quantity   Start date     End date  Entitled unit price  Entitled extended price
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...     315.0  19-Dec-2025  31-Dec-2026                733.0                 230895.0
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2027  31-Dec-2027                543.0                 171045.0
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2028  31-Dec-2028                271.5                  85522.5
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...     280.0  19-Dec-2025  31-Dec-2026                733.0                 205240.0
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...     280.0  01-Jan-2027  31-Dec-2027                543.0                 152040.0
+2025-12-21 00:54:46,327 - INFO - DataFrame after removing summary rows:   Part number                                   Part description  Quantity   Start date     End date  Entitled unit price  Entitled extended price
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...     315.0  19-Dec-2025  31-Dec-2026                733.0                 230895.0
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2027  31-Dec-2027                543.0                 171045.0
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2028  31-Dec-2028                271.5                  85522.5
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...     280.0  19-Dec-2025  31-Dec-2026                733.0                 205240.0
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...     280.0  01-Jan-2027  31-Dec-2027                543.0                 152040.0
+2025-12-21 00:54:46,342 - ERROR - Error parsing row: Part number                                                          D29HYLL
+Part description           IBM Maximo Application Suite per AppPoint from...
+Quantity                                                               315.0
+Start date                                                       19-Dec-2025
+End date                                                         31-Dec-2026
+Entitled unit price                                                    733.0
+Entitled extended price                                             230895.0
+Name: 0, dtype: object, Error: 'Bid extended price'
+2025-12-21 00:54:46,343 - ERROR - Error parsing row: Part number                                                          E0R1HLL
+Part description           IBM Maximo Application Suite per AppPoint Annu...
+Quantity                                                               315.0
+Start date                                                       01-Jan-2027
+End date                                                         31-Dec-2027
+Entitled unit price                                                    543.0
+Entitled extended price                                             171045.0
+Name: 1, dtype: object, Error: 'Bid extended price'
+2025-12-21 00:54:46,344 - ERROR - Error parsing row: Part number                                                          E0R1HLL
+Part description           IBM Maximo Application Suite per AppPoint Annu...
+Quantity                                                               315.0
+Start date                                                       01-Jan-2028
+End date                                                         31-Dec-2028
+Entitled unit price                                                    271.5
+Entitled extended price                                              85522.5
+Name: 2, dtype: object, Error: 'Bid extended price'
+2025-12-21 00:54:46,345 - ERROR - Error parsing row: Part number                                                          D0GL1ZX
+Part description           IBM Maximo IT per AppPoint from Eligible Progr...
+Quantity                                                               280.0
+Start date                                                       19-Dec-2025
+End date                                                         31-Dec-2026
+Entitled unit price                                                    733.0
+Entitled extended price                                             205240.0
+Name: 3, dtype: object, Error: 'Bid extended price'
+2025-12-21 00:54:46,345 - ERROR - Error parsing row: Part number                                                          E0GKGZX
+Part description           IBM Maximo IT per AppPoint Annual SW Subscript...
+Quantity                                                               280.0
+Start date                                                       01-Jan-2027
+End date                                                         31-Dec-2027
+Entitled unit price                                                    543.0
+Entitled extended price                                             152040.0
+Name: 4, dtype: object, Error: 'Bid extended price'
+2025-12-21 00:54:46,346 - ERROR - Error parsing row: Part number                                                          E0GKGZX
+Part description           IBM Maximo IT per AppPoint Annual SW Subscript...
+Quantity                                                               280.0
+Start date                                                       01-Jan-2028
+End date                                                         31-Dec-2028
+Entitled unit price                                                    271.5
+Entitled extended price                                              76020.0
+Name: 5, dtype: object, Error: 'Bid extended price'
+2025-12-21 00:54:46,347 - INFO - Final parsed data: []
+2025-12-21 00:54:46,348 - INFO - Data extracted from Excel using ibm_v2: []
+2025-12-21 00:54:46,353 - DEBUG - STREAM b'IHDR' 16 13
+2025-12-21 00:54:46,354 - DEBUG - STREAM b'sRGB' 41 1
+2025-12-21 00:54:46,354 - DEBUG - STREAM b'gAMA' 54 4
+2025-12-21 00:54:46,354 - DEBUG - STREAM b'pHYs' 70 9
+2025-12-21 00:54:46,354 - DEBUG - STREAM b'IDAT' 91 10912
+2025-12-21 00:54:46,390 - DEBUG - STREAM b'IHDR' 16 13
+2025-12-21 00:54:46,390 - DEBUG - STREAM b'sRGB' 41 1
+2025-12-21 00:54:46,390 - DEBUG - STREAM b'gAMA' 54 4
+2025-12-21 00:54:46,390 - DEBUG - STREAM b'pHYs' 70 9
+2025-12-21 00:54:46,390 - DEBUG - STREAM b'IDAT' 91 10912
+2025-12-21 00:54:46,398 - INFO - Styled Excel file created successfully.
+2025-12-21 00:54:47,463 - INFO - Initial DataFrame loaded:         0                                                  1                   2   ...       22  23  24
+0  D29HYLL  IBM Maximo Application Suite per AppPoint from...  Internet of Things  ...  0.67117 NaN NaN
+1  E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  Internet of Things  ...  0.60061 NaN NaN
+2  E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  Internet of Things  ...  0.57913 NaN NaN
+3  D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...  Internet of Things  ...  0.94817 NaN NaN
+4  E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...  Internet of Things  ...  0.89153 NaN NaN
+
+[5 rows x 25 columns]
+2025-12-21 00:54:47,498 - INFO - Manually assigned column names: ['Part number', 'Part description', 'Brand', 'Part type', 'SW Value Plus product group', 'SW Value Plus terms', 'Quantity', 'Start date', 'End date', 'Prorate months', 'Compressed coverage months', 'Renewal quote number', 'Item points', 'Entitled unit price', 'Total points', 'Bid unit price', 'Entitled extended price', 'End user discount', 'Bid extended price', 'BP discount', 'BP override discount', 'BP extended price', 'Total line discount', 'Recomm. Reseller / Entitled price', 'Is BP discount QP?']
+2025-12-21 00:54:47,498 - INFO - Filtered DataFrame with valid 'Part number':   Part number                                   Part description  ... Recomm. Reseller / Entitled price Is BP discount QP?
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...  ...                               NaN                NaN
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  ...                               NaN                NaN
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  ...                               NaN                NaN
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...  ...                               NaN                NaN
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...  ...                               NaN                NaN
+
+[5 rows x 25 columns]
+2025-12-21 00:54:47,535 - INFO - DataFrame with selected columns:   Part number                                   Part description  Quantity   Start date     End date  Entitled unit price  Entitled extended price
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...     315.0  19-Dec-2025  31-Dec-2026                733.0                 230895.0
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2027  31-Dec-2027                543.0                 171045.0
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2028  31-Dec-2028                271.5                  85522.5
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...     280.0  19-Dec-2025  31-Dec-2026                733.0                 205240.0
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...     280.0  01-Jan-2027  31-Dec-2027                543.0                 152040.0
+2025-12-21 00:54:47,549 - INFO - DataFrame after removing summary rows:   Part number                                   Part description  Quantity   Start date     End date  Entitled unit price  Entitled extended price
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...     315.0  19-Dec-2025  31-Dec-2026                733.0                 230895.0
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2027  31-Dec-2027                543.0                 171045.0
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2028  31-Dec-2028                271.5                  85522.5
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...     280.0  19-Dec-2025  31-Dec-2026                733.0                 205240.0
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...     280.0  01-Jan-2027  31-Dec-2027                543.0                 152040.0
+2025-12-21 00:54:47,561 - ERROR - Error parsing row: Part number                                                          D29HYLL
+Part description           IBM Maximo Application Suite per AppPoint from...
+Quantity                                                               315.0
+Start date                                                       19-Dec-2025
+End date                                                         31-Dec-2026
+Entitled unit price                                                    733.0
+Entitled extended price                                             230895.0
+Name: 0, dtype: object, Error: 'Bid extended price'
+2025-12-21 00:54:47,562 - ERROR - Error parsing row: Part number                                                          E0R1HLL
+Part description           IBM Maximo Application Suite per AppPoint Annu...
+Quantity                                                               315.0
+Start date                                                       01-Jan-2027
+End date                                                         31-Dec-2027
+Entitled unit price                                                    543.0
+Entitled extended price                                             171045.0
+Name: 1, dtype: object, Error: 'Bid extended price'
+2025-12-21 00:54:47,563 - ERROR - Error parsing row: Part number                                                          E0R1HLL
+Part description           IBM Maximo Application Suite per AppPoint Annu...
+Quantity                                                               315.0
+Start date                                                       01-Jan-2028
+End date                                                         31-Dec-2028
+Entitled unit price                                                    271.5
+Entitled extended price                                              85522.5
+Name: 2, dtype: object, Error: 'Bid extended price'
+2025-12-21 00:54:47,565 - ERROR - Error parsing row: Part number                                                          D0GL1ZX
+Part description           IBM Maximo IT per AppPoint from Eligible Progr...
+Quantity                                                               280.0
+Start date                                                       19-Dec-2025
+End date                                                         31-Dec-2026
+Entitled unit price                                                    733.0
+Entitled extended price                                             205240.0
+Name: 3, dtype: object, Error: 'Bid extended price'
+2025-12-21 00:54:47,566 - ERROR - Error parsing row: Part number                                                          E0GKGZX
+Part description           IBM Maximo IT per AppPoint Annual SW Subscript...
+Quantity                                                               280.0
+Start date                                                       01-Jan-2027
+End date                                                         31-Dec-2027
+Entitled unit price                                                    543.0
+Entitled extended price                                             152040.0
+Name: 4, dtype: object, Error: 'Bid extended price'
+2025-12-21 00:54:47,567 - ERROR - Error parsing row: Part number                                                          E0GKGZX
+Part description           IBM Maximo IT per AppPoint Annual SW Subscript...
+Quantity                                                               280.0
+Start date                                                       01-Jan-2028
+End date                                                         31-Dec-2028
+Entitled unit price                                                    271.5
+Entitled extended price                                              76020.0
+Name: 5, dtype: object, Error: 'Bid extended price'
+2025-12-21 00:54:47,567 - INFO - Final parsed data: []
+2025-12-21 00:54:47,568 - INFO - Data extracted from Excel using ibm_v2: []
+2025-12-21 00:54:47,570 - DEBUG - STREAM b'IHDR' 16 13
+2025-12-21 00:54:47,570 - DEBUG - STREAM b'sRGB' 41 1
+2025-12-21 00:54:47,570 - DEBUG - STREAM b'gAMA' 54 4
+2025-12-21 00:54:47,570 - DEBUG - STREAM b'pHYs' 70 9
+2025-12-21 00:54:47,570 - DEBUG - STREAM b'IDAT' 91 10912
+2025-12-21 00:54:47,596 - DEBUG - STREAM b'IHDR' 16 13
+2025-12-21 00:54:47,596 - DEBUG - STREAM b'sRGB' 41 1
+2025-12-21 00:54:47,597 - DEBUG - STREAM b'gAMA' 54 4
+2025-12-21 00:54:47,597 - DEBUG - STREAM b'pHYs' 70 9
+2025-12-21 00:54:47,597 - DEBUG - STREAM b'IDAT' 91 10912
+2025-12-21 00:54:47,605 - INFO - Styled Excel file created successfully.
+2025-12-21 00:55:00,947 - INFO - Initial DataFrame loaded:         0                                                  1                   2   ...       22  23  24
+0  D29HYLL  IBM Maximo Application Suite per AppPoint from...  Internet of Things  ...  0.67117 NaN NaN
+1  E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  Internet of Things  ...  0.60061 NaN NaN
+2  E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  Internet of Things  ...  0.57913 NaN NaN
+3  D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...  Internet of Things  ...  0.94817 NaN NaN
+4  E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...  Internet of Things  ...  0.89153 NaN NaN
+
+[5 rows x 25 columns]
+2025-12-21 00:55:00,995 - INFO - Manually assigned column names: ['Part number', 'Part description', 'Brand', 'Part type', 'SW Value Plus product group', 'SW Value Plus terms', 'Quantity', 'Start date', 'End date', 'Prorate months', 'Compressed coverage months', 'Renewal quote number', 'Item points', 'Entitled unit price', 'Total points', 'Bid unit price', 'Entitled extended price', 'End user discount', 'Bid extended price', 'BP discount', 'BP override discount', 'BP extended price', 'Total line discount', 'Recomm. Reseller / Entitled price', 'Is BP discount QP?']
+2025-12-21 00:55:00,995 - INFO - Filtered DataFrame with valid 'Part number':   Part number                                   Part description  ... Recomm. Reseller / Entitled price Is BP discount QP?
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...  ...                               NaN                NaN
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  ...                               NaN                NaN
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  ...                               NaN                NaN
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...  ...                               NaN                NaN
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...  ...                               NaN                NaN
+
+[5 rows x 25 columns]
+2025-12-21 00:55:01,033 - INFO - DataFrame with selected columns:   Part number                                   Part description  Quantity   Start date     End date  Entitled unit price  Entitled extended price
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...     315.0  19-Dec-2025  31-Dec-2026                733.0                 230895.0
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2027  31-Dec-2027                543.0                 171045.0
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2028  31-Dec-2028                271.5                  85522.5
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...     280.0  19-Dec-2025  31-Dec-2026                733.0                 205240.0
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...     280.0  01-Jan-2027  31-Dec-2027                543.0                 152040.0
+2025-12-21 00:55:01,050 - INFO - DataFrame after removing summary rows:   Part number                                   Part description  Quantity   Start date     End date  Entitled unit price  Entitled extended price
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...     315.0  19-Dec-2025  31-Dec-2026                733.0                 230895.0
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2027  31-Dec-2027                543.0                 171045.0
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2028  31-Dec-2028                271.5                  85522.5
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...     280.0  19-Dec-2025  31-Dec-2026                733.0                 205240.0
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...     280.0  01-Jan-2027  31-Dec-2027                543.0                 152040.0
+2025-12-21 00:55:01,069 - INFO - Final parsed data: [['D29HYLL', 'IBM Maximo Application Suite per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 315, '19-Dec-2025', '31-Dec-2026', 230895.0], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2027', '31-Dec-2027', 171045.0], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2028', '31-Dec-2028', 85522.5], ['D0GL1ZX', 'IBM Maximo IT per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 280, '19-Dec-2025', '31-Dec-2026', 205240.0], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2027', '31-Dec-2027', 152040.0], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2028', '31-Dec-2028', 76020.0]]
+2025-12-21 00:55:01,070 - INFO - Data extracted from Excel using ibm_v2: [['D29HYLL', 'IBM Maximo Application Suite per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 315, '19-Dec-2025', '31-Dec-2026', 230895.0], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2027', '31-Dec-2027', 171045.0], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2028', '31-Dec-2028', 85522.5], ['D0GL1ZX', 'IBM Maximo IT per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 280, '19-Dec-2025', '31-Dec-2026', 205240.0], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2027', '31-Dec-2027', 152040.0], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2028', '31-Dec-2028', 76020.0]]
+2025-12-21 00:55:01,075 - DEBUG - STREAM b'IHDR' 16 13
+2025-12-21 00:55:01,075 - DEBUG - STREAM b'sRGB' 41 1
+2025-12-21 00:55:01,075 - DEBUG - STREAM b'gAMA' 54 4
+2025-12-21 00:55:01,075 - DEBUG - STREAM b'pHYs' 70 9
+2025-12-21 00:55:01,075 - DEBUG - STREAM b'IDAT' 91 10912
+2025-12-21 00:55:01,160 - DEBUG - STREAM b'IHDR' 16 13
+2025-12-21 00:55:01,160 - DEBUG - STREAM b'sRGB' 41 1
+2025-12-21 00:55:01,160 - DEBUG - STREAM b'gAMA' 54 4
+2025-12-21 00:55:01,161 - DEBUG - STREAM b'pHYs' 70 9
+2025-12-21 00:55:01,161 - DEBUG - STREAM b'IDAT' 91 10912
+2025-12-21 00:55:01,170 - INFO - Styled Excel file created successfully.
+2025-12-21 00:55:02,196 - INFO - Initial DataFrame loaded:         0                                                  1                   2   ...       22  23  24
+0  D29HYLL  IBM Maximo Application Suite per AppPoint from...  Internet of Things  ...  0.67117 NaN NaN
+1  E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  Internet of Things  ...  0.60061 NaN NaN
+2  E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  Internet of Things  ...  0.57913 NaN NaN
+3  D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...  Internet of Things  ...  0.94817 NaN NaN
+4  E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...  Internet of Things  ...  0.89153 NaN NaN
+
+[5 rows x 25 columns]
+2025-12-21 00:55:02,245 - INFO - Manually assigned column names: ['Part number', 'Part description', 'Brand', 'Part type', 'SW Value Plus product group', 'SW Value Plus terms', 'Quantity', 'Start date', 'End date', 'Prorate months', 'Compressed coverage months', 'Renewal quote number', 'Item points', 'Entitled unit price', 'Total points', 'Bid unit price', 'Entitled extended price', 'End user discount', 'Bid extended price', 'BP discount', 'BP override discount', 'BP extended price', 'Total line discount', 'Recomm. Reseller / Entitled price', 'Is BP discount QP?']
+2025-12-21 00:55:02,245 - INFO - Filtered DataFrame with valid 'Part number':   Part number                                   Part description  ... Recomm. Reseller / Entitled price Is BP discount QP?
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...  ...                               NaN                NaN
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  ...                               NaN                NaN
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  ...                               NaN                NaN
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...  ...                               NaN                NaN
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...  ...                               NaN                NaN
+
+[5 rows x 25 columns]
+2025-12-21 00:55:02,288 - INFO - DataFrame with selected columns:   Part number                                   Part description  Quantity   Start date     End date  Entitled unit price  Entitled extended price
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...     315.0  19-Dec-2025  31-Dec-2026                733.0                 230895.0
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2027  31-Dec-2027                543.0                 171045.0
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2028  31-Dec-2028                271.5                  85522.5
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...     280.0  19-Dec-2025  31-Dec-2026                733.0                 205240.0
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...     280.0  01-Jan-2027  31-Dec-2027                543.0                 152040.0
+2025-12-21 00:55:02,302 - INFO - DataFrame after removing summary rows:   Part number                                   Part description  Quantity   Start date     End date  Entitled unit price  Entitled extended price
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...     315.0  19-Dec-2025  31-Dec-2026                733.0                 230895.0
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2027  31-Dec-2027                543.0                 171045.0
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2028  31-Dec-2028                271.5                  85522.5
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...     280.0  19-Dec-2025  31-Dec-2026                733.0                 205240.0
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...     280.0  01-Jan-2027  31-Dec-2027                543.0                 152040.0
+2025-12-21 00:55:02,318 - INFO - Final parsed data: [['D29HYLL', 'IBM Maximo Application Suite per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 315, '19-Dec-2025', '31-Dec-2026', 230895.0], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2027', '31-Dec-2027', 171045.0], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2028', '31-Dec-2028', 85522.5], ['D0GL1ZX', 'IBM Maximo IT per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 280, '19-Dec-2025', '31-Dec-2026', 205240.0], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2027', '31-Dec-2027', 152040.0], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2028', '31-Dec-2028', 76020.0]]
+2025-12-21 00:55:02,318 - INFO - Data extracted from Excel using ibm_v2: [['D29HYLL', 'IBM Maximo Application Suite per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 315, '19-Dec-2025', '31-Dec-2026', 230895.0], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2027', '31-Dec-2027', 171045.0], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2028', '31-Dec-2028', 85522.5], ['D0GL1ZX', 'IBM Maximo IT per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 280, '19-Dec-2025', '31-Dec-2026', 205240.0], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2027', '31-Dec-2027', 152040.0], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2028', '31-Dec-2028', 76020.0]]
+2025-12-21 00:55:02,322 - DEBUG - STREAM b'IHDR' 16 13
+2025-12-21 00:55:02,322 - DEBUG - STREAM b'sRGB' 41 1
+2025-12-21 00:55:02,322 - DEBUG - STREAM b'gAMA' 54 4
+2025-12-21 00:55:02,323 - DEBUG - STREAM b'pHYs' 70 9
+2025-12-21 00:55:02,323 - DEBUG - STREAM b'IDAT' 91 10912
+2025-12-21 00:55:02,387 - DEBUG - STREAM b'IHDR' 16 13
+2025-12-21 00:55:02,387 - DEBUG - STREAM b'sRGB' 41 1
+2025-12-21 00:55:02,388 - DEBUG - STREAM b'gAMA' 54 4
+2025-12-21 00:55:02,388 - DEBUG - STREAM b'pHYs' 70 9
+2025-12-21 00:55:02,388 - DEBUG - STREAM b'IDAT' 91 10912
+2025-12-21 00:55:02,396 - INFO - Styled Excel file created successfully.
+2025-12-21 00:57:57,725 - INFO - Initial DataFrame loaded:         0                                                  1                   2   ...       22  23  24
+0  D29HYLL  IBM Maximo Application Suite per AppPoint from...  Internet of Things  ...  0.67117 NaN NaN
+1  E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  Internet of Things  ...  0.60061 NaN NaN
+2  E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  Internet of Things  ...  0.57913 NaN NaN
+3  D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...  Internet of Things  ...  0.94817 NaN NaN
+4  E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...  Internet of Things  ...  0.89153 NaN NaN
+
+[5 rows x 25 columns]
+2025-12-21 00:57:57,757 - INFO - Manually assigned column names: ['Part number', 'Part description', 'Brand', 'Part type', 'SW Value Plus product group', 'SW Value Plus terms', 'Quantity', 'Start date', 'End date', 'Prorate months', 'Compressed coverage months', 'Renewal quote number', 'Item points', 'Entitled unit price', 'Total points', 'Bid unit price', 'Entitled extended price', 'End user discount', 'Bid extended price', 'BP discount', 'BP override discount', 'BP extended price', 'Total line discount', 'Recomm. Reseller / Entitled price', 'Is BP discount QP?']
+2025-12-21 00:57:57,758 - INFO - Filtered DataFrame with valid 'Part number':   Part number                                   Part description  ... Recomm. Reseller / Entitled price Is BP discount QP?
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...  ...                               NaN                NaN
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  ...                               NaN                NaN
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  ...                               NaN                NaN
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...  ...                               NaN                NaN
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...  ...                               NaN                NaN
+
+[5 rows x 25 columns]
+2025-12-21 00:57:57,798 - INFO - DataFrame with selected columns:   Part number                                   Part description  Quantity   Start date     End date  Bid extended price
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...     315.0  19-Dec-2025  31-Dec-2026            94396.05
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2027  31-Dec-2027            73445.40
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2028  31-Dec-2028            38559.15
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...     280.0  19-Dec-2025  31-Dec-2026            27056.40
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...     280.0  01-Jan-2027  31-Dec-2027            21053.20
+2025-12-21 00:57:57,811 - INFO - DataFrame after removing summary rows:   Part number                                   Part description  Quantity   Start date     End date  Bid extended price
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...     315.0  19-Dec-2025  31-Dec-2026            94396.05
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2027  31-Dec-2027            73445.40
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2028  31-Dec-2028            38559.15
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...     280.0  19-Dec-2025  31-Dec-2026            27056.40
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...     280.0  01-Jan-2027  31-Dec-2027            21053.20
+2025-12-21 00:57:57,824 - INFO - Final parsed data: [['D29HYLL', 'IBM Maximo Application Suite per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 315, '19-Dec-2025', '31-Dec-2026', 94396.05], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2027', '31-Dec-2027', 73445.4], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2028', '31-Dec-2028', 38559.15], ['D0GL1ZX', 'IBM Maximo IT per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 280, '19-Dec-2025', '31-Dec-2026', 27056.4], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2027', '31-Dec-2027', 21053.2], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2028', '31-Dec-2028', 11054.4]]
+2025-12-21 00:57:57,825 - INFO - Data extracted from Excel using ibm_v2: [['D29HYLL', 'IBM Maximo Application Suite per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 315, '19-Dec-2025', '31-Dec-2026', 94396.05], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2027', '31-Dec-2027', 73445.4], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2028', '31-Dec-2028', 38559.15], ['D0GL1ZX', 'IBM Maximo IT per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 280, '19-Dec-2025', '31-Dec-2026', 27056.4], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2027', '31-Dec-2027', 21053.2], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2028', '31-Dec-2028', 11054.4]]
+2025-12-21 00:57:57,831 - DEBUG - STREAM b'IHDR' 16 13
+2025-12-21 00:57:57,831 - DEBUG - STREAM b'sRGB' 41 1
+2025-12-21 00:57:57,831 - DEBUG - STREAM b'gAMA' 54 4
+2025-12-21 00:57:57,832 - DEBUG - STREAM b'pHYs' 70 9
+2025-12-21 00:57:57,832 - DEBUG - STREAM b'IDAT' 91 10912
+2025-12-21 00:57:57,916 - DEBUG - STREAM b'IHDR' 16 13
+2025-12-21 00:57:57,916 - DEBUG - STREAM b'sRGB' 41 1
+2025-12-21 00:57:57,917 - DEBUG - STREAM b'gAMA' 54 4
+2025-12-21 00:57:57,917 - DEBUG - STREAM b'pHYs' 70 9
+2025-12-21 00:57:57,917 - DEBUG - STREAM b'IDAT' 91 10912
+2025-12-21 00:57:57,926 - INFO - Styled Excel file created successfully.
+2025-12-21 00:57:59,155 - INFO - Initial DataFrame loaded:         0                                                  1                   2   ...       22  23  24
+0  D29HYLL  IBM Maximo Application Suite per AppPoint from...  Internet of Things  ...  0.67117 NaN NaN
+1  E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  Internet of Things  ...  0.60061 NaN NaN
+2  E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  Internet of Things  ...  0.57913 NaN NaN
+3  D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...  Internet of Things  ...  0.94817 NaN NaN
+4  E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...  Internet of Things  ...  0.89153 NaN NaN
+
+[5 rows x 25 columns]
+2025-12-21 00:57:59,194 - INFO - Manually assigned column names: ['Part number', 'Part description', 'Brand', 'Part type', 'SW Value Plus product group', 'SW Value Plus terms', 'Quantity', 'Start date', 'End date', 'Prorate months', 'Compressed coverage months', 'Renewal quote number', 'Item points', 'Entitled unit price', 'Total points', 'Bid unit price', 'Entitled extended price', 'End user discount', 'Bid extended price', 'BP discount', 'BP override discount', 'BP extended price', 'Total line discount', 'Recomm. Reseller / Entitled price', 'Is BP discount QP?']
+2025-12-21 00:57:59,195 - INFO - Filtered DataFrame with valid 'Part number':   Part number                                   Part description  ... Recomm. Reseller / Entitled price Is BP discount QP?
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...  ...                               NaN                NaN
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  ...                               NaN                NaN
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  ...                               NaN                NaN
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...  ...                               NaN                NaN
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...  ...                               NaN                NaN
+
+[5 rows x 25 columns]
+2025-12-21 00:57:59,232 - INFO - DataFrame with selected columns:   Part number                                   Part description  Quantity   Start date     End date  Bid extended price
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...     315.0  19-Dec-2025  31-Dec-2026            94396.05
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2027  31-Dec-2027            73445.40
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2028  31-Dec-2028            38559.15
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...     280.0  19-Dec-2025  31-Dec-2026            27056.40
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...     280.0  01-Jan-2027  31-Dec-2027            21053.20
+2025-12-21 00:57:59,247 - INFO - DataFrame after removing summary rows:   Part number                                   Part description  Quantity   Start date     End date  Bid extended price
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...     315.0  19-Dec-2025  31-Dec-2026            94396.05
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2027  31-Dec-2027            73445.40
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2028  31-Dec-2028            38559.15
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...     280.0  19-Dec-2025  31-Dec-2026            27056.40
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...     280.0  01-Jan-2027  31-Dec-2027            21053.20
+2025-12-21 00:57:59,261 - INFO - Final parsed data: [['D29HYLL', 'IBM Maximo Application Suite per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 315, '19-Dec-2025', '31-Dec-2026', 94396.05], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2027', '31-Dec-2027', 73445.4], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2028', '31-Dec-2028', 38559.15], ['D0GL1ZX', 'IBM Maximo IT per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 280, '19-Dec-2025', '31-Dec-2026', 27056.4], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2027', '31-Dec-2027', 21053.2], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2028', '31-Dec-2028', 11054.4]]
+2025-12-21 00:57:59,261 - INFO - Data extracted from Excel using ibm_v2: [['D29HYLL', 'IBM Maximo Application Suite per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 315, '19-Dec-2025', '31-Dec-2026', 94396.05], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2027', '31-Dec-2027', 73445.4], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2028', '31-Dec-2028', 38559.15], ['D0GL1ZX', 'IBM Maximo IT per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 280, '19-Dec-2025', '31-Dec-2026', 27056.4], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2027', '31-Dec-2027', 21053.2], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2028', '31-Dec-2028', 11054.4]]
+2025-12-21 00:57:59,264 - DEBUG - STREAM b'IHDR' 16 13
+2025-12-21 00:57:59,264 - DEBUG - STREAM b'sRGB' 41 1
+2025-12-21 00:57:59,264 - DEBUG - STREAM b'gAMA' 54 4
+2025-12-21 00:57:59,264 - DEBUG - STREAM b'pHYs' 70 9
+2025-12-21 00:57:59,264 - DEBUG - STREAM b'IDAT' 91 10912
+2025-12-21 00:57:59,354 - DEBUG - STREAM b'IHDR' 16 13
+2025-12-21 00:57:59,355 - DEBUG - STREAM b'sRGB' 41 1
+2025-12-21 00:57:59,355 - DEBUG - STREAM b'gAMA' 54 4
+2025-12-21 00:57:59,355 - DEBUG - STREAM b'pHYs' 70 9
+2025-12-21 00:57:59,355 - DEBUG - STREAM b'IDAT' 91 10912
+2025-12-21 00:57:59,362 - INFO - Styled Excel file created successfully.
+2025-12-21 00:58:49,607 - INFO - === IBM PDF EXTRACTION STARTED ===
+2025-12-21 00:58:49,609 - INFO - PDF: 4 pages, extracting data...
+2025-12-21 00:58:49,629 - INFO - Total lines extracted: 187
+2025-12-21 00:58:49,630 - INFO - Extracting header information...
+2025-12-21 00:58:49,631 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,632 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,633 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,633 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,634 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,634 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,635 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,635 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,636 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,636 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,637 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,637 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,637 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,638 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,638 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,639 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,639 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,640 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,640 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,640 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,641 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,641 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,642 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,642 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,643 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,643 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,644 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,644 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,644 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,645 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,645 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,646 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,646 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,647 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,647 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,647 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,648 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,648 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,649 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,649 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,649 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,650 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,650 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,651 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,651 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,651 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,652 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,652 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,653 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,653 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,654 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,654 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,654 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,655 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,656 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,657 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,657 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,658 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,658 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,659 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,659 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,660 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,661 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,661 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,662 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,663 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,664 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,664 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,665 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,666 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,666 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,667 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,667 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,668 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,668 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,669 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,669 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,670 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,670 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,671 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,671 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,672 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,672 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,673 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,673 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,674 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,674 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,674 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,675 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,675 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,676 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,676 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,676 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,677 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,677 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,678 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,678 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,679 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,679 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,679 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,680 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,680 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,681 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,681 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,681 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,682 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,682 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,683 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,683 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,684 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,684 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,685 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,685 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,686 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,686 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,687 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,687 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,688 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,688 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,689 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,689 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,690 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,691 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,691 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,691 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,692 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,692 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,692 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,692 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,693 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,693 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,693 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,693 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,694 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,694 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,694 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,695 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,695 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,696 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,696 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,697 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,697 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,697 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,698 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,698 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,699 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,699 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,700 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,700 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,700 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,701 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,701 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,702 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,702 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,703 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,703 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,704 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,704 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,704 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,705 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,705 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,706 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,706 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,707 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,707 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,707 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,708 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,708 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,709 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,710 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,711 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,711 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,712 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,712 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,713 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,713 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,713 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,714 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,715 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,715 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,715 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,716 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,716 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,717 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,717 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,717 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,718 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,719 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:49,719 - INFO - Header fields found: 8
+2025-12-21 00:58:49,719 - INFO - MEP extracted: '243,386.00')
+2025-12-21 00:58:49,719 - INFO - Bid Expiration Date: '31-Dec-2025')
+2025-12-21 00:58:49,719 - INFO - Extracting line items...
+2025-12-21 00:58:49,720 - INFO - === RAW PDF CONTENT FOR SKU D28AYLL ===
+2025-12-21 00:58:49,720 - INFO - Chunk lines from PDF:
+2025-12-21 00:58:49,720 - INFO -   Line 0: '1'
+2025-12-21 00:58:49,720 - INFO -   Line 1: 'D28AYLL'
+2025-12-21 00:58:49,720 - INFO -   Line 2: 'MAPST APPNT LIC + S&'
+2025-12-21 00:58:49,721 - INFO -   Line 3: '13,30'
+2025-12-21 00:58:49,721 - INFO -   Line 4: '1729,00 23-Oct-2025'
+2025-12-21 00:58:49,721 - INFO -   Line 5: '31-Oct-2026'
+2025-12-21 00:58:49,721 - INFO -   Line 6: '130'
+2025-12-21 00:58:49,721 - INFO -   Line 7: '2.748,00'
+2025-12-21 00:58:49,721 - INFO -   Line 8: '357.240,00'
+2025-12-21 00:58:49,721 - INFO -   Line 9: '51,960'
+2025-12-21 00:58:49,722 - INFO -   Line 10: '1.320,14'
+2025-12-21 00:58:49,722 - INFO -   Line 11: '171.618,20'
+2025-12-21 00:58:49,722 - INFO - Money tokens found: ['2.748,00', '357.240,00', '51,960', '1.320,14', '171.618,20']
+2025-12-21 00:58:49,722 - INFO - Date range: 23-Oct-2025 to 31-Oct-2026
+2025-12-21 00:58:49,722 - INFO - ==================================================
+2025-12-21 00:58:49,722 - INFO - === PRICE ANALYSIS FOR SKU D28AYLL ===
+2025-12-21 00:58:49,722 - INFO - All money tokens from PDF: ['2.748,00', '357.240,00', '51,960', '1.320,14', '171.618,20']
+2025-12-21 00:58:49,723 - INFO -   Token 0: '2.748,00' = 2748.0
+2025-12-21 00:58:49,723 - INFO -   Token 1: '357.240,00' = 357240.0
+2025-12-21 00:58:49,723 - INFO -   Token 2: '51,960' = 51.96
+2025-12-21 00:58:49,723 - INFO -   Token 3: '1.320,14' = 1320.14
+2025-12-21 00:58:49,723 - INFO -   Token 4: '171.618,20' = 171618.2
+2025-12-21 00:58:49,723 - INFO - All parsed values:
+2025-12-21 00:58:49,723 - INFO -   Position 0: '2.748,00' = 2748.0
+2025-12-21 00:58:49,724 - INFO -   Position 1: '357.240,00' = 357240.0
+2025-12-21 00:58:49,724 - INFO -   Position 2: '51,960' = 51.96
+2025-12-21 00:58:49,724 - INFO -   Position 3: '1.320,14' = 1320.14
+2025-12-21 00:58:49,724 - INFO -   Position 4: '171.618,20' = 171618.2
+2025-12-21 00:58:49,724 - INFO - FOUND EXTENDED COST: Position 4 '171.618,20' = 171618.2
+2025-12-21 00:58:49,724 - INFO - USING EXTENDED COST: Unit=1320.14, Extended=171618.2
+2025-12-21 00:58:49,724 - INFO - SELECTED: Using Extended=171618.2, Unit=1320.14
+2025-12-21 00:58:49,725 - INFO - FINAL: Unit=1320.14, Total=171618.2
+2025-12-21 00:58:49,725 - INFO - ==================================================
+2025-12-21 00:58:49,735 - INFO - === RAW PDF CONTENT FOR SKU E0R1HLL ===
+2025-12-21 00:58:49,735 - INFO - Chunk lines from PDF:
+2025-12-21 00:58:49,735 - INFO -   Line 0: '2'
+2025-12-21 00:58:49,735 - INFO -   Line 1: 'E0R1HLL'
+2025-12-21 00:58:49,735 - INFO -   Line 2: 'MXAPST APPNT ANNUAL'
+2025-12-21 00:58:49,736 - INFO -   Line 3: '2,65'
+2025-12-21 00:58:49,736 - INFO -   Line 4: '344,50 01-Nov-2026'
+2025-12-21 00:58:49,736 - INFO -   Line 5: '31-Oct-2027'
+2025-12-21 00:58:49,736 - INFO -   Line 6: '130'
+2025-12-21 00:58:49,736 - INFO -   Line 7: '549,00'
+2025-12-21 00:58:49,736 - INFO -   Line 8: '71.370,00'
+2025-12-21 00:58:49,736 - INFO -   Line 9: '50,460'
+2025-12-21 00:58:49,736 - INFO -   Line 10: '271,95'
+2025-12-21 00:58:49,737 - INFO -   Line 11: '35.353,50'
+2025-12-21 00:58:49,737 - INFO - Money tokens found: ['549,00', '71.370,00', '50,460', '271,95', '35.353,50']
+2025-12-21 00:58:49,737 - INFO - Date range: 01-Nov-2026 to 31-Oct-2027
+2025-12-21 00:58:49,737 - INFO - ==================================================
+2025-12-21 00:58:49,737 - INFO - === PRICE ANALYSIS FOR SKU E0R1HLL ===
+2025-12-21 00:58:49,737 - INFO - All money tokens from PDF: ['549,00', '71.370,00', '50,460', '271,95', '35.353,50']
+2025-12-21 00:58:49,738 - INFO -   Token 0: '549,00' = 549.0
+2025-12-21 00:58:49,738 - INFO -   Token 1: '71.370,00' = 71370.0
+2025-12-21 00:58:49,738 - INFO -   Token 2: '50,460' = 50.46
+2025-12-21 00:58:49,738 - INFO -   Token 3: '271,95' = 271.95
+2025-12-21 00:58:49,738 - INFO -   Token 4: '35.353,50' = 35353.5
+2025-12-21 00:58:49,738 - INFO - All parsed values:
+2025-12-21 00:58:49,739 - INFO -   Position 0: '549,00' = 549.0
+2025-12-21 00:58:49,739 - INFO -   Position 1: '71.370,00' = 71370.0
+2025-12-21 00:58:49,739 - INFO -   Position 2: '50,460' = 50.46
+2025-12-21 00:58:49,739 - INFO -   Position 3: '271,95' = 271.95
+2025-12-21 00:58:49,739 - INFO -   Position 4: '35.353,50' = 35353.5
+2025-12-21 00:58:49,739 - INFO - FOUND EXTENDED COST: Position 4 '35.353,50' = 35353.5
+2025-12-21 00:58:49,740 - INFO - USING EXTENDED COST: Unit=271.95, Extended=35353.5
+2025-12-21 00:58:49,740 - INFO - SELECTED: Using Extended=35353.5, Unit=271.95
+2025-12-21 00:58:49,740 - INFO - FINAL: Unit=271.95, Total=35353.5
+2025-12-21 00:58:49,740 - INFO - ==================================================
+2025-12-21 00:58:49,756 - INFO - === RAW PDF CONTENT FOR SKU E0R1HLL ===
+2025-12-21 00:58:49,756 - INFO - Chunk lines from PDF:
+2025-12-21 00:58:49,757 - INFO -   Line 0: '006gR000000pzB9QAI'
+2025-12-21 00:58:49,757 - INFO -   Line 1: '3'
+2025-12-21 00:58:49,757 - INFO -   Line 2: 'E0R1HLL'
+2025-12-21 00:58:49,757 - INFO -   Line 3: 'MXAPST APPNT ANNUAL'
+2025-12-21 00:58:49,757 - INFO -   Line 4: '2,65'
+2025-12-21 00:58:49,757 - INFO -   Line 5: '344,50 01-Nov-2027'
+2025-12-21 00:58:49,757 - INFO -   Line 6: '31-Oct-2028'
+2025-12-21 00:58:49,757 - INFO -   Line 7: '130'
+2025-12-21 00:58:49,757 - INFO -   Line 8: '549,00'
+2025-12-21 00:58:49,758 - INFO -   Line 9: '71.370,00'
+2025-12-21 00:58:49,758 - INFO -   Line 10: '48,980'
+2025-12-21 00:58:49,758 - INFO -   Line 11: '280,11'
+2025-12-21 00:58:49,758 - INFO - Money tokens found: ['549,00', '71.370,00', '48,980', '280,11']
+2025-12-21 00:58:49,758 - INFO - Date range: 01-Nov-2027 to 31-Oct-2028
+2025-12-21 00:58:49,758 - INFO - ==================================================
+2025-12-21 00:58:49,758 - INFO - === PRICE ANALYSIS FOR SKU E0R1HLL ===
+2025-12-21 00:58:49,759 - INFO - All money tokens from PDF: ['549,00', '71.370,00', '48,980', '280,11', '36.414,30', '3,000']
+2025-12-21 00:58:49,759 - INFO -   Token 0: '549,00' = 549.0
+2025-12-21 00:58:49,759 - INFO -   Token 1: '71.370,00' = 71370.0
+2025-12-21 00:58:49,759 - INFO -   Token 2: '48,980' = 48.98
+2025-12-21 00:58:49,759 - INFO -   Token 3: '280,11' = 280.11
+2025-12-21 00:58:49,759 - INFO -   Token 4: '36.414,30' = 36414.3
+2025-12-21 00:58:49,759 - INFO -   Token 5: '3,000' = 3.0
+2025-12-21 00:58:49,759 - INFO - All parsed values:
+2025-12-21 00:58:49,759 - INFO -   Position 0: '549,00' = 549.0
+2025-12-21 00:58:49,760 - INFO -   Position 1: '71.370,00' = 71370.0
+2025-12-21 00:58:49,760 - INFO -   Position 2: '48,980' = 48.98
+2025-12-21 00:58:49,760 - INFO -   Position 3: '280,11' = 280.11
+2025-12-21 00:58:49,760 - INFO -   Position 4: '36.414,30' = 36414.3
+2025-12-21 00:58:49,760 - INFO -   Position 5: '3,000' = 3.0
+2025-12-21 00:58:49,760 - INFO - FOUND EXTENDED COST: Position 4 '36.414,30' = 36414.3
+2025-12-21 00:58:49,760 - INFO - FOUND UNIT COST: Position 5 '3,000' = 3.0
+2025-12-21 00:58:49,761 - INFO - USING EXTENDED COST: Unit=280.11, Extended=36414.3
+2025-12-21 00:58:49,761 - INFO - SELECTED: Using Extended=36414.3, Unit=280.11
+2025-12-21 00:58:49,761 - INFO - FINAL: Unit=280.11, Total=36414.3
+2025-12-21 00:58:49,761 - INFO - ==================================================
+2025-12-21 00:58:49,807 - INFO - === EXTRACTION COMPLETE ===
+2025-12-21 00:58:49,808 - INFO - Total line items: 3
+2025-12-21 00:58:49,808 - INFO - Total quotation value: AED 893,835.09
+2025-12-21 00:58:49,808 - INFO - === FINAL EXCEL DATA ===
+2025-12-21 00:58:49,808 - INFO - Row 1: D28AYLL | Qty: 130 | Unit: AED 4848.21 | Total: AED 630267.84
+2025-12-21 00:58:49,808 - INFO - Row 2: E0R1HLL | Qty: 130 | Unit: AED 998.74 | Total: AED 129835.73
+2025-12-21 00:58:49,808 - INFO - Row 3: E0R1HLL | Qty: 130 | Unit: AED 1028.70 | Total: AED 133731.52
+2025-12-21 00:58:49,809 - INFO - Header information extracted from PDF: {'Customer Name': 'D.N.A.T.A', 'Bid Number': '21570831', 'PA Agreement Number': '55841', 'PA Site Number': '7132186', 'Select Territory': 'Yes', 'Government Entity (GOE)': 'Yes', 'Reseller Name': 'eSolutions FZ LLC', 'City': 'Dubai', 'Country': 'AE', 'Maximum End User Price (MEP)': '243,386.00', 'Bid Expiration Date': '31-Dec-2025'}
+2025-12-21 00:58:49,895 - INFO - Initial DataFrame loaded:         0                                                  1                   2   ...       22  23  24
+0  D29HYLL  IBM Maximo Application Suite per AppPoint from...  Internet of Things  ...  0.67117 NaN NaN
+1  E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  Internet of Things  ...  0.60061 NaN NaN
+2  E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  Internet of Things  ...  0.57913 NaN NaN
+3  D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...  Internet of Things  ...  0.94817 NaN NaN
+4  E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...  Internet of Things  ...  0.89153 NaN NaN
+
+[5 rows x 25 columns]
+2025-12-21 00:58:49,927 - INFO - Manually assigned column names: ['Part number', 'Part description', 'Brand', 'Part type', 'SW Value Plus product group', 'SW Value Plus terms', 'Quantity', 'Start date', 'End date', 'Prorate months', 'Compressed coverage months', 'Renewal quote number', 'Item points', 'Entitled unit price', 'Total points', 'Bid unit price', 'Entitled extended price', 'End user discount', 'Bid extended price', 'BP discount', 'BP override discount', 'BP extended price', 'Total line discount', 'Recomm. Reseller / Entitled price', 'Is BP discount QP?']
+2025-12-21 00:58:49,928 - INFO - Filtered DataFrame with valid 'Part number':   Part number                                   Part description  ... Recomm. Reseller / Entitled price Is BP discount QP?
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...  ...                               NaN                NaN
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  ...                               NaN                NaN
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  ...                               NaN                NaN
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...  ...                               NaN                NaN
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...  ...                               NaN                NaN
+
+[5 rows x 25 columns]
+2025-12-21 00:58:49,964 - INFO - DataFrame with selected columns:   Part number                                   Part description  Quantity   Start date     End date  Bid extended price
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...     315.0  19-Dec-2025  31-Dec-2026            94396.05
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2027  31-Dec-2027            73445.40
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2028  31-Dec-2028            38559.15
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...     280.0  19-Dec-2025  31-Dec-2026            27056.40
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...     280.0  01-Jan-2027  31-Dec-2027            21053.20
+2025-12-21 00:58:49,976 - INFO - DataFrame after removing summary rows:   Part number                                   Part description  Quantity   Start date     End date  Bid extended price
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...     315.0  19-Dec-2025  31-Dec-2026            94396.05
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2027  31-Dec-2027            73445.40
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2028  31-Dec-2028            38559.15
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...     280.0  19-Dec-2025  31-Dec-2026            27056.40
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...     280.0  01-Jan-2027  31-Dec-2027            21053.20
+2025-12-21 00:58:49,987 - INFO - Final parsed data: [['D29HYLL', 'IBM Maximo Application Suite per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 315, '19-Dec-2025', '31-Dec-2026', 94396.05], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2027', '31-Dec-2027', 73445.4], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2028', '31-Dec-2028', 38559.15], ['D0GL1ZX', 'IBM Maximo IT per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 280, '19-Dec-2025', '31-Dec-2026', 27056.4], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2027', '31-Dec-2027', 21053.2], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2028', '31-Dec-2028', 11054.4]]
+2025-12-21 00:58:49,987 - INFO - Data extracted from Excel using ibm_v2: [['D29HYLL', 'IBM Maximo Application Suite per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 315, '19-Dec-2025', '31-Dec-2026', 94396.05], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2027', '31-Dec-2027', 73445.4], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2028', '31-Dec-2028', 38559.15], ['D0GL1ZX', 'IBM Maximo IT per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 280, '19-Dec-2025', '31-Dec-2026', 27056.4], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2027', '31-Dec-2027', 21053.2], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2028', '31-Dec-2028', 11054.4]]
+2025-12-21 00:58:49,992 - DEBUG - STREAM b'IHDR' 16 13
+2025-12-21 00:58:49,992 - DEBUG - STREAM b'sRGB' 41 1
+2025-12-21 00:58:49,992 - DEBUG - STREAM b'gAMA' 54 4
+2025-12-21 00:58:49,992 - DEBUG - STREAM b'pHYs' 70 9
+2025-12-21 00:58:49,992 - DEBUG - STREAM b'IDAT' 91 10912
+2025-12-21 00:58:50,059 - DEBUG - STREAM b'IHDR' 16 13
+2025-12-21 00:58:50,059 - DEBUG - STREAM b'sRGB' 41 1
+2025-12-21 00:58:50,059 - DEBUG - STREAM b'gAMA' 54 4
+2025-12-21 00:58:50,059 - DEBUG - STREAM b'pHYs' 70 9
+2025-12-21 00:58:50,059 - DEBUG - STREAM b'IDAT' 91 10912
+2025-12-21 00:58:50,068 - INFO - Styled Excel file created successfully.
+2025-12-21 00:58:51,299 - INFO - === IBM PDF EXTRACTION STARTED ===
+2025-12-21 00:58:51,299 - INFO - PDF: 4 pages, extracting data...
+2025-12-21 00:58:51,312 - INFO - Total lines extracted: 187
+2025-12-21 00:58:51,312 - INFO - Extracting header information...
+2025-12-21 00:58:51,313 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,314 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,314 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,315 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,316 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,316 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,316 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,317 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,317 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,317 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,317 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,318 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,318 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,319 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,320 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,321 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,322 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,322 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,322 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,323 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,323 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,324 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,324 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,325 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,325 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,326 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,326 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,326 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,327 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,327 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,327 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,327 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,328 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,328 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,328 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,329 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,329 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,329 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,329 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,330 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,330 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,331 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,331 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,331 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,331 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,332 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,332 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,332 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,332 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,333 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,333 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,333 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,333 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,334 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,334 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,335 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,335 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,335 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,336 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,336 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,336 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,337 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,337 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,338 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,338 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,338 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,339 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,339 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,340 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,340 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,340 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,340 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,341 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,341 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,342 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,342 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,342 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,342 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,343 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,343 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,343 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,344 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,344 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,344 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,345 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,345 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,345 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,345 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,345 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,346 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,346 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,346 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,347 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,347 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,347 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,348 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,348 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,348 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,349 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,349 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,350 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,350 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,350 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,350 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,351 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,351 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,351 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,351 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,352 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,352 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,352 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,353 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,353 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,353 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,353 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,354 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,354 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,354 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,355 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,355 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,355 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,355 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,356 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,356 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,356 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,357 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,357 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,357 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,357 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,358 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,358 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,358 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,358 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,358 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,359 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,359 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,359 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,359 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,360 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,360 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,360 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,361 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,361 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,361 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,361 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,362 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,362 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,362 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,363 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,363 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,363 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,364 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,364 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,364 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,364 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,365 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,365 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,365 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,365 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,365 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,366 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,366 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,366 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,366 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,367 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,367 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,367 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,368 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,368 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,368 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,369 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,369 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,369 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,369 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,370 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,370 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,370 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,370 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,371 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,371 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,371 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,372 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,372 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,372 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,372 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,373 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,373 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,374 - INFO - MEP found in next line: '243.386,00' -> cleaned: '243.386,00' -> 243386.0
+2025-12-21 00:58:51,374 - INFO - Header fields found: 8
+2025-12-21 00:58:51,374 - INFO - MEP extracted: '243,386.00')
+2025-12-21 00:58:51,374 - INFO - Bid Expiration Date: '31-Dec-2025')
+2025-12-21 00:58:51,374 - INFO - Extracting line items...
+2025-12-21 00:58:51,374 - INFO - === RAW PDF CONTENT FOR SKU D28AYLL ===
+2025-12-21 00:58:51,375 - INFO - Chunk lines from PDF:
+2025-12-21 00:58:51,375 - INFO -   Line 0: '1'
+2025-12-21 00:58:51,375 - INFO -   Line 1: 'D28AYLL'
+2025-12-21 00:58:51,375 - INFO -   Line 2: 'MAPST APPNT LIC + S&'
+2025-12-21 00:58:51,375 - INFO -   Line 3: '13,30'
+2025-12-21 00:58:51,375 - INFO -   Line 4: '1729,00 23-Oct-2025'
+2025-12-21 00:58:51,375 - INFO -   Line 5: '31-Oct-2026'
+2025-12-21 00:58:51,375 - INFO -   Line 6: '130'
+2025-12-21 00:58:51,375 - INFO -   Line 7: '2.748,00'
+2025-12-21 00:58:51,376 - INFO -   Line 8: '357.240,00'
+2025-12-21 00:58:51,376 - INFO -   Line 9: '51,960'
+2025-12-21 00:58:51,376 - INFO -   Line 10: '1.320,14'
+2025-12-21 00:58:51,376 - INFO -   Line 11: '171.618,20'
+2025-12-21 00:58:51,376 - INFO - Money tokens found: ['2.748,00', '357.240,00', '51,960', '1.320,14', '171.618,20']
+2025-12-21 00:58:51,376 - INFO - Date range: 23-Oct-2025 to 31-Oct-2026
+2025-12-21 00:58:51,377 - INFO - ==================================================
+2025-12-21 00:58:51,377 - INFO - === PRICE ANALYSIS FOR SKU D28AYLL ===
+2025-12-21 00:58:51,377 - INFO - All money tokens from PDF: ['2.748,00', '357.240,00', '51,960', '1.320,14', '171.618,20']
+2025-12-21 00:58:51,377 - INFO -   Token 0: '2.748,00' = 2748.0
+2025-12-21 00:58:51,377 - INFO -   Token 1: '357.240,00' = 357240.0
+2025-12-21 00:58:51,377 - INFO -   Token 2: '51,960' = 51.96
+2025-12-21 00:58:51,377 - INFO -   Token 3: '1.320,14' = 1320.14
+2025-12-21 00:58:51,378 - INFO -   Token 4: '171.618,20' = 171618.2
+2025-12-21 00:58:51,378 - INFO - All parsed values:
+2025-12-21 00:58:51,378 - INFO -   Position 0: '2.748,00' = 2748.0
+2025-12-21 00:58:51,378 - INFO -   Position 1: '357.240,00' = 357240.0
+2025-12-21 00:58:51,378 - INFO -   Position 2: '51,960' = 51.96
+2025-12-21 00:58:51,378 - INFO -   Position 3: '1.320,14' = 1320.14
+2025-12-21 00:58:51,378 - INFO -   Position 4: '171.618,20' = 171618.2
+2025-12-21 00:58:51,378 - INFO - FOUND EXTENDED COST: Position 4 '171.618,20' = 171618.2
+2025-12-21 00:58:51,378 - INFO - USING EXTENDED COST: Unit=1320.14, Extended=171618.2
+2025-12-21 00:58:51,379 - INFO - SELECTED: Using Extended=171618.2, Unit=1320.14
+2025-12-21 00:58:51,379 - INFO - FINAL: Unit=1320.14, Total=171618.2
+2025-12-21 00:58:51,379 - INFO - ==================================================
+2025-12-21 00:58:51,385 - INFO - === RAW PDF CONTENT FOR SKU E0R1HLL ===
+2025-12-21 00:58:51,386 - INFO - Chunk lines from PDF:
+2025-12-21 00:58:51,386 - INFO -   Line 0: '2'
+2025-12-21 00:58:51,386 - INFO -   Line 1: 'E0R1HLL'
+2025-12-21 00:58:51,386 - INFO -   Line 2: 'MXAPST APPNT ANNUAL'
+2025-12-21 00:58:51,386 - INFO -   Line 3: '2,65'
+2025-12-21 00:58:51,386 - INFO -   Line 4: '344,50 01-Nov-2026'
+2025-12-21 00:58:51,387 - INFO -   Line 5: '31-Oct-2027'
+2025-12-21 00:58:51,387 - INFO -   Line 6: '130'
+2025-12-21 00:58:51,387 - INFO -   Line 7: '549,00'
+2025-12-21 00:58:51,387 - INFO -   Line 8: '71.370,00'
+2025-12-21 00:58:51,387 - INFO -   Line 9: '50,460'
+2025-12-21 00:58:51,387 - INFO -   Line 10: '271,95'
+2025-12-21 00:58:51,387 - INFO -   Line 11: '35.353,50'
+2025-12-21 00:58:51,387 - INFO - Money tokens found: ['549,00', '71.370,00', '50,460', '271,95', '35.353,50']
+2025-12-21 00:58:51,387 - INFO - Date range: 01-Nov-2026 to 31-Oct-2027
+2025-12-21 00:58:51,388 - INFO - ==================================================
+2025-12-21 00:58:51,388 - INFO - === PRICE ANALYSIS FOR SKU E0R1HLL ===
+2025-12-21 00:58:51,388 - INFO - All money tokens from PDF: ['549,00', '71.370,00', '50,460', '271,95', '35.353,50']
+2025-12-21 00:58:51,388 - INFO -   Token 0: '549,00' = 549.0
+2025-12-21 00:58:51,388 - INFO -   Token 1: '71.370,00' = 71370.0
+2025-12-21 00:58:51,388 - INFO -   Token 2: '50,460' = 50.46
+2025-12-21 00:58:51,388 - INFO -   Token 3: '271,95' = 271.95
+2025-12-21 00:58:51,388 - INFO -   Token 4: '35.353,50' = 35353.5
+2025-12-21 00:58:51,388 - INFO - All parsed values:
+2025-12-21 00:58:51,388 - INFO -   Position 0: '549,00' = 549.0
+2025-12-21 00:58:51,388 - INFO -   Position 1: '71.370,00' = 71370.0
+2025-12-21 00:58:51,389 - INFO -   Position 2: '50,460' = 50.46
+2025-12-21 00:58:51,389 - INFO -   Position 3: '271,95' = 271.95
+2025-12-21 00:58:51,389 - INFO -   Position 4: '35.353,50' = 35353.5
+2025-12-21 00:58:51,389 - INFO - FOUND EXTENDED COST: Position 4 '35.353,50' = 35353.5
+2025-12-21 00:58:51,389 - INFO - USING EXTENDED COST: Unit=271.95, Extended=35353.5
+2025-12-21 00:58:51,389 - INFO - SELECTED: Using Extended=35353.5, Unit=271.95
+2025-12-21 00:58:51,389 - INFO - FINAL: Unit=271.95, Total=35353.5
+2025-12-21 00:58:51,389 - INFO - ==================================================
+2025-12-21 00:58:51,400 - INFO - === RAW PDF CONTENT FOR SKU E0R1HLL ===
+2025-12-21 00:58:51,400 - INFO - Chunk lines from PDF:
+2025-12-21 00:58:51,400 - INFO -   Line 0: '006gR000000pzB9QAI'
+2025-12-21 00:58:51,400 - INFO -   Line 1: '3'
+2025-12-21 00:58:51,400 - INFO -   Line 2: 'E0R1HLL'
+2025-12-21 00:58:51,401 - INFO -   Line 3: 'MXAPST APPNT ANNUAL'
+2025-12-21 00:58:51,401 - INFO -   Line 4: '2,65'
+2025-12-21 00:58:51,401 - INFO -   Line 5: '344,50 01-Nov-2027'
+2025-12-21 00:58:51,401 - INFO -   Line 6: '31-Oct-2028'
+2025-12-21 00:58:51,401 - INFO -   Line 7: '130'
+2025-12-21 00:58:51,401 - INFO -   Line 8: '549,00'
+2025-12-21 00:58:51,401 - INFO -   Line 9: '71.370,00'
+2025-12-21 00:58:51,401 - INFO -   Line 10: '48,980'
+2025-12-21 00:58:51,401 - INFO -   Line 11: '280,11'
+2025-12-21 00:58:51,402 - INFO - Money tokens found: ['549,00', '71.370,00', '48,980', '280,11']
+2025-12-21 00:58:51,402 - INFO - Date range: 01-Nov-2027 to 31-Oct-2028
+2025-12-21 00:58:51,402 - INFO - ==================================================
+2025-12-21 00:58:51,402 - INFO - === PRICE ANALYSIS FOR SKU E0R1HLL ===
+2025-12-21 00:58:51,402 - INFO - All money tokens from PDF: ['549,00', '71.370,00', '48,980', '280,11', '36.414,30', '3,000']
+2025-12-21 00:58:51,402 - INFO -   Token 0: '549,00' = 549.0
+2025-12-21 00:58:51,402 - INFO -   Token 1: '71.370,00' = 71370.0
+2025-12-21 00:58:51,402 - INFO -   Token 2: '48,980' = 48.98
+2025-12-21 00:58:51,402 - INFO -   Token 3: '280,11' = 280.11
+2025-12-21 00:58:51,402 - INFO -   Token 4: '36.414,30' = 36414.3
+2025-12-21 00:58:51,402 - INFO -   Token 5: '3,000' = 3.0
+2025-12-21 00:58:51,403 - INFO - All parsed values:
+2025-12-21 00:58:51,403 - INFO -   Position 0: '549,00' = 549.0
+2025-12-21 00:58:51,403 - INFO -   Position 1: '71.370,00' = 71370.0
+2025-12-21 00:58:51,403 - INFO -   Position 2: '48,980' = 48.98
+2025-12-21 00:58:51,403 - INFO -   Position 3: '280,11' = 280.11
+2025-12-21 00:58:51,403 - INFO -   Position 4: '36.414,30' = 36414.3
+2025-12-21 00:58:51,403 - INFO -   Position 5: '3,000' = 3.0
+2025-12-21 00:58:51,403 - INFO - FOUND EXTENDED COST: Position 4 '36.414,30' = 36414.3
+2025-12-21 00:58:51,403 - INFO - FOUND UNIT COST: Position 5 '3,000' = 3.0
+2025-12-21 00:58:51,403 - INFO - USING EXTENDED COST: Unit=280.11, Extended=36414.3
+2025-12-21 00:58:51,404 - INFO - SELECTED: Using Extended=36414.3, Unit=280.11
+2025-12-21 00:58:51,404 - INFO - FINAL: Unit=280.11, Total=36414.3
+2025-12-21 00:58:51,404 - INFO - ==================================================
+2025-12-21 00:58:51,437 - INFO - === EXTRACTION COMPLETE ===
+2025-12-21 00:58:51,437 - INFO - Total line items: 3
+2025-12-21 00:58:51,437 - INFO - Total quotation value: AED 893,835.09
+2025-12-21 00:58:51,437 - INFO - === FINAL EXCEL DATA ===
+2025-12-21 00:58:51,437 - INFO - Row 1: D28AYLL | Qty: 130 | Unit: AED 4848.21 | Total: AED 630267.84
+2025-12-21 00:58:51,438 - INFO - Row 2: E0R1HLL | Qty: 130 | Unit: AED 998.74 | Total: AED 129835.73
+2025-12-21 00:58:51,438 - INFO - Row 3: E0R1HLL | Qty: 130 | Unit: AED 1028.70 | Total: AED 133731.52
+2025-12-21 00:58:51,438 - INFO - Header information extracted from PDF: {'Customer Name': 'D.N.A.T.A', 'Bid Number': '21570831', 'PA Agreement Number': '55841', 'PA Site Number': '7132186', 'Select Territory': 'Yes', 'Government Entity (GOE)': 'Yes', 'Reseller Name': 'eSolutions FZ LLC', 'City': 'Dubai', 'Country': 'AE', 'Maximum End User Price (MEP)': '243,386.00', 'Bid Expiration Date': '31-Dec-2025'}
+2025-12-21 00:58:51,503 - INFO - Initial DataFrame loaded:         0                                                  1                   2   ...       22  23  24
+0  D29HYLL  IBM Maximo Application Suite per AppPoint from...  Internet of Things  ...  0.67117 NaN NaN
+1  E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  Internet of Things  ...  0.60061 NaN NaN
+2  E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  Internet of Things  ...  0.57913 NaN NaN
+3  D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...  Internet of Things  ...  0.94817 NaN NaN
+4  E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...  Internet of Things  ...  0.89153 NaN NaN
+
+[5 rows x 25 columns]
+2025-12-21 00:58:51,528 - INFO - Manually assigned column names: ['Part number', 'Part description', 'Brand', 'Part type', 'SW Value Plus product group', 'SW Value Plus terms', 'Quantity', 'Start date', 'End date', 'Prorate months', 'Compressed coverage months', 'Renewal quote number', 'Item points', 'Entitled unit price', 'Total points', 'Bid unit price', 'Entitled extended price', 'End user discount', 'Bid extended price', 'BP discount', 'BP override discount', 'BP extended price', 'Total line discount', 'Recomm. Reseller / Entitled price', 'Is BP discount QP?']
+2025-12-21 00:58:51,529 - INFO - Filtered DataFrame with valid 'Part number':   Part number                                   Part description  ... Recomm. Reseller / Entitled price Is BP discount QP?
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...  ...                               NaN                NaN
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  ...                               NaN                NaN
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...  ...                               NaN                NaN
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...  ...                               NaN                NaN
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...  ...                               NaN                NaN
+
+[5 rows x 25 columns]
+2025-12-21 00:58:51,555 - INFO - DataFrame with selected columns:   Part number                                   Part description  Quantity   Start date     End date  Bid extended price
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...     315.0  19-Dec-2025  31-Dec-2026            94396.05
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2027  31-Dec-2027            73445.40
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2028  31-Dec-2028            38559.15
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...     280.0  19-Dec-2025  31-Dec-2026            27056.40
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...     280.0  01-Jan-2027  31-Dec-2027            21053.20
+2025-12-21 00:58:51,563 - INFO - DataFrame after removing summary rows:   Part number                                   Part description  Quantity   Start date     End date  Bid extended price
+0     D29HYLL  IBM Maximo Application Suite per AppPoint from...     315.0  19-Dec-2025  31-Dec-2026            94396.05
+1     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2027  31-Dec-2027            73445.40
+2     E0R1HLL  IBM Maximo Application Suite per AppPoint Annu...     315.0  01-Jan-2028  31-Dec-2028            38559.15
+3     D0GL1ZX  IBM Maximo IT per AppPoint from Eligible Progr...     280.0  19-Dec-2025  31-Dec-2026            27056.40
+4     E0GKGZX  IBM Maximo IT per AppPoint Annual SW Subscript...     280.0  01-Jan-2027  31-Dec-2027            21053.20
+2025-12-21 00:58:51,571 - INFO - Final parsed data: [['D29HYLL', 'IBM Maximo Application Suite per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 315, '19-Dec-2025', '31-Dec-2026', 94396.05], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2027', '31-Dec-2027', 73445.4], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2028', '31-Dec-2028', 38559.15], ['D0GL1ZX', 'IBM Maximo IT per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 280, '19-Dec-2025', '31-Dec-2026', 27056.4], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2027', '31-Dec-2027', 21053.2], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2028', '31-Dec-2028', 11054.4]]
+2025-12-21 00:58:51,571 - INFO - Data extracted from Excel using ibm_v2: [['D29HYLL', 'IBM Maximo Application Suite per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 315, '19-Dec-2025', '31-Dec-2026', 94396.05], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2027', '31-Dec-2027', 73445.4], ['E0R1HLL', 'IBM Maximo Application Suite per AppPoint Annual SW Subscription & Support Renewal', 315, '01-Jan-2028', '31-Dec-2028', 38559.15], ['D0GL1ZX', 'IBM Maximo IT per AppPoint from Eligible Programs Trade Up Licence + SW Subscription & Support 12 Months', 280, '19-Dec-2025', '31-Dec-2026', 27056.4], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2027', '31-Dec-2027', 21053.2], ['E0GKGZX', 'IBM Maximo IT per AppPoint Annual SW Subscription & Support Renewal', 280, '01-Jan-2028', '31-Dec-2028', 11054.4]]
+2025-12-21 00:58:51,574 - DEBUG - STREAM b'IHDR' 16 13
+2025-12-21 00:58:51,574 - DEBUG - STREAM b'sRGB' 41 1
+2025-12-21 00:58:51,574 - DEBUG - STREAM b'gAMA' 54 4
+2025-12-21 00:58:51,574 - DEBUG - STREAM b'pHYs' 70 9
+2025-12-21 00:58:51,574 - DEBUG - STREAM b'IDAT' 91 10912
+2025-12-21 00:58:51,629 - DEBUG - STREAM b'IHDR' 16 13
+2025-12-21 00:58:51,629 - DEBUG - STREAM b'sRGB' 41 1
+2025-12-21 00:58:51,629 - DEBUG - STREAM b'gAMA' 54 4
+2025-12-21 00:58:51,629 - DEBUG - STREAM b'pHYs' 70 9
+2025-12-21 00:58:51,630 - DEBUG - STREAM b'IDAT' 91 10912
+2025-12-21 00:58:51,634 - INFO - Styled Excel file created successfully.
