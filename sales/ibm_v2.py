@@ -1,6 +1,7 @@
 from datetime import datetime
 from io import BytesIO
 import os
+import pandas as pd
 from openpyxl import Workbook
 from openpyxl.styles import Font, Alignment, PatternFill, Border, Side
 from openpyxl.drawing.image import Image
@@ -220,3 +221,36 @@ def create_styled_excel_v2(
 	# Ensure BytesIO is at the start for reading
 	wb.save(output)
 	output.seek(0)
+
+def parse_uploaded_excel(file_path):
+    """
+    Parses the uploaded Excel log file and extracts relevant data for the table.
+
+    Args:
+        file_path (str): Path to the uploaded log file.
+
+    Returns:
+        list: Parsed data in the format [SKU, Description, Quantity, Start Date, End Date, Cost].
+    """
+    parsed_data = []
+
+    # Read the log file as a DataFrame
+    df = pd.read_csv(file_path, sep="\t", header=None, skiprows=12, engine="python")
+
+    for _, row in df.iterrows():
+        try:
+            # Extract relevant columns
+            sku = row[0] if not pd.isna(row[0]) else ""
+            description = row[1] if not pd.isna(row[1]) else ""
+            quantity = int(row[6]) if not pd.isna(row[6]) else 0
+            start_date = row[7] if not pd.isna(row[7]) else ""
+            end_date = row[8] if not pd.isna(row[8]) else ""
+            cost = float(row[16]) if not pd.isna(row[16]) else 0.0
+
+            # Append to parsed data
+            parsed_data.append([sku, description, quantity, start_date, end_date, cost])
+        except Exception as e:
+            # Log or handle any row-specific errors
+            print(f"Error parsing row: {row}, Error: {e}")
+
+    return parsed_data

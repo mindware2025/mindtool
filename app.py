@@ -91,130 +91,82 @@ if tool_choice == "IBM PDF to Excel (Existing)":
 
 elif tool_choice == "IBM Excel to Excel (New)":
     st.header("🆕 IBM Excel to Excel (v2)")
-    st.info("Upload an IBM quotation Excel file. The tool will extract line items from the second sheet and generate a styled quotation Excel file, matching the original format.")
+    st.info("Upload both an IBM quotation PDF and an Excel file. The tool will extract header information from the PDF and line items from the Excel file to generate a styled quotation Excel file.")
 
     logo_path = "image.png"
     compliance_text = ""  # Add compliance text if needed
 
-    st.subheader("📤 Upload IBM Quotation Excel File")
+    st.subheader("📤 Upload IBM Quotation Files")
+
+    # File uploaders for both PDF and Excel
+    uploaded_pdf = st.file_uploader(
+        "Upload IBM Quotation PDF (.pdf)",
+        type=["pdf"],
+        help="Supports .pdf files. The tool will extract header information from the PDF."
+    )
 
     uploaded_excel = st.file_uploader(
         "Upload IBM Quotation Excel (.xlsx, .xlsm, .xls)",
         type=["xlsx", "xlsm", "xls"],
-        help="Supports .xlsx, .xlsm, and .xls files. The tool will extract line items from the second sheet using the specified column mapping."
+        help="Supports .xlsx, .xlsm, and .xls files. The tool will extract line items from the second sheet."
     )
 
-
-    if uploaded_excel:
+    if uploaded_pdf or uploaded_excel:
+        import io
         import pandas as pd
         from sales.ibm_v2 import create_styled_excel_v2
-        import io
-        file_type = uploaded_excel.type
-        file_name = uploaded_excel.name.lower()
-        df = None
-        # Always use pandas/xlrd for .xls
-        if file_type == "application/vnd.ms-excel" or file_name.endswith(".xls"):
-            try:
-                xls = pd.ExcelFile(uploaded_excel, engine="xlrd")
-                if len(xls.sheet_names) < 2:
-                    st.error("❌ The uploaded Excel file does not have a second sheet.")
-                    st.stop()
-                df = xls.parse(xls.sheet_names[1], header=None)
-            except Exception as e:
-                st.error(f"❌ Error reading .xls file: {e}")
-                st.stop()
-        else:
-            # Try openpyxl for .xlsx/.xlsm, fallback to pandas if it fails
-            try:
-                from openpyxl import load_workbook
-                wb = load_workbook(uploaded_excel, data_only=True)
-                sheetnames = wb.sheetnames
-                if len(sheetnames) < 2:
-                    st.error("❌ The uploaded Excel file does not have a second sheet.")
-                    st.stop()
-                ws = wb[sheetnames[1]]
-                data_rows = list(ws.values)
-                df = pd.DataFrame(data_rows)
-            except Exception as e:
-                # Fallback: try pandas
+        from ibm import extract_ibm_data_from_pdf
+        output = io.BytesIO()
+
+        # Initialize header_info and data
+        header_info = {}
+        data = []
+
+        # Extract header info from PDF if uploaded
+        if uploaded_pdf:
+            _, extracted_header_info = extract_ibm_data_from_pdf(uploaded_pdf)
+            header_info.update(extracted_header_info)
+
+        # Extract table data from Excel if uploaded
+        if uploaded_excel:
+            file_type = uploaded_excel.type
+            file_name = uploaded_excel.name.lower()
+            if file_type == "application/vnd.ms-excel" or file_name.endswith(".xls"):
+                try:
+                    xls = pd.ExcelFile(uploaded_excel, engine="xlrd")
+                    if len(xls.sheet_names) < 2:
+                        st.error("❌ The uploaded Excel file does not have a second sheet.")
+                    else:
+                        df = xls.parse(xls.sheet_names[1])
+                        data = df.values.tolist()  # Convert DataFrame to list of lists
+                except Exception as e:
+                    st.error(f"❌ Failed to read Excel file: {e}")
+            else:
                 try:
                     xls = pd.ExcelFile(uploaded_excel)
                     if len(xls.sheet_names) < 2:
                         st.error("❌ The uploaded Excel file does not have a second sheet.")
-                        st.stop()
-                    df = xls.parse(xls.sheet_names[1], header=None)
-                except Exception as e2:
-                    st.error(f"❌ Error reading Excel file: {e}\nFallback also failed: {e2}")
-                    st.stop()
+                    else:
+                        df = xls.parse(xls.sheet_names[1])
+                        data = df.values.tolist()  # Convert DataFrame to list of lists
+                except Exception as e:
+                    st.error(f"❌ Failed to read Excel file: {e}")
 
-     
-        def safe_cell(df, row, col):
-            try:
-                return df.iloc[row, col] if row < len(df.index) and col < len(df.columns) else ""
-            except Exception:
-                return ""
+        # Call the function to create the styled Excel file
+        create_styled_excel_v2(
+            data=data,
+            header_info=header_info,
+            logo_path=logo_path,
+            output=output,
+            compliance_text=compliance_text,
+            ibm_terms_text=""
+        )
 
-        header_info = {
-            "Customer Name": safe_cell(df, 3, 2),
-            "Bid Number": safe_cell(df, 4, 2),
-            "PA Agreement Number": safe_cell(df, 5, 2),
-            "PA Site Number": safe_cell(df, 6, 2),
-            "Select Territory": safe_cell(df, 7, 2),
-            "Government Entity (GOE)": safe_cell(df, 8, 2),
-            "Reseller Name": safe_cell(df, 9, 2),
-            "City": safe_cell(df, 10, 2),
-            "Country": safe_cell(df, 11, 2),
-            "Maximum End User Price (MEP)": safe_cell(df, 12, 2),
-            "Bid Expiration Date": safe_cell(df, 13, 2),
-        }
+        # Provide download link for the generated Excel file
+        st.download_button(
+            label="📥 Download Styled Excel File",
+            data=output.getvalue(),
+            file_name="Styled_Quotation.xlsx",
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        )
 
-        data = []
-        # Find the first data row (skip headers, look for first non-empty SKU)
-        data = []
-        for i in range(9, len(df)):
-            row = df.iloc[i]
-            sku = row[0] if len(row) > 0 else ""
-            desc = row[1] if len(row) > 1 else ""
-            qty = row[6] if len(row) > 6 else ""
-            start_date = row[7] if len(row) > 7 else ""
-            end_date = row[8] if len(row) > 8 else ""
-            cost = row[18] if len(row) > 18 else ""
-            # Stop if we hit a summary/total row or empty SKU
-            if str(sku).strip() == "" or str(sku).strip().lower().startswith("total"):
-                break
-            data.append([sku, desc, qty, start_date, end_date, cost])
-
-        if data:
-          
-            if st.button("🎯 Generate Styled Quotation Excel", type="primary", use_container_width=True, key="generate_excel_v2_btn"):
-                with st.spinner("📊 Creating styled Excel quotation..."):
-                    try:
-                        output = BytesIO()
-                        logo_path = "image.png"
-                        compliance_text = ""
-                        ibm_terms_text = ""
-                        create_styled_excel_v2(
-                            data,
-                            header_info,
-                            logo_path,
-                            output,
-                            compliance_text,
-                            ibm_terms_text
-                        )
-                        st.download_button(
-                            label="📥 Download Excel Quotation",
-                            data=output.getvalue(),
-                            file_name="IBM_Quotation_v2.xlsx",
-                            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                            use_container_width=True
-                        )
-                        st.success("✅ Excel file generated successfully!")
-                        st.balloons()
-                    except Exception as e:
-                        st.error(f"❌ Error generating Excel: {str(e)}")
-                        st.exception(e)
-
-
-    # (Removed duplicate/old upload logic for Excel files. Only robust, type-checked logic remains above.)
-
-           
