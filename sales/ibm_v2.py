@@ -1,15 +1,12 @@
-
 from datetime import datetime
 from io import BytesIO
 import os
-import logging
 from openpyxl import Workbook
 from openpyxl.styles import Font, Alignment, PatternFill, Border, Side
 from openpyxl.drawing.image import Image
 from openpyxl.utils import get_column_letter
 from terms_template import get_terms_section
 
-logging.basicConfig(filename='ibm_v2_debug.log', level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
 
 USD_TO_AED = 3.6725
 
@@ -31,17 +28,6 @@ def create_styled_excel_v2(
 	ws.title = "Quotation"
 	ws.sheet_view.showGridLines = False
 
-	# --- Debug: Log Raw Input Data to File ---
-	with open('debug_excel_input.log', 'w', encoding='utf-8') as dbg:
-		dbg.write('Row\tSKU\tDescription\tQuantity\tStart Date\tEnd Date\tCost\n')
-		for idx, row in enumerate(data, start=1):
-			sku = row[0] if len(row) > 0 else ""
-			desc = row[1] if len(row) > 1 else ""
-			qty = row[2] if len(row) > 2 else ""
-			start_date = row[3] if len(row) > 3 else ""
-			end_date = row[4] if len(row) > 4 else ""
-			cost = row[5] if len(row) > 5 else ""
-			dbg.write(f'{idx}\t{sku}\t{desc}\t{qty}\t{start_date}\t{end_date}\t{cost}\n')
 
 	# --- Header / Branding ---
 	ws.merge_cells("B1:C2")  # Move logo to row 1-2
@@ -146,9 +132,6 @@ def create_styled_excel_v2(
 		except Exception:
 			cost = 0
 
-		# Log extracted values for debugging
-		logging.info(f"Row {idx}: SKU={sku}, Desc={desc}, Qty={qty}, Start={start_date}, End={end_date}, Cost={cost}")
-
 		# Serial number
 		ws.cell(row=excel_row, column=2, value=idx).font = Font(size=11, color="1F497D")
 		ws.cell(row=excel_row, column=2).alignment = Alignment(horizontal="center", vertical="center")
@@ -159,31 +142,39 @@ def create_styled_excel_v2(
 		ws.cell(row=excel_row, column=5, value=qty).font = Font(size=11, color="1F497D")
 		ws.cell(row=excel_row, column=6, value=start_date).font = Font(size=11, color="1F497D")
 		ws.cell(row=excel_row, column=7, value=end_date).font = Font(size=11, color="1F497D")
-		# Unit Price in AED (leave blank, will be formula)
+
+		# Apply alignment to all columns in the row
+		for col in range(2, 13):  # Assuming columns 2 to 12 are part of the table
+			ws.cell(row=excel_row, column=col).alignment = Alignment(horizontal="center", vertical="center")
+
+		# Unit Price in AED = Total Price in AED (J) / Quantity (E)
+		if qty and qty != 0:
+			unit_price_formula = f"=J{excel_row}/E{excel_row}"
+		else:
+			unit_price_formula = ""
+		ws.cell(row=excel_row, column=8, value=unit_price_formula)
+		ws.cell(row=excel_row, column=8).font = Font(size=11, color="1F497D")
+
 		# Cost (USD): from Excel (col H), convert from AED to USD
-		cost_usd = cost / USD_TO_AED if cost else 0
+		cost_usd = cost
 		ws.cell(row=excel_row, column=9, value=cost_usd).number_format = '"USD"#,##0.00'
 		ws.cell(row=excel_row, column=9).font = Font(size=11, color="1F497D")
-		ws.cell(row=excel_row, column=9).alignment = Alignment(horizontal="center", vertical="center")
 
 		# Formulas for calculated columns
 		# J: Total Price in AED = Cost (I) * USD_TO_AED
 		total_formula = f"=I{excel_row}*{USD_TO_AED}"
 		ws.cell(row=excel_row, column=10, value=total_formula)
 		ws.cell(row=excel_row, column=10).font = Font(size=11, color="1F497D")
-		ws.cell(row=excel_row, column=10).alignment = Alignment(horizontal="center", vertical="center")
 
 		# K: Partner Discount = Unit Price (H) * 0.99 (1% discount)
 		discount_formula = f"=ROUNDUP(H{excel_row}*0.99,2)"
 		ws.cell(row=excel_row, column=11, value=discount_formula)
 		ws.cell(row=excel_row, column=11).font = Font(size=11, color="1F497D")
-		ws.cell(row=excel_row, column=11).alignment = Alignment(horizontal="center", vertical="center")
 
 		# L: Partner Price in AED = Partner Discount (K) * Quantity (E)
 		partner_price_formula = f"=K{excel_row}*E{excel_row}"
 		ws.cell(row=excel_row, column=12, value=partner_price_formula)
 		ws.cell(row=excel_row, column=12).font = Font(size=11, color="1F497D")
-		ws.cell(row=excel_row, column=12).alignment = Alignment(horizontal="center", vertical="center")
 
 		# Currency formatting
 		for price_col in [8, 10, 11, 12]:
@@ -194,6 +185,37 @@ def create_styled_excel_v2(
 		ws.cell(row=excel_row, column=4).alignment = Alignment(wrap_text=True, horizontal="left", vertical="center")
 
 	# --- Summary rows, terms, etc. remain identical to original (copy from previous logic if needed) ---
+	# Add summary rows at the end of the table
+	summary_row = start_row + len(data) + 1
+
+	# TOTAL Bid Discounted Price
+	ws.merge_cells(f"C{summary_row}:G{summary_row}")
+	ws[f"C{summary_row}"] = "TOTAL Bid Discounted Price"
+	ws[f"C{summary_row}"].font = Font(bold=True, color="1F497D")
+	ws[f"C{summary_row}"].alignment = Alignment(horizontal="right")
+
+	# Sum Total Price in AED (column J)
+	data_start_row = start_row
+	data_end_row = start_row + len(data) - 1
+	total_formula = f"=SUM(J{data_start_row}:J{data_end_row})"
+	ws[f"J{summary_row}"] = total_formula
+	ws[f"J{summary_row}"].number_format = '"AED"#,##0.00'
+	ws[f"J{summary_row}"].font = Font(bold=True, color="1F497D")
+	ws[f"J{summary_row}"].fill = PatternFill(start_color="DDDDDD", end_color="DDDDDD", fill_type="solid")
+
+	# TOTAL BP Special Discounted Price excluding VAT
+	bp_summary_row = summary_row + 1
+	ws.merge_cells(f"C{bp_summary_row}:G{bp_summary_row}")
+	ws[f"C{bp_summary_row}"] = "TOTAL BP Special Discounted Price excluding VAT:"
+	ws[f"C{bp_summary_row}"].font = Font(bold=True, color="1F497D")
+	ws[f"C{bp_summary_row}"].alignment = Alignment(horizontal="right")
+
+	# Sum Partner Price in AED (column L)
+	bp_total_formula = f"=SUM(L{data_start_row}:L{data_end_row})"
+	ws[f"L{bp_summary_row}"] = bp_total_formula
+	ws[f"L{bp_summary_row}"].number_format = '"AED"#,##0.00'
+	ws[f"L{bp_summary_row}"].font = Font(bold=True, color="1F497D")
+	ws[f"L{bp_summary_row}"].fill = PatternFill(start_color="DDDDDD", end_color="DDDDDD", fill_type="solid")
 
 	# Ensure BytesIO is at the start for reading
 	wb.save(output)
