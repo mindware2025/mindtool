@@ -1,3 +1,13 @@
+def log_raw_pdf_lines(raw_lines, log_path="debug_full.log"):
+    """
+    Logs every line from the PDF into a separate debug file before any processing.
+    """
+    try:
+        with open(log_path, "w", encoding="utf-8") as f:
+            for i, line in enumerate(raw_lines):
+                f.write(f"Line {i}: {repr(line)}\n")
+    except Exception as e:
+        logging.error(f"Failed to write raw PDF lines to {log_path}: {e}")
 # ibm.py
 from decimal import Decimal
 import os
@@ -340,7 +350,10 @@ def extract_ibm_data_from_pdf(file_like) -> tuple[list, dict]:
             if l and l.strip():
                 lines.append(l.rstrip())
                 page_lines.append(l.rstrip())
-    
+
+    # Log every raw line before any processing
+    log_raw_pdf_lines(lines)
+
     debug_logger.info(f"Total lines extracted: {len(lines)}")
     add_debug(f"[PDF INFO] Total lines extracted: {len(lines)}")
     
@@ -414,6 +427,63 @@ def extract_ibm_data_from_pdf(file_like) -> tuple[list, dict]:
                         header_info["Maximum End User Price (MEP)"] = f"{mep_value:,.2f}"
                         debug_logger.info(f"MEP found in next line: '{next_line}' -> cleaned: '{next_clean}' -> {mep_value}")
                         header_fields_found += 1
+        # Parse header info (simple look-ahead by 1 line, with improved logic for Bid and PA Agreement Numbers)
+        header_fields_found = 0
+        for i, line in enumerate(lines):
+            if "Customer Name:" in line:
+                header_info["Customer Name"] = lines[i + 1].strip() if i + 1 < len(lines) else ""
+                header_fields_found += 1
+            if "Reseller Name:" in line:
+                header_info["Reseller Name"] = lines[i + 1].strip() if i + 1 < len(lines) else ""
+            if "Bid Number:" in line or "Quote Number:" in line:
+                header_info["Bid Number"] = lines[i + 1].strip() if i + 1 < len(lines) else ""
+      
+            if "PA Agreement Number:" in line:
+                # Accept only if next line is numeric
+                if i + 1 < len(lines):
+                    val = lines[i + 1].strip()
+                    if re.fullmatch(r"\d+", val):
+                        header_info["PA Agreement Number"] = val
+            if "PA Site Number:" in line:
+                header_info["PA Site Number"] = lines[i + 1].strip() if i + 1 < len(lines) else ""
+                header_fields_found += 1
+            if "Select Territory:" in line:
+                header_info["Select Territory"] = lines[i + 1].strip() if i + 1 < len(lines) else ""
+                header_fields_found += 1
+            if "Government Entity" in line:
+                header_info["Government Entity (GOE)"] = lines[i + 1].strip() if i + 1 < len(lines) else ""
+                header_fields_found += 1
+            if "City:" in line:
+                header_info["City"] = lines[i + 1].strip() if i + 1 < len(lines) else ""
+                header_fields_found += 1
+            if "Country:" in line:
+                header_info["Country"] = lines[i + 1].strip() if i + 1 < len(lines) else ""
+                header_fields_found += 1
+            if "Bid Expiration Date:" in line or "Quote Expiration Date:" in line:
+                header_info["Bid Expiration Date"] = lines[i + 1].strip() if i + 1 < len(lines) else ""
+                header_fields_found += 1
+            if "Maximum End User Price" in line or "MEP" in line:
+                # Look for MEP value in same line or next line
+                if ":" in line:
+                    mep_part = line.split(":", 1)[1].strip()
+                    if mep_part:
+                        # Remove currency suffixes like "USD", "AED", etc.
+                        mep_clean = re.sub(r'\s*(USD).*$', '', mep_part).strip()
+                        # Parse European number format and convert to proper value
+                        mep_value = parse_euro_number(mep_clean)
+                        if mep_value:
+                            header_info["Maximum End User Price (MEP)"] = f"{mep_value:,.2f}"
+                            debug_logger.info(f"MEP found in same line: '{mep_part}' -> cleaned: '{mep_clean}' -> {mep_value}")
+                            header_fields_found += 1
+                    elif i + 1 < len(lines):
+                        next_line = lines[i + 1].strip()
+                        # Remove currency suffixes like "USD", "AED", etc.
+                        next_clean = re.sub(r'\s*(USD|AED|EUR).*$', '', next_line).strip()
+                        mep_value = parse_euro_number(next_clean)
+                        if mep_value:
+                            header_info["Maximum End User Price (MEP)"] = f"{mep_value:,.2f}"
+                            debug_logger.info(f"MEP found in next line: '{next_line}' -> cleaned: '{next_clean}' -> {mep_value}")
+                            header_fields_found += 1
     
     debug_logger.info(f"Header fields found: {header_fields_found}")
     debug_logger.info(f"MEP extracted: '{header_info.get('Maximum End User Price (MEP)', 'Not found')}')")
