@@ -124,20 +124,25 @@ elif tool_choice == "IBM Excel to Excel (New)":
         import pandas as pd
         from sales.ibm_v2 import create_styled_excel_v2
         from ibm import extract_ibm_data_from_pdf
+        from extract_ibm_terms import extract_ibm_terms_text
         output = io.BytesIO()
 
         # Initialize header_info and data
         header_info = {}
         data = []
 
-        # Extract header info from PDF if uploaded
+        # Extract data and header info from PDF if uploaded
         if uploaded_pdf:
             try:
-                _, extracted_header_info = extract_ibm_data_from_pdf(uploaded_pdf)
+                data_from_pdf, extracted_header_info = extract_ibm_data_from_pdf(uploaded_pdf)
                 header_info.update(extracted_header_info)
                 logging.info("Header information extracted from PDF: %s", header_info)
+                # Extract IBM Terms using robust multi-page logic
+                uploaded_pdf.seek(0)
+                ibm_terms_text = extract_ibm_terms_text(uploaded_pdf)
             except Exception as e:
-                logging.error("Failed to extract header information from PDF: %s", e)
+                logging.error("Failed to extract header information or IBM Terms from PDF: %s", e)
+                ibm_terms_text = ""
 
         # Updated to use the centralized `parse_uploaded_excel` function from `ibm_v2`
         if uploaded_excel:
@@ -162,11 +167,14 @@ elif tool_choice == "IBM Excel to Excel (New)":
                 logo_path=logo_path,
                 output=output,
                 compliance_text=compliance_text,
-                ibm_terms_text=""
+                ibm_terms_text=ibm_terms_text if uploaded_pdf else ""
             )
             logging.info("Styled Excel file created successfully.")
         except Exception as e:
             logging.error("Failed to create styled Excel file: %s", e)
+
+
+        # Debug file save removed
 
         # Provide download link for the generated Excel file
         st.download_button(

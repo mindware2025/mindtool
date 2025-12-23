@@ -1278,8 +1278,7 @@ def create_styled_excel(
                 current_row += 1
     
     # Page setup - optimized for 11 columns (B through L)
-    first_col = 2
-    last_col = 12  # Column L
+   
     last_row = ws.max_row
     
     ws.print_area = f"A1:L{last_row}"  # Include column A in print area
