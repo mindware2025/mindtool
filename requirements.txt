@@ -15,3 +15,4 @@ google-auth-oauthlib
 google-auth-httplib2
 pdf417
 docx
+xlrd>=2.0.1
