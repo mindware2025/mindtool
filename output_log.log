@@ -4678,3 +4678,27 @@
 2025-12-23 09:06:18,269 - DEBUG - STREAM b'pHYs' 70 9
 2025-12-23 09:06:18,271 - DEBUG - STREAM b'IDAT' 91 10912
 2025-12-23 09:06:18,279 - INFO - Styled Excel file created successfully.
+2025-12-25 00:51:39,225 - INFO - Data extracted from Excel using ibm_v2: [['E0D9DLL', 'IBM TRIRIGA Application Builder Authorized User Annual SW Subscription & Support Renewal', 1, '01-Jan-2026', '31-Dec-2026', 2235.23], ['E0D9ILL', 'IBM TRIRIGA Connector for Business Applications Install Annual SW Subscription & Support Renewal', 2, '01-Jan-2026', '31-Dec-2026', 1570.76], ['E0D9WLL', 'IBM TRIRIGA Connector for Business Applications for Non-Production Environment Install Annual SW Subscription & Support Renewal', 2, '01-Jan-2026', '31-Dec-2026', 789.66], ['E0D9KLL', 'IBM TRIRIGA Real Estate Manager Concurrent User Annual SW Subscription & Support Renewal', 20, '01-Jan-2026', '31-Dec-2026', 12711.6], ['E0D9QLL', 'IBM TRIRIGA Workplace Operations Manager Concurrent User Annual SW Subscription & Support Renewal', 5, '01-Jan-2026', '31-Dec-2026', 3177.9]]
+2025-12-25 00:51:39,608 - DEBUG - STREAM b'IHDR' 16 13
+2025-12-25 00:51:39,609 - DEBUG - STREAM b'sRGB' 41 1
+2025-12-25 00:51:39,609 - DEBUG - STREAM b'gAMA' 54 4
+2025-12-25 00:51:39,610 - DEBUG - STREAM b'pHYs' 70 9
+2025-12-25 00:51:39,610 - DEBUG - STREAM b'IDAT' 91 10912
+2025-12-25 00:51:39,738 - DEBUG - STREAM b'IHDR' 16 13
+2025-12-25 00:51:39,739 - DEBUG - STREAM b'sRGB' 41 1
+2025-12-25 00:51:39,739 - DEBUG - STREAM b'gAMA' 54 4
+2025-12-25 00:51:39,739 - DEBUG - STREAM b'pHYs' 70 9
+2025-12-25 00:51:39,739 - DEBUG - STREAM b'IDAT' 91 10912
+2025-12-25 00:51:39,759 - INFO - Styled Excel file created successfully.
+2025-12-25 00:51:41,224 - INFO - Data extracted from Excel using ibm_v2: [['E0D9DLL', 'IBM TRIRIGA Application Builder Authorized User Annual SW Subscription & Support Renewal', 1, '01-Jan-2026', '31-Dec-2026', 2235.23], ['E0D9ILL', 'IBM TRIRIGA Connector for Business Applications Install Annual SW Subscription & Support Renewal', 2, '01-Jan-2026', '31-Dec-2026', 1570.76], ['E0D9WLL', 'IBM TRIRIGA Connector for Business Applications for Non-Production Environment Install Annual SW Subscription & Support Renewal', 2, '01-Jan-2026', '31-Dec-2026', 789.66], ['E0D9KLL', 'IBM TRIRIGA Real Estate Manager Concurrent User Annual SW Subscription & Support Renewal', 20, '01-Jan-2026', '31-Dec-2026', 12711.6], ['E0D9QLL', 'IBM TRIRIGA Workplace Operations Manager Concurrent User Annual SW Subscription & Support Renewal', 5, '01-Jan-2026', '31-Dec-2026', 3177.9]]
+2025-12-25 00:51:41,228 - DEBUG - STREAM b'IHDR' 16 13
+2025-12-25 00:51:41,228 - DEBUG - STREAM b'sRGB' 41 1
+2025-12-25 00:51:41,228 - DEBUG - STREAM b'gAMA' 54 4
+2025-12-25 00:51:41,228 - DEBUG - STREAM b'pHYs' 70 9
+2025-12-25 00:51:41,228 - DEBUG - STREAM b'IDAT' 91 10912
+2025-12-25 00:51:41,303 - DEBUG - STREAM b'IHDR' 16 13
+2025-12-25 00:51:41,303 - DEBUG - STREAM b'sRGB' 41 1
+2025-12-25 00:51:41,303 - DEBUG - STREAM b'gAMA' 54 4
+2025-12-25 00:51:41,303 - DEBUG - STREAM b'pHYs' 70 9
+2025-12-25 00:51:41,303 - DEBUG - STREAM b'IDAT' 91 10912
+2025-12-25 00:51:41,312 - INFO - Styled Excel file created successfully.

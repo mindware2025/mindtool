@@ -148,39 +148,44 @@ elif tool_choice == "IBM Excel to Excel (New)":
         if uploaded_excel:
             try:
                 from sales.ibm_v2 import parse_uploaded_excel
-
-                # Save the uploaded file to a temporary location
-                with open("temp_uploaded_excel.xlsx", "wb") as f:
-                    f.write(uploaded_excel.getbuffer())
-
-                # Use the centralized function to parse the Excel file
-                data = parse_uploaded_excel("temp_uploaded_excel.xlsx")
+                # Use BytesIO for in-memory parsing (no disk write)
+                excel_bytes = BytesIO(uploaded_excel.getbuffer())
+                data = parse_uploaded_excel(excel_bytes)
                 logging.info("Data extracted from Excel using ibm_v2: %s", data)
             except Exception as e:
                 logging.error("Failed to extract data from Excel: %s", e)
+                st.error(f"❌ Failed to extract data from Excel: {e}")
+
+        # Show preview of parsed data before generating Excel
+        if uploaded_excel:
+            if not data:
+                st.error("❌ No line items found in the uploaded Excel file. Please check the file format and ensure the second sheet contains valid data.")
+            else:
+                st.success(f"✅ Parsed {len(data)} line items from Excel.")
+                st.dataframe(pd.DataFrame(data, columns=["SKU", "Description", "Quantity", "Start Date", "End Date", "Cost"]))
 
         # Call the function to create the styled Excel file
-        try:
-            create_styled_excel_v2(
-                data=data,
-                header_info=header_info,
-                logo_path=logo_path,
-                output=output,
-                compliance_text=compliance_text,
-                ibm_terms_text=ibm_terms_text if uploaded_pdf else ""
+        # Only allow download if there is data
+        if data:
+            try:
+                create_styled_excel_v2(
+                    data=data,
+                    header_info=header_info,
+                    logo_path=logo_path,
+                    output=output,
+                    compliance_text=compliance_text,
+                    ibm_terms_text=ibm_terms_text if uploaded_pdf else ""
+                )
+                logging.info("Styled Excel file created successfully.")
+            except Exception as e:
+                logging.error("Failed to create styled Excel file: %s", e)
+                st.error(f"❌ Failed to create styled Excel file: {e}")
+
+            # Provide download link for the generated Excel file
+            st.download_button(
+                label="📥 Download Styled Excel File",
+                data=output.getvalue(),
+                file_name="Styled_Quotation.xlsx",
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             )
-            logging.info("Styled Excel file created successfully.")
-        except Exception as e:
-            logging.error("Failed to create styled Excel file: %s", e)
-
-
-        # Debug file save removed
-
-        # Provide download link for the generated Excel file
-        st.download_button(
-            label="📥 Download Styled Excel File",
-            data=output.getvalue(),
-            file_name="Styled_Quotation.xlsx",
-            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        )
 
