@@ -1,3 +1,46 @@
+def compare_mep_and_cost(header_info, data):
+	"""
+	Compares Maximum End User Price (MEP) from PDF header_info with total cost from Excel data.
+	Args:
+		header_info: dict containing extracted PDF header info (should include 'Maximum End User Price (MEP)')
+		data: list of lists, each row [SKU, Description, Quantity, Start Date, End Date, Cost]
+	Returns:
+		str: Debug message for Streamlit UI
+	"""
+	mep_value = header_info.get("Maximum End User Price (MEP)", None)
+	try:
+		mep_val = float(str(mep_value).replace(',', '').replace(' ', '')) if mep_value else None
+	except Exception:
+		mep_val = None
+	total_cost = sum(float(row[5]) for row in data if len(row) > 5 and isinstance(row[5], (int, float, str)) and str(row[5]).replace('.', '', 1).isdigit())
+	msg = f"MEP value (PDF): {mep_val if mep_val is not None else 'N/A'} | Total cost (Excel): {total_cost:.2f}"
+	if mep_val is not None and abs(mep_val - total_cost) > 0.01:
+		msg += "\nThere is a difference between MEP and total cost. Please check with the IT team."
+	return msg
+def check_bid_number_match(excel_file, pdf_bid_number):
+	"""
+	Checks if the bid number in the Excel first sheet matches the PDF bid number.
+	Args:
+		excel_file: BytesIO or file path of the uploaded Excel file.
+		pdf_bid_number: Bid number extracted from PDF header_info.
+	Returns:
+		(bool, str): (True, None) if match, (False, error_message) if not.
+	"""
+	try:
+		xls = pd.ExcelFile(excel_file)
+		df = xls.parse(xls.sheet_names[0], header=None)
+		# Row 13 is index 12 (0-based)
+		b13 = str(df.iloc[12, 1]).strip() if df.shape[0] > 12 and df.shape[1] > 1 else ""
+		c13 = str(df.iloc[12, 2]).strip() if df.shape[0] > 12 and df.shape[1] > 2 else ""
+		# Normalize bid numbers by stripping leading zeros
+		pdf_bid_norm = str(pdf_bid_number).lstrip('0')
+		c13_norm = c13.lstrip('0')
+		if b13 == "Quote number:" and c13_norm == pdf_bid_norm:
+			return True, None
+		else:
+			return False, "Your uploaded files do not match. If you have any inquiries, reach out to IT."
+	except Exception as e:
+		return False, f"Error checking bid number match: {e}"
 from datetime import datetime
 from io import BytesIO
 import os

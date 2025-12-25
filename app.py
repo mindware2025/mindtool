@@ -157,6 +157,36 @@ elif tool_choice == "IBM Excel to Excel (New)":
                 st.error(f"❌ Failed to extract data from Excel: {e}")
 
         # Show preview of parsed data before generating Excel
+
+        bid_number_match = True
+        bid_number_error = None
+        b13_val = None
+        c13_val = None
+        pdf_bid_number = None
+        if uploaded_excel and uploaded_pdf:
+            from sales.ibm_v2 import check_bid_number_match
+            pdf_bid_number = header_info.get('Bid Number', '')
+            excel_bytes_for_check = BytesIO(uploaded_excel.getbuffer())
+            # Extract B13 and C13 for debug
+            import pandas as pd
+            try:
+                xls_dbg = pd.ExcelFile(excel_bytes_for_check)
+                df_dbg = xls_dbg.parse(xls_dbg.sheet_names[0], header=None)
+                b13_val = str(df_dbg.iloc[12, 1]).strip() if df_dbg.shape[0] > 12 and df_dbg.shape[1] > 1 else ""
+                c13_val = str(df_dbg.iloc[12, 2]).strip() if df_dbg.shape[0] > 12 and df_dbg.shape[1] > 2 else ""
+            except Exception as e:
+                b13_val = f"Error: {e}"
+                c13_val = f"Error: {e}"
+            # Reset BytesIO for actual check
+            excel_bytes_for_check.seek(0)
+            bid_number_match, bid_number_error = check_bid_number_match(excel_bytes_for_check, pdf_bid_number)
+
+        # Show debug info for bid number matching
+        if uploaded_excel and uploaded_pdf:
+            st.info(f"PDF Bid Number: {pdf_bid_number}")
+            st.info(f"Excel B13: {b13_val}")
+            st.info(f"Excel C13: {c13_val}")
+
         if uploaded_excel:
             if not data:
                 st.error("❌ No line items found in the uploaded Excel file. Please check the file format and ensure the second sheet contains valid data.")
@@ -164,28 +194,30 @@ elif tool_choice == "IBM Excel to Excel (New)":
                 st.success(f"✅ Parsed {len(data)} line items from Excel.")
                 st.dataframe(pd.DataFrame(data, columns=["SKU", "Description", "Quantity", "Start Date", "End Date", "Cost"]))
 
-        # Call the function to create the styled Excel file
-        # Only allow download if there is data
-        if data:
-            try:
-                create_styled_excel_v2(
-                    data=data,
-                    header_info=header_info,
-                    logo_path=logo_path,
-                    output=output,
-                    compliance_text=compliance_text,
-                    ibm_terms_text=ibm_terms_text if uploaded_pdf else ""
-                )
-                logging.info("Styled Excel file created successfully.")
-            except Exception as e:
-                logging.error("Failed to create styled Excel file: %s", e)
-                st.error(f"❌ Failed to create styled Excel file: {e}")
+        # Only allow output if bid number matches
+        if data and (uploaded_pdf and uploaded_excel):
+            if not bid_number_match:
+                st.error(bid_number_error)
+            else:
+                try:
+                    create_styled_excel_v2(
+                        data=data,
+                        header_info=header_info,
+                        logo_path=logo_path,
+                        output=output,
+                        compliance_text=compliance_text,
+                        ibm_terms_text=ibm_terms_text if uploaded_pdf else ""
+                    )
+                    logging.info("Styled Excel file created successfully.")
+                except Exception as e:
+                    logging.error("Failed to create styled Excel file: %s", e)
+                    st.error(f"❌ Failed to create styled Excel file: {e}")
 
-            # Provide download link for the generated Excel file
-            st.download_button(
-                label="📥 Download Styled Excel File",
-                data=output.getvalue(),
-                file_name="Styled_Quotation.xlsx",
-                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-            )
+                # Provide download link for the generated Excel file
+                st.download_button(
+                    label="📥 Download Styled Excel File",
+                    data=output.getvalue(),
+                    file_name="Styled_Quotation.xlsx",
+                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                )
 
