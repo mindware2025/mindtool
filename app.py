@@ -4,6 +4,7 @@ import pandas as pd
 from io import BytesIO
 from ibm import extract_ibm_data_from_pdf, create_styled_excel, create_styled_excel_template2, correct_descriptions, extract_last_page_text
 from ibm_template2 import extract_ibm_template2_from_pdf, get_extraction_debug
+from sales.ibm_v2 import compare_mep_and_cost
 from template_detector import detect_ibm_template
 import logging
 
@@ -184,8 +185,11 @@ elif tool_choice == "IBM Excel to Excel (New)":
         # Show debug info for bid number matching
         if uploaded_excel and uploaded_pdf:
             st.info(f"PDF Bid Number: {pdf_bid_number}")
-            st.info(f"Excel B13: {b13_val}")
             st.info(f"Excel C13: {c13_val}")
+        
+        if uploaded_excel and uploaded_pdf and data:
+            mep_cost_msg = compare_mep_and_cost(header_info, data)
+            st.info(mep_cost_msg)
 
         if uploaded_excel:
             if not data:
