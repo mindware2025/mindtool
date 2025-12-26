@@ -1,3 +1,13 @@
+from datetime import datetime
+from io import BytesIO
+import os
+import pandas as pd
+from openpyxl import Workbook
+from openpyxl.styles import Font, Alignment, PatternFill, Border, Side
+from openpyxl.drawing.image import Image
+from openpyxl.utils import get_column_letter
+from terms_template import get_terms_section
+
 def compare_mep_and_cost(header_info, data):
 	"""
 	Compares Maximum End User Price (MEP) from PDF header_info with total cost from Excel data.
@@ -41,17 +51,6 @@ def check_bid_number_match(excel_file, pdf_bid_number):
 			return False, "Your uploaded files do not match. If you have any inquiries, reach out to IT."
 	except Exception as e:
 		return False, f"Error checking bid number match: {e}"
-from datetime import datetime
-from io import BytesIO
-import os
-import pandas as pd
-from openpyxl import Workbook
-from openpyxl.styles import Font, Alignment, PatternFill, Border, Side
-from openpyxl.drawing.image import Image
-from openpyxl.utils import get_column_letter
-from terms_template import get_terms_section
-from extract_ibm_terms import extract_ibm_terms_text
-## logging removed
 
 USD_TO_AED = 3.6725
 

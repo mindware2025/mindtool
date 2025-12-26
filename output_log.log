@@ -22310,3 +22310,266 @@
 2025-12-26 01:27:31,579 - INFO - Row 2: E0AE3ZX | Qty: 243 | Unit: AED 1491.33 | Total: AED 362392.90
 2025-12-26 01:27:31,580 - INFO - Header information extracted from PDF: {'Customer Name': 'Electronic Government Authority, Government of Ras Al', 'Bid Number': '21618061', 'PA Agreement Number': '187569', 'PA Site Number': '3394443', 'Select Territory': 'Yes', 'Government Entity (GOE)': '', 'Reseller Name': 'Emirates Business Machines dubai br', 'City': 'Ras Al Khaimah, RAK', 'Country': 'AE', 'Maximum End User Price (MEP)': '100,611.44', 'Bid Expiration Date': '31-Dec-2025'}
 2025-12-26 01:27:31,620 - INFO - Data extracted from Excel using ibm_v2: [['E0D9DLL', 'IBM TRIRIGA Application Builder Authorized User Annual SW Subscription & Support Renewal', 1, '01-Jan-2026', '31-Dec-2026', 2235.23], ['E0D9ILL', 'IBM TRIRIGA Connector for Business Applications Install Annual SW Subscription & Support Renewal', 2, '01-Jan-2026', '31-Dec-2026', 1570.76], ['E0D9WLL', 'IBM TRIRIGA Connector for Business Applications for Non-Production Environment Install Annual SW Subscription & Support Renewal', 2, '01-Jan-2026', '31-Dec-2026', 789.66], ['E0D9KLL', 'IBM TRIRIGA Real Estate Manager Concurrent User Annual SW Subscription & Support Renewal', 20, '01-Jan-2026', '31-Dec-2026', 12711.6], ['E0D9QLL', 'IBM TRIRIGA Workplace Operations Manager Concurrent User Annual SW Subscription & Support Renewal', 5, '01-Jan-2026', '31-Dec-2026', 3177.9]]
+2025-12-26 01:36:18,659 - INFO - === IBM PDF EXTRACTION STARTED ===
+2025-12-26 01:36:18,661 - INFO - PDF: 4 pages, extracting data...
+2025-12-26 01:36:18,681 - INFO - Total lines extracted: 171
+2025-12-26 01:36:18,682 - INFO - Extracting header information...
+2025-12-26 01:36:18,683 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,683 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,684 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,685 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,685 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,686 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,686 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,687 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,687 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,688 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,688 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,688 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,689 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,689 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,690 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,690 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,691 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,691 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,692 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,692 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,693 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,693 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,694 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,694 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,695 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,695 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,696 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,696 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,697 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,697 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,698 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,698 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,699 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,699 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,700 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,700 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,701 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,701 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,702 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,703 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,704 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,705 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,706 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,707 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,708 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,708 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,709 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,709 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,710 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,710 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,711 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,712 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,712 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,713 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,713 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,714 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,714 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,715 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,715 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,716 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,716 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,717 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,718 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,718 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,719 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,719 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,720 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,720 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,720 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,721 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,721 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,722 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,722 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,722 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,723 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,723 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,724 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,724 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,724 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,725 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,725 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,726 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,726 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,727 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,727 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,728 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,728 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,729 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,729 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,730 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,730 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,731 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,731 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,731 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,732 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,732 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,733 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,733 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,733 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,734 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,734 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,734 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,735 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,735 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,736 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,736 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,736 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,737 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,738 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,738 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,739 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,739 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,739 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,739 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,739 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,740 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,740 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,740 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,741 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,741 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,741 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,742 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,742 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,743 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,743 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,743 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,744 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,744 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,744 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,745 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,745 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,745 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,746 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,746 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,747 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,747 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,747 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,748 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,748 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,748 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,749 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,749 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,749 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,750 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,750 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,750 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,751 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,751 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,751 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,752 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,752 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,752 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,753 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,753 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,753 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,754 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,754 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,755 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,755 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,755 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,756 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,756 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,757 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,757 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,757 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,758 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,758 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,758 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,759 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,759 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,759 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,759 - INFO - MEP found in next line: '100.611,44' -> cleaned: '100.611,44' -> 100611.44
+2025-12-26 01:36:18,760 - INFO - Header fields found: 7
+2025-12-26 01:36:18,760 - INFO - MEP extracted: '100,611.44')
+2025-12-26 01:36:18,760 - INFO - Bid Expiration Date: '31-Dec-2025')
+2025-12-26 01:36:18,760 - INFO - Extracting line items...
+2025-12-26 01:36:18,760 - INFO - === RAW PDF CONTENT FOR SKU E0R45LL ===
+2025-12-26 01:36:18,761 - INFO - Chunk lines from PDF:
+2025-12-26 01:36:18,761 - INFO -   Line 0: '1'
+2025-12-26 01:36:18,761 - INFO -   Line 1: 'E0R45LL'
+2025-12-26 01:36:18,761 - INFO -   Line 2: 'QRVRMI ANNUAL S&S RN'
+2025-12-26 01:36:18,761 - INFO -   Line 3: '17,40'
+2025-12-26 01:36:18,761 - INFO -   Line 4: '17,40 01-Oct-2025'
+2025-12-26 01:36:18,761 - INFO -   Line 5: '30-Sep-2026'
+2025-12-26 01:36:18,761 - INFO -   Line 6: '1'
+2025-12-26 01:36:18,761 - INFO -   Line 7: '3.637,00'
+2025-12-26 01:36:18,761 - INFO -   Line 8: '3.637,00'
+2025-12-26 01:36:18,762 - INFO -   Line 9: '46,820'
+2025-12-26 01:36:18,762 - INFO -   Line 10: '1.934,00'
+2025-12-26 01:36:18,762 - INFO -   Line 11: '1.934,00'
+2025-12-26 01:36:18,762 - INFO - Money tokens found: ['3.637,00', '3.637,00', '46,820', '1.934,00', '1.934,00']
+2025-12-26 01:36:18,762 - INFO - Date range: 01-Oct-2025 to 30-Sep-2026
+2025-12-26 01:36:18,762 - INFO - ==================================================
+2025-12-26 01:36:18,762 - INFO - === PRICE ANALYSIS FOR SKU E0R45LL ===
+2025-12-26 01:36:18,762 - INFO - All money tokens from PDF: ['3.637,00', '3.637,00', '46,820', '1.934,00', '1.934,00']
+2025-12-26 01:36:18,762 - INFO -   Token 0: '3.637,00' = 3637.0
+2025-12-26 01:36:18,763 - INFO -   Token 1: '3.637,00' = 3637.0
+2025-12-26 01:36:18,763 - INFO -   Token 2: '46,820' = 46.82
+2025-12-26 01:36:18,763 - INFO -   Token 3: '1.934,00' = 1934.0
+2025-12-26 01:36:18,763 - INFO -   Token 4: '1.934,00' = 1934.0
+2025-12-26 01:36:18,763 - INFO - All parsed values:
+2025-12-26 01:36:18,763 - INFO -   Position 0: '3.637,00' = 3637.0
+2025-12-26 01:36:18,763 - INFO -   Position 1: '3.637,00' = 3637.0
+2025-12-26 01:36:18,763 - INFO -   Position 2: '46,820' = 46.82
+2025-12-26 01:36:18,763 - INFO -   Position 3: '1.934,00' = 1934.0
+2025-12-26 01:36:18,764 - INFO -   Position 4: '1.934,00' = 1934.0
+2025-12-26 01:36:18,764 - INFO - FOUND EXTENDED COST: Position 4 '1.934,00' = 1934.0
+2025-12-26 01:36:18,764 - INFO - USING EXTENDED COST: Unit=1934.0, Extended=1934.0
+2025-12-26 01:36:18,764 - INFO - SELECTED: Using Extended=1934.0, Unit=1934.0
+2025-12-26 01:36:18,764 - INFO - FINAL: Unit=1934.0, Total=1934.0
+2025-12-26 01:36:18,764 - INFO - ==================================================
+2025-12-26 01:36:18,773 - INFO - === RAW PDF CONTENT FOR SKU E0AE3ZX ===
+2025-12-26 01:36:18,773 - INFO - Chunk lines from PDF:
+2025-12-26 01:36:18,773 - INFO -   Line 0: '2'
+2025-12-26 01:36:18,773 - INFO -   Line 1: 'E0AE3ZX'
+2025-12-26 01:36:18,773 - INFO -   Line 2: 'ISQST1R Annual S&S R'
+2025-12-26 01:36:18,773 - INFO -   Line 3: '4,84'
+2025-12-26 01:36:18,774 - INFO -   Line 4: '1176,12 01-Nov-2025'
+2025-12-26 01:36:18,774 - INFO -   Line 5: '30-Sep-2026'
+2025-12-26 01:36:18,774 - INFO -   Line 6: '11'
+2025-12-26 01:36:18,774 - INFO -   Line 7: '243'
+2025-12-26 01:36:18,774 - INFO -   Line 8: '926,75'
+2025-12-26 01:36:18,774 - INFO -   Line 9: '225.200,25'
+2025-12-26 01:36:18,774 - INFO -   Line 10: '56,180'
+2025-12-26 01:36:18,774 - INFO -   Line 11: '406,08'
+2025-12-26 01:36:18,774 - INFO - Money tokens found: ['926,75', '225.200,25', '56,180', '406,08']
+2025-12-26 01:36:18,774 - INFO - Date range: 01-Nov-2025 to 30-Sep-2026
+2025-12-26 01:36:18,775 - INFO - ==================================================
+2025-12-26 01:36:18,775 - INFO - === PRICE ANALYSIS FOR SKU E0AE3ZX ===
+2025-12-26 01:36:18,775 - INFO - All money tokens from PDF: ['926,75', '225.200,25', '56,180', '406,08', '98.677,44', '3,000', '98.677,44']
+2025-12-26 01:36:18,775 - INFO -   Token 0: '926,75' = 926.75
+2025-12-26 01:36:18,775 - INFO -   Token 1: '225.200,25' = 225200.25
+2025-12-26 01:36:18,775 - INFO -   Token 2: '56,180' = 56.18
+2025-12-26 01:36:18,775 - INFO -   Token 3: '406,08' = 406.08
+2025-12-26 01:36:18,775 - INFO -   Token 4: '98.677,44' = 98677.44
+2025-12-26 01:36:18,775 - INFO -   Token 5: '3,000' = 3.0
+2025-12-26 01:36:18,776 - INFO -   Token 6: '98.677,44' = 98677.44
+2025-12-26 01:36:18,776 - INFO - All parsed values:
+2025-12-26 01:36:18,776 - INFO -   Position 0: '926,75' = 926.75
+2025-12-26 01:36:18,776 - INFO -   Position 1: '225.200,25' = 225200.25
+2025-12-26 01:36:18,776 - INFO -   Position 2: '56,180' = 56.18
+2025-12-26 01:36:18,776 - INFO -   Position 3: '406,08' = 406.08
+2025-12-26 01:36:18,776 - INFO -   Position 4: '98.677,44' = 98677.44
+2025-12-26 01:36:18,776 - INFO -   Position 5: '3,000' = 3.0
+2025-12-26 01:36:18,776 - INFO -   Position 6: '98.677,44' = 98677.44
+2025-12-26 01:36:18,776 - INFO - FOUND EXTENDED COST: Position 4 '98.677,44' = 98677.44
+2025-12-26 01:36:18,777 - INFO - FOUND UNIT COST: Position 5 '3,000' = 3.0
+2025-12-26 01:36:18,777 - INFO - USING EXTENDED COST: Unit=406.08, Extended=98677.44
+2025-12-26 01:36:18,777 - INFO - SELECTED: Using Extended=98677.44, Unit=406.08
+2025-12-26 01:36:18,777 - INFO - FINAL: Unit=406.08, Total=98677.44
+2025-12-26 01:36:18,777 - INFO - ==================================================
+2025-12-26 01:36:18,811 - INFO - === EXTRACTION COMPLETE ===
+2025-12-26 01:36:18,811 - INFO - Total line items: 2
+2025-12-26 01:36:18,811 - INFO - Total quotation value: AED 369,495.51
+2025-12-26 01:36:18,811 - INFO - === FINAL EXCEL DATA ===
+2025-12-26 01:36:18,811 - INFO - Row 1: E0R45LL | Qty: 1 | Unit: AED 7102.61 | Total: AED 7102.61
+2025-12-26 01:36:18,811 - INFO - Row 2: E0AE3ZX | Qty: 243 | Unit: AED 1491.33 | Total: AED 362392.90
+2025-12-26 01:36:18,812 - INFO - Header information extracted from PDF: {'Customer Name': 'Electronic Government Authority, Government of Ras Al', 'Bid Number': '21618061', 'PA Agreement Number': '187569', 'PA Site Number': '3394443', 'Select Territory': 'Yes', 'Government Entity (GOE)': '', 'Reseller Name': 'Emirates Business Machines dubai br', 'City': 'Ras Al Khaimah, RAK', 'Country': 'AE', 'Maximum End User Price (MEP)': '100,611.44', 'Bid Expiration Date': '31-Dec-2025'}
+2025-12-26 01:36:18,845 - INFO - Data extracted from Excel using ibm_v2: [['E0D9DLL', 'IBM TRIRIGA Application Builder Authorized User Annual SW Subscription & Support Renewal', 1, '01-Jan-2026', '31-Dec-2026', 2235.23], ['E0D9ILL', 'IBM TRIRIGA Connector for Business Applications Install Annual SW Subscription & Support Renewal', 2, '01-Jan-2026', '31-Dec-2026', 1570.76], ['E0D9WLL', 'IBM TRIRIGA Connector for Business Applications for Non-Production Environment Install Annual SW Subscription & Support Renewal', 2, '01-Jan-2026', '31-Dec-2026', 789.66], ['E0D9KLL', 'IBM TRIRIGA Real Estate Manager Concurrent User Annual SW Subscription & Support Renewal', 20, '01-Jan-2026', '31-Dec-2026', 12711.6], ['E0D9QLL', 'IBM TRIRIGA Workplace Operations Manager Concurrent User Annual SW Subscription & Support Renewal', 5, '01-Jan-2026', '31-Dec-2026', 3177.9]]
