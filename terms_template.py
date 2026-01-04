@@ -1,11 +1,16 @@
 
 def get_terms_section(header_info, total_price_sum):
+        # DEBUG: Print all header_info keys and values to diagnose extraction issues
+    print("[DEBUG] header_info keys:", list(header_info.keys()))
+    print("[DEBUG] header_info values:", header_info)
     quote_validity = header_info.get("Bid Expiration Date", "N/A")
     company_name = header_info.get("Reseller Name", "Company")
     end_user = header_info.get("Customer Name", "End User")
     # Use MEP from PDF if available, otherwise fallback to calculated total
     mep_value = header_info.get("Maximum End User Price (MEP)", "")
-    
+    if not mep_value:
+         mep_value = header_info.get("Total Value Seller Revenue Opportunity", "")
+# 
     # Create text with MEP placeholder - will be processed to include formula
     if mep_value:
         # Store MEP value in header_info for formula use in Excel generation

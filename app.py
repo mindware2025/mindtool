@@ -23,7 +23,12 @@ st.set_page_config(page_title="IBM Quotation Extractor", layout="wide")
 # ---------------------------
 tool_choice = st.radio(
     "Select Tool:",
-    ["IBM PDF to Excel (Existing)", "IBM Excel to Excel (New)"]
+    [
+        "IBM PDF to Excel (Existing)",
+        "IBM Excel to Excel (New)",
+        "IBM Excel to Excel+ pdf to excel"
+    ]
+    
 )
 
 if tool_choice == "IBM PDF to Excel (Existing)":
@@ -221,6 +226,54 @@ elif tool_choice == "IBM Excel to Excel (New)":
                 st.download_button(
                     label="📥 Download Styled Excel File",
                     data=output.getvalue(),
+                    file_name="Styled_Quotation.xlsx",
+                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                )
+elif tool_choice == "IBM Excel to Excel+ pdf to excel":
+    st.header("🆕 IBM Excel to Excel + PDF to Excel (Combo)")
+    st.info("Upload an IBM quotation PDF and (optionally) an Excel file. The tool will auto-detect the template and use the best logic for each.")
+
+    logo_path = "image.png"
+    compliance_text = ""  # Add compliance text if needed
+
+    st.subheader("📤 Upload IBM Quotation Files")
+
+    uploaded_pdf = st.file_uploader(
+        "Upload IBM Quotation PDF (.pdf)",
+        type=["pdf"],
+        help="Supports .pdf files. The tool will extract header information from the PDF."
+    )
+
+    uploaded_excel = st.file_uploader(
+        "Upload IBM Quotation Excel (.xlsx, .xlsm, .xls)",
+        type=["xlsx", "xlsm", "xls"],
+        help="Supports .xlsx, .xlsm, and .xls files. The tool will extract line items from the second sheet."
+    )
+
+    if uploaded_pdf:
+        from sales.ibm_v2_combo import process_ibm_combo
+        import io
+        pdf_bytes = io.BytesIO(uploaded_pdf.getbuffer())
+        excel_bytes = io.BytesIO(uploaded_excel.getbuffer()) if uploaded_excel else None
+        result = process_ibm_combo(pdf_bytes, excel_bytes)
+
+        if result['error']:
+            st.error(f"❌ {result['error']}")
+        else:
+            st.success(f"✅ Detected Template: {result['template']}")
+            if result['mep_cost_msg']:
+                st.info(result['mep_cost_msg'])
+            if result['bid_number_error']:
+                st.error(result['bid_number_error'])
+            if result['data']:
+                if result.get('columns'):
+                    st.dataframe(pd.DataFrame(result['data'], columns=result['columns']))
+                else:
+                    st.dataframe(pd.DataFrame(result['data']))
+            if result.get('excel_bytes'):
+                st.download_button(
+                    label="📥 Download Styled Excel File",
+                    data=result['excel_bytes'],
                     file_name="Styled_Quotation.xlsx",
                     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                 )

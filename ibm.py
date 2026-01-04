@@ -371,6 +371,7 @@ def extract_ibm_data_from_pdf(file_like) -> tuple[list, dict]:
         "City": "",
         "Country": "",
         "Maximum End User Price (MEP)": "",
+        "Total Value Seller Revenue Opportunity": "",
         "Bid Expiration Date": ""
     }
     
@@ -405,7 +406,11 @@ def extract_ibm_data_from_pdf(file_like) -> tuple[list, dict]:
         if "Bid Expiration Date:" in line or "Quote Expiration Date:" in line:
             header_info["Bid Expiration Date"] = lines[i + 1].strip() if i + 1 < len(lines) else ""
             header_fields_found += 1
-        if "Maximum End User Price" in line or "MEP" in line:
+        if (
+            "Maximum End User Price" in line
+            or "Total Value Seller Revenue Opportunity" in line
+            or "MEP" in line
+        ):
             # Look for MEP value in same line or next line
             if ":" in line:
                 mep_part = line.split(":", 1)[1].strip()
