@@ -1,0 +1,10 @@
+=== IBM PDF EXTRACTION STARTED ===
+PDF: 5 pages, extracting data...
+Total lines extracted: 312
+Extracting header information...
+Header fields found: 5
+MEP extracted: '')
+Bid Expiration Date: 'Date Bid Sent: 2025-11-21')
+Extracting line items...
+=== EXTRACTION COMPLETE ===
+Total line items: 0
