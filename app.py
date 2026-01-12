@@ -37,6 +37,9 @@ if tool_choice == "IBM Excel to Excel+ pdf to excel":
     st.header("🆕 IBM Excel to Excel + PDF to Excel (Combo)")
     st.info("Upload an IBM quotation PDF and (optionally) an Excel file. The tool will auto-detect the template and use the best logic for each.")
 
+    # Country selection
+    country = st.selectbox("Choose a country:", ["UAE", "Qatar"])
+
     logo_path = "image.png"
     compliance_text = ""  # Add compliance text if needed
 
@@ -59,7 +62,7 @@ if tool_choice == "IBM Excel to Excel+ pdf to excel":
         import io
         pdf_bytes = io.BytesIO(uploaded_pdf.getbuffer())
         excel_bytes = io.BytesIO(uploaded_excel.getbuffer()) if uploaded_excel else None
-        result = process_ibm_combo(pdf_bytes, excel_bytes)
+        result = process_ibm_combo(pdf_bytes, excel_bytes, country=country)
 
         if result['error']:
             st.error(f"❌ {result['error']}")

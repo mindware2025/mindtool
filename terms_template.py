@@ -13,15 +13,18 @@ def get_terms_section(header_info, total_price_sum):
 # 
     # Create text with MEP placeholder - will be processed to include formula
     if mep_value:
-        # Store MEP value in header_info for formula use in Excel generation
-        try:
-            mep_numeric = float(mep_value.replace(",", ""))
-            header_info["_MEP_NUMERIC"] = mep_numeric
-            # Calculate AED equivalent
-            mep_aed = mep_numeric * 3.6725
-            formatted_price = f"USD {mep_value} (AED {mep_aed:,.2f})"
-        except:
-            formatted_price = f"USD {mep_value}"
+                # Store MEP value in header_info for formula use in Excel generation
+                try:
+                        mep_numeric = float(mep_value.replace(",", ""))
+                        header_info["_MEP_NUMERIC"] = mep_numeric
+                        # Calculate AED equivalent
+                        mep_aed = mep_numeric * 3.6725
+                        if header_info.get('country', '').lower() == 'qatar':
+                                formatted_price = f"USD {mep_value}"
+                        else:
+                                formatted_price = f"USD {mep_value} (AED {mep_aed:,.2f})"
+                except:
+                        formatted_price = f"USD {mep_value}"
     else:
         formatted_price = f" "
     

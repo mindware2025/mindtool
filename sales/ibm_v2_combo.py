@@ -23,7 +23,7 @@ from io import BytesIO
 import logging
 
 
-def process_ibm_combo(pdf_file, excel_file=None, master_csv=None):
+def process_ibm_combo(pdf_file, excel_file=None, master_csv=None, country="UAE"):
     """
     Unified processing for Template 1 (Excel-to-Excel) and Template 2 (PDF-to-Excel).
     - If excel_file is provided and template is 1: use Excel-to-Excel logic (ibm_v2)
@@ -66,9 +66,40 @@ def process_ibm_combo(pdf_file, excel_file=None, master_csv=None):
                 except Exception as e:
                     result['error'] = f"Failed to extract data from Excel: {e}"
             result['header_info'] = header_info
-            result['data'] = data
             result['ibm_terms_text'] = ibm_terms_text
-            result['columns'] = ["SKU", "Description", "Quantity", "Start Date", "End Date", "Cost"]
+            if country == "Qatar":
+                # Qatar columns: SKU, Product Description, Quantity, Start Date, End Date, Unit Price in USD, Cost (USD), Partner Discount, Partner Price in USD
+                columns = [
+                    "SKU", "Product Description", "Quantity", "Start Date", "End Date",
+                    "Unit Price in USD", "Cost (USD)", "Partner Discount", "Partner Price in USD"
+                ]
+                filtered_data = []
+                for row in data:
+                    sku = row[0] if len(row) > 0 else ""
+                    desc = row[1] if len(row) > 1 else ""
+                    qty = row[2] if len(row) > 2 else 0
+                    start_date = row[3] if len(row) > 3 else ""
+                    end_date = row[4] if len(row) > 4 else ""
+                    raw_cost = row[5] if len(row) > 5 else 0
+                    try:
+                        cost = float(raw_cost) if raw_cost not in (None, "", "-") else 0
+                    except Exception:
+                        cost = 0
+                    # Unit Price in USD = cost / qty
+                    unit_price = cost / qty if qty else 0
+                    # Partner Discount = unit_price * 0.99 (1% discount)
+                    partner_discount = round(unit_price * 0.99, 2)
+                    # Partner Price in USD = partner_discount * qty
+                    partner_price = partner_discount * qty
+                    filtered_data.append([
+                        sku, desc, qty, start_date, end_date,
+                        round(unit_price, 2), round(cost, 2), partner_discount, round(partner_price, 2)
+                    ])
+                result['data'] = filtered_data
+                result['columns'] = columns
+            else:
+                result['data'] = data
+                result['columns'] = ["SKU", "Description", "Quantity", "Start Date", "End Date", "Cost"]
             # MEP/cost check
             if header_info and data:
                 result['mep_cost_msg'] = compare_mep_and_cost(header_info, data)
@@ -84,12 +115,13 @@ def process_ibm_combo(pdf_file, excel_file=None, master_csv=None):
                 output = BytesIO()
                 try:
                     create_styled_excel_v2(
-                        data=data if data else [],
+                        data=result['data'] if result['data'] else [],
                         header_info=header_info,
                         logo_path="image.png",
                         output=output,
                         compliance_text="",
-                        ibm_terms_text=ibm_terms_text
+                        ibm_terms_text=ibm_terms_text,
+                        country=country
                     )
                     result['excel_bytes'] = output.getvalue()
                 except Exception as e:
