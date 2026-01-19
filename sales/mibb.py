@@ -104,8 +104,7 @@ def extract_mibb_header_from_pdf(file_like) -> dict:
     header_info = {
         "Customer Name": "",
         "Bid Number": "",
-        "PA Agreement Number": "",
-        "PA Site Number": "",
+        
         "Select Territory": "",
         "Government Entity (GOE)": "",
         "Reseller Name": "",
@@ -121,30 +120,24 @@ def extract_mibb_header_from_pdf(file_like) -> dict:
     fields_found = 0
     for i, line in enumerate(lines):
         if "Customer Name:" in line:
-            value = lines[i + 1].strip() if i + 1 < len(lines) else ""
+            value = lines[i].strip() if i + 1 < len(lines) else ""
             header_info["Customer Name"] = value
             log_debug(f"  [Line {i}] Customer Name: '{value}'")
             fields_found += 1
         if "Reseller Name:" in line:
-            value = lines[i + 1].strip() if i + 1 < len(lines) else ""
+            value = lines[i].strip() if i + 1 < len(lines) else ""
             header_info["Reseller Name"] = value
             log_debug(f"  [Line {i}] Reseller Name: '{value}'")
             fields_found += 1
         if "Bid Number:" in line or "Quote Number:" in line:
-            value = lines[i + 1].strip() if i + 1 < len(lines) else ""
+            value = lines[i].strip() if i + 1 < len(lines) else ""
             header_info["Bid Number"] = value
-            log_debug(f"  [Line {i}] Bid Number: '{value}'")
             fields_found += 1
-        if "PA Agreement Number:" in line:
-            value = lines[i + 1].strip() if i + 1 < len(lines) else ""
-            header_info["PA Agreement Number"] = value
-            log_debug(f"  [Line {i}] PA Agreement Number: '{value}'")
+        if "Business Partner of Record:" in line :
+            value = lines[i].strip() if i + 1 < len(lines) else ""
+            header_info["Business Partner of Record"] = value
             fields_found += 1
-        if "PA Site Number:" in line:
-            value = lines[i + 1].strip() if i + 1 < len(lines) else ""
-            header_info["PA Site Number"] = value
-            log_debug(f"  [Line {i}] PA Site Number: '{value}'")
-            fields_found += 1
+       
         if "Select Territory:" in line:
             value = lines[i + 1].strip() if i + 1 < len(lines) else ""
             header_info["Select Territory"] = value
@@ -155,18 +148,9 @@ def extract_mibb_header_from_pdf(file_like) -> dict:
             header_info["Government Entity (GOE)"] = value
             log_debug(f"  [Line {i}] Government Entity (GOE): '{value}'")
             fields_found += 1
-        if "City:" in line:
-            value = lines[i + 1].strip() if i + 1 < len(lines) else ""
-            header_info["City"] = value
-            log_debug(f"  [Line {i}] City: '{value}'")
-            fields_found += 1
-        if "Country:" in line:
-            value = lines[i + 1].strip() if i + 1 < len(lines) else ""
-            header_info["Country"] = value
-            log_debug(f"  [Line {i}] Country: '{value}'")
-            fields_found += 1
+        
         if "Bid Expiration Date:" in line or "Quote Expiration Date:" in line:
-            value = lines[i + 1].strip() if i + 1 < len(lines) else ""
+            value = lines[i].strip() if i + 1 < len(lines) else ""
             header_info["Bid Expiration Date"] = value
             log_debug(f"  [Line {i}] Bid Expiration Date: '{value}'")
             fields_found += 1
@@ -587,37 +571,7 @@ def extract_mibb_table_from_pdf(file_like) -> list:
                         price_usd = prices_after_discount[1][0]  # Second price is Bid Ext SVP
                         log_debug(f"    Selected Bid Ext SVP (2nd price after discount): {price_usd} (from line {prices_after_discount[1][1]})")
                         break
-        
-        # Fallback: If we didn't find discount pattern, look for last significant price
-        if price_usd == 0.0:
-            log_debug(f"    Fallback: Searching for last significant price...")
-            all_prices = []
-            for j in range(i + 1, min(i + 25, len(lines))):
-                check_line = lines[j]
-                price_matches = price_pattern.findall(check_line)
-                if price_matches:
-                    for match in price_matches:
-                        try:
-                            if ',' in match and '.' in match:
-                                price_str = match.replace(',', '')
-                            elif ',' in match:
-                                price_str = match.replace(',', '.')
-                            else:
-                                price_str = match
-                            price_val = float(price_str)
-                            if 100 <= price_val < 10000000:
-                                all_prices.append((price_val, j))
-                        except:
-                            pass
-            
-            # Use the second-to-last price (Bid Ext SVP) instead of last (which might be margin/channel)
-            if len(all_prices) >= 2:
-                price_usd = all_prices[-2][0]
-                log_debug(f"    Fallback: Selected second-to-last price: {price_usd} (from line {all_prices[-2][1]})")
-            elif len(all_prices) == 1:
-                price_usd = all_prices[0][0]
-                log_debug(f"    Fallback: Selected only price: {price_usd} (from line {all_prices[0][1]})")
-        
+ 
         if price_usd == 0.0:
             log_debug(f"    No Bid Ext SVP found, using 0.0")
         
@@ -662,7 +616,6 @@ def get_mibb_terms_section(header_info):
     Returns list of (cell_address, text, style_dict) tuples.
     """
     quote_validity = header_info.get("Bid Expiration Date", "XXXX")
-    
     terms = [
         ("B29", "Terms and Conditions:", {"bold": True, "size": 11, "color": "1F497D"}),
         ("C30", f"""• 30 Days from POE Date.
@@ -681,28 +634,7 @@ IBM's audit rights with respect to special bids are set forth further in Section
 https://www.ibm.com/investor/att/pdf/IBM_Business_Conduct_Guidelines .pdf
 Reseller agrees to comply with the Midis Group Code of Conduct, a current version of which is available on the Midis Group Website: 
 https://www.midisgroup.com/wp-content/uploads/2024/08/Code-of-Conduct-2023-English.pdf """),
-        ("C39", "5. Special Bids", {"bold": True}),
-        ("C40", """Reseller may request a Special Bid (a special discount or price) on a specific End User transaction. VAD may, at its sole discretion, approve or reject a Special Bid based on the information provided by Reseller in its Special Bid request. If VAD approves a Special Bid, then the price provided by VAD shall only be valid for the applicable Special Bid, and its validity shall be subject to all the terms and conditions set out in this Agreement, including IBM's Special Bid authorization notice ("Special Bid Addendum"). Further, IBM provides Special Bids through VAD to Reseller on the basis that the information Reseller provided in its Special Bid request is truthful and accurate. If the information provided in the Special Bid request changes, Reseller must immediately notify VAD. In such event, VAD reserves the right to modify the terms of, or cancel any Special Bid authorization it may have provided. If Reseller fails to provide truthful and accurate information on Special Bid requests, then VAD shall be entitled to recover from Reseller (and Reseller is obligated to repay) the amount of any discounts IBM provided through VAD in the Special Bid and take any other actions authorized under this Agreement or applicable law. Special Bid authorizations and the terms applicable to Special Bids are IBM's confidential information, which is subject to the applicable confidentiality agreement.
-Reseller accepts the terms of the Special Bid by:
-a. submitting an order under the Special Bid authorization;
-b. accepting the Products or Services for which Reseller is receiving a Special Bid;
-c. providing the Products or Services to its Customer; or
-d. paying for the Products or Services."""),
-        ("C41", """The Special Bid discount or price for eligible Products or Services is subject to the following:
-a. no other discounts, incentive offerings, rebates, or promotions apply, unless VAD specifies otherwise in writing;
-b. availability of the Products or Services;
-c. Reseller's acceptance of the additional terms contained in the Special Bid Addendum (which occurs upon Reseller's acceptance of the Special Bid, as set forth above)
-d. Reseller's advising the local VAD financing entity/organization of any Special Bid pricing for any Products or Services for which Reseller arranges financing; and
-e. Resale of the Products or Services by Reseller to the End User associated with the Special Bid by the date indicated in the Special Bid request.
-If reseller is a Distributor, Reseller may only market the Products and Services to the Resellers that Reseller has identified in the Special Bid request as bidding to the End User.
-Reseller is responsible to require Reseller's Resellers who do not have a contract with IBM to market such Products and Services to comply with the Special Bid terms contained in this Agreement and in the applicable Special Bid Addendum that IBM provides for the Special Bid through VAD.
-If Reseller is requesting a specific End User price or discount in the Special Bid, Reseller shall ensure, and shall require any Resellers to also ensure, that the intended End User receives the financial benefit of such price or discount."""),
-        ("C42", "6. IBM's Audit of Special Bid Transactions", {"bold": True}),
-        ("C43", """IBM may audit directly or through VAD any Special Bid transactions in accordance with the terms of this Section 
-a. Upon VAD's request, Reseller will promptly provide VAD or its auditors with all relevant Documentation to enable VAD and/or IBM to verify that all information provided in support of a Special Bid request was truthful and accurate and that IBM Products and Services have been or will be supplied to the End User in accordance with the terms of the Special Bid, including, but not limited to, i) documentation that identifies the dates of sale and delivery and End User prices for IBM Products and Services, such as invoices, delivery orders, contracts and purchase orders by and between Reseller and any Reseller and by and between Reseller or any Reseller and an End User and ii) documentation that demonstrates that Reseller or Reseller's Reseller, as applicable, own and use the Special Bid Products for at least the Service Period to provide the service offering described in the terms of the Special Bid to End Users (collectively, items i) and ii) being the "Documentation").
-	b. In any case where reseller is unable to provide the Documentation because of confidentiality obligations owed to an End User, whether arising by written contract or applicable law, Reseller will promptly provide VAD with written evidence of, and any Documentation not subject to, those obligations. In addition, Reseller will promptly and in writing seek the End User's consent to waive confidentiality restrictions to permit VAD and IBM to conduct their audit as intended. Should the End User refuse to grant that consent, Reseller will i) provide VAD with a copy of the waiver request and written proof of that refusal and ii) identify appropriate contacts at the End User with whom VAD may elect to discuss the refusal.
-c. Reseller hereby waives any objection to i) VAD and/or IBM sharing Special Bid information directly with the End User, notwithstanding the terms of any agreement that would prohibit VAD from doing so, and otherwise communicating (both orally and in writing) with the End User, as VAD deems necessary and appropriate to complete its desired compliance review and ii) the End User sharing Special Bid information directly with IBM/VAD. In this subsection (c), "Special Bid information" includes, but is not limited to, the types and quantity of Products and anticipated End User prices and delivery dates set forth in a Special Bid. VAD may invalidate a Special Bid if in respect of such Special Bid, Reseller fails to comply with this Section 4.9.1 or the applicable Special Bid terms. In that event, IBM/VAD shall be entitled to recover from Reseller (and Reseller is obligated to repay) the amount of any discounts IBM provided in the Special Bid. IBM may also take any other actions authorized under the Agreement or applicable law."""),
-        ("C44", """Definitions:
+        ("C39", """Definitions:
 "Company" refers to the MIBB entity identified at the top of the first page of this Legal Quotation.
 "Partner" refers to the distributor entity identified in the "Distributor Name" section on the first page of this Legal Quotation.
 "End User" refers to the end-user customer entity identified in the "Customer Name" section on the first page of this Legal Quotation, which is purchasing from or through Partner for its own internal use only.
@@ -710,26 +642,26 @@ c. Reseller hereby waives any objection to i) VAD and/or IBM sharing Special Bid
 "Packaged Services" refers to standardized offerings tied to IBM part codes and IBM service descriptions.
 "Bespoke Services" refers to tailored solutions governed by SOWs through unique Company SKUs and supporting SOWs.
 "SOW" refers to the applicable statement of work accompanying this Legal Quotation."""),
-        ("C45", """Acceptance of this Legal Quotation requires Partner to issue a valid Purchase Order ("PO") as indicated in this Legal Quotation or, where available, to select and complete the e-sign option.
+        ("C40", """Acceptance of this Legal Quotation requires Partner to issue a valid Purchase Order ("PO") as indicated in this Legal Quotation or, where available, to select and complete the e-sign option.
 The PO must (i) reference this Legal Quotation number, (ii) include the email address of the End User contact, and (iii) include the Partner email address to which the invoice(s) will be sent (or a physical address if a physical invoice is required by applicable law).
 This Legal Quotation includes (i) the applicable contractual discount, if any, or (ii) the special pricing, if any, for this particular transaction, as agreed by Company and Partner, which special pricing will take precedence over the otherwise applicable contractual discount. Prices are exclusive of use, sales, value added, and other applicable taxes, which will be paid or reimbursed by Partner.
 Invoices will be sent by email except where otherwise required by applicable law, and shall be paid to Company by Partner within 30 days of the invoice date or as otherwise specified elsewhere in this Legal Quotation or Partner Agreement."""),
-        ("C46", """Unless otherwise specified, all software products will be delivered electronically and deemed accepted upon delivery of access to such software products (i.e. making such software products available for download).
+        ("C41", """Unless otherwise specified, all software products will be delivered electronically and deemed accepted upon delivery of access to such software products (i.e. making such software products available for download).
 The software licenses within this Legal Quotation shall be for End User's internal use only, even if the installation location in the quote detail for a license specifies an entity that is different than the End User, except as may be otherwise set forth in a separate signed written agreement between End User and Company.
 The governing terms for this Legal Quotation consist of Company's standard distributor or partner contract terms and conditions (as applicable), unless superseded by a separate signed agreement ("Governing Terms"). The software, services and support hereunder are sold to Partner strictly for the purpose of resale and not for any internal or other use by Partner.
 	Unless otherwise agreed in writing, the products and services are purchased solely under the terms and conditions of the IBM License Terms including but not limited to IBM Passport Advantage and IBM Cloud Offerings available at https://www.ibm.com. No other terms apply. In the event of any inconsistencies between the existing agreement and License Terms, the terms of the License Terms prevail."""),
-        ("C47", """For all professional services, the scope, deliverables, and timelines shall be defined in the applicable SOW or service description accompanying this Legal Quotation. Changes to the scope of services after acceptance of this Legal Quotation must be agreed in writing by Company and may result in additional charges or revised delivery timelines.
+        ("C42", """For all professional services, the scope, deliverables, and timelines shall be defined in the applicable SOW or service description accompanying this Legal Quotation. Changes to the scope of services after acceptance of this Legal Quotation must be agreed in writing by Company and may result in additional charges or revised delivery timelines.
 Scheduling of professional services is subject to resource availability. Company will make reasonable efforts to accommodate requested dates but reserves the right to propose alternatives.
 Any expected expenses for the delivery of professional services, including but not limited to travel, accommodation and subsistence, are defined as an explicit cost on the above quote, or incorporated in the agreed fee for the Statement of Work."""),
-        ("C48", """T&M Services are offered on a half-day or full-day basis under predefined SKUs. Each engagement is supported by a corresponding SOW, which outlines the scope, estimated effort, and associated deliverables. Time-based billing shall apply, and services will be invoiced according to actual time spent.
+        ("C43", """T&M Services are offered on a half-day or full-day basis under predefined SKUs. Each engagement is supported by a corresponding SOW, which outlines the scope, estimated effort, and associated deliverables. Time-based billing shall apply, and services will be invoiced according to actual time spent.
 For Packaged Services, the standard service description shall apply unless otherwise agreed in writing.
 Bespoke service deliverables shall be owned by the End User, unless otherwise specified in the SOW. IBM proprietary materials and intellectual property remains the property of IBM."""),
-        ("C49", """Commodities included on this quotation are subject to shipping restrictions under applicable laws, including but not limited to United States and/or European Union export laws, and are authorized for delivery only to the destination shown. Diversion contrary to such applicable laws is prohibited.
+        ("C44", """Commodities included on this quotation are subject to shipping restrictions under applicable laws, including but not limited to United States and/or European Union export laws, and are authorized for delivery only to the destination shown. Diversion contrary to such applicable laws is prohibited.
 Subscription licenses and software maintenance are not perpetual and begin with delivery of license keys. SaaS and education subscriptions and managed services begin when the service is provisioned. Support subscription rates and SaaS subscription rates are subject to change upon renewal."""),
-        ("C50", """If you purchase a multi-year subscription license, SaaS or education subscription, managed service or software maintenance, or multi-year renewal, your purchase is for the full value of all years of the offering, even if required payments are annual. Partner irrevocably commits to pay such fees to Company for the entirety of the Term. In the event you fail to pay any annual payment, and such default shall continue for a period of thirty (30) days, then any and all remaining amounts for the relevant offering shall become immediately due and payable. All Orders, including renewals, are subject to acceptance by Company in its discretion. All purchases are final, with no right to a refund, except as expressly provided under the applicable license or service terms."""),
-        ("C51", """By accepting this Legal Quotation, Partner agrees that no other terms and conditions apply to this transaction, including, without limitation, those on a PO or other document issued by Partner, End User or any other third party.
+        ("C45", """If you purchase a multi-year subscription license, SaaS or education subscription, managed service or software maintenance, or multi-year renewal, your purchase is for the full value of all years of the offering, even if required payments are annual. Partner irrevocably commits to pay such fees to Company for the entirety of the Term. In the event you fail to pay any annual payment, and such default shall continue for a period of thirty (30) days, then any and all remaining amounts for the relevant offering shall become immediately due and payable. All Orders, including renewals, are subject to acceptance by Company in its discretion. All purchases are final, with no right to a refund, except as expressly provided under the applicable license or service terms."""),
+        ("C46", """By accepting this Legal Quotation, Partner agrees that no other terms and conditions apply to this transaction, including, without limitation, those on a PO or other document issued by Partner, End User or any other third party.
 Each party shall keep all confidential information it receives using the same protections that it applies to its own information of like importance, but in no event less than reasonable care, and may use such information solely for the purposes contemplated by this transaction or as otherwise agreed mutually in writing by both parties."""),
-        ("C52", """Under no circumstances shall either party's liability arising out of or in connection with the Products or a party's performance with this Agreement exceed the aggregate amount of the fees paid by Partner and all orders regardless of whether such claim for liability is alleged to arise in contract, tort (including negligence) or otherwise. In no event shall either party be liable for indirect, special, incidental, or punitive damages including, without limitation, damages resulting from loss of use, loss of data, loss of profits, or loss of business arising out of, or in connection with, the products, services and/or solutions or Partner's performance of any of its obligations under this Agreement. Limitation of liability in this clause does not apply to intellectual property, confidentiality, compliance breaches by Partner and any other liability which cannot be excluded or limited under applicable law.
+        ("C47", """Under no circumstances shall either party's liability arising out of or in connection with the Products or a party's performance with this Agreement exceed the aggregate amount of the fees paid by Partner and all orders regardless of whether such claim for liability is alleged to arise in contract, tort (including negligence) or otherwise. In no event shall either party be liable for indirect, special, incidental, or punitive damages including, without limitation, damages resulting from loss of use, loss of data, loss of profits, or loss of business arising out of, or in connection with, the products, services and/or solutions or Partner's performance of any of its obligations under this Agreement. Limitation of liability in this clause does not apply to intellectual property, confidentiality, compliance breaches by Partner and any other liability which cannot be excluded or limited under applicable law.
 These General Terms and Conditions are governed by and construed according to the laws of England and Wales and each party irrevocably and unconditionally submits to the non-exclusive jurisdiction of the courts of Dubai International Financial Centre. The 1980 U.N. Convention on Contracts for the International Sale of Goods shall not apply."""),
     ]
     
@@ -801,9 +733,9 @@ def create_mibb_excel(
     left_labels = ["Date:", "From:", "Email:", "Contact:", "", "Company:", "Attn:", "Email:"]
     left_values = [
         datetime.today().strftime('%d/%m/%Y'),
-        "Priyansha Kapoor",
-        "p.Kapoor@mindware.net",
-        "+971 55 456 6650",
+        "Eliana Youssef",
+        "E.youssef@mindware.net",
+        "+961 123 456 758",
         "",
         header_info.get('Reseller Name', 'empty'),
         "empty",
@@ -820,17 +752,14 @@ def create_mibb_excel(
 
     # Right side labels and values
     right_labels = [
-        "End User:", "Bid Number:", "Agreement Number:", "PA Site Number:", "",
-        "Select Territory:", "Government Entity (GOE):", "Payment Terms:"
+        "", " ",  " ","Payment Terms:"
     ]
     right_values = [
         header_info.get('Customer Name', ''),
         header_info.get('Bid Number', ''),
-        header_info.get('PA Agreement Number', ''),
-        header_info.get('PA Site Number', ''),
-        "",
-        header_info.get('Select Territory', ''),
-        header_info.get('Government Entity (GOE)', ''),
+        
+        header_info.get('Business Partner of Record', ''),
+       
         "As aligned with Mindware"
     ]
     for row, label, value in zip(row_positions, right_labels, right_values):
