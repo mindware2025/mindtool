@@ -1,0 +1,704 @@
+2026-01-19 13:22:03,789 - DEBUG - ================================================================================
+2026-01-19 13:22:03,790 - DEBUG - MIBB HEADER EXTRACTION STARTED
+2026-01-19 13:22:03,790 - DEBUG - ================================================================================
+2026-01-19 13:22:03,791 - DEBUG - PDF opened successfully: 5 pages
+2026-01-19 13:22:03,800 - DEBUG - Page 1: Extracted 25 lines
+2026-01-19 13:22:03,819 - DEBUG - Page 2: Extracted 116 lines
+2026-01-19 13:22:03,831 - DEBUG - Page 3: Extracted 102 lines
+2026-01-19 13:22:03,859 - DEBUG - Page 4: Extracted 33 lines
+2026-01-19 13:22:03,878 - DEBUG - Page 5: Extracted 36 lines
+2026-01-19 13:22:03,879 - DEBUG - Total lines extracted: 312
+2026-01-19 13:22:03,879 - DEBUG - 
+First 50 lines of PDF:
+2026-01-19 13:22:03,880 - DEBUG -   Line   0: Page 1 of 5
+2026-01-19 13:22:03,881 - DEBUG -   Line   1: Customer Information
+2026-01-19 13:22:03,881 - DEBUG -   Line   2: Customer Name: Orange Botswana [Pty] Ltd
+2026-01-19 13:22:03,881 - DEBUG -   Line   3: Address: Botswana
+2026-01-19 13:22:03,882 - DEBUG -   Line   4: City: Gaborone
+2026-01-19 13:22:03,882 - DEBUG -   Line   5: Country: Botswana
+2026-01-19 13:22:03,883 - DEBUG -   Line   6: Government Entity (GOE): No
+2026-01-19 13:22:03,883 - DEBUG -   Line   7: Bid Request Information
+2026-01-19 13:22:03,883 - DEBUG -   Line   8: Bid Number: 00358346
+2026-01-19 13:22:03,884 - DEBUG -   Line   9: Bid Effective Date: 2025-11-21
+2026-01-19 13:22:03,885 - DEBUG -   Line  10: Bid Expiration Date: 2025-12-31
+2026-01-19 13:22:03,885 - DEBUG -   Line  11: Date Bid Sent: 2025-11-21
+2026-01-19 13:22:03,885 - DEBUG -   Line  12: Distributor Name: Mindware FZ LLC
+2026-01-19 13:22:03,886 - DEBUG -   Line  13: Reseller Name: CUBEWISE AFRICA SN SAS
+2026-01-19 13:22:03,886 - DEBUG -   Line  14: Business Partner of Record: No
+2026-01-19 13:22:03,887 - DEBUG -   Line  15: Opportunity Owner: Ted Ochola
+2026-01-19 13:22:03,887 - DEBUG -   Line  16: Currency: USD
+2026-01-19 13:22:03,888 - DEBUG -   Line  17: Payment Terms: 30 days
+2026-01-19 13:22:03,888 - DEBUG -   Line  18: Site ID:
+2026-01-19 13:22:03,889 - DEBUG -   Line  19: MIBB INTERNATIONAL FZ-LLC
+2026-01-19 13:22:03,889 - DEBUG -   Line  20: MIBB INTERNATIONAL FZ-LLC
+2026-01-19 13:22:03,890 - DEBUG -   Line  21: Office Park Block D
+2026-01-19 13:22:03,890 - DEBUG -   Line  22: Dubai Internet City
+2026-01-19 13:22:03,891 - DEBUG -   Line  23: Dubai, UAE
+2026-01-19 13:22:03,891 - DEBUG -   Line  24: VAT: Reg no :104336463500001
+2026-01-19 13:22:03,891 - DEBUG -   Line  25: Page 2 of 5
+2026-01-19 13:22:03,892 - DEBUG -   Line  26: Overage Quotation
+2026-01-19 13:22:03,892 - DEBUG -   Line  27: #
+2026-01-19 13:22:03,892 - DEBUG -   Line  28: Part Number
+2026-01-19 13:22:03,893 - DEBUG -   Line  29: Description
+2026-01-19 13:22:03,893 - DEBUG -   Line  30: Customer Unit Price
+2026-01-19 13:22:03,893 - DEBUG -   Line  31: Quantity
+2026-01-19 13:22:03,893 - DEBUG -   Line  32: Quote Rate
+2026-01-19 13:22:03,894 - DEBUG -   Line  33: Quote Unit Price
+2026-01-19 13:22:03,894 - DEBUG -   Line  34: 1
+2026-01-19 13:22:03,894 - DEBUG -   Line  35: D1RJ7LL
+2026-01-19 13:22:03,895 - DEBUG -   Line  36: Planning Analytics
+2026-01-19 13:22:03,895 - DEBUG -   Line  37: 314.00
+2026-01-19 13:22:03,895 - DEBUG -   Line  38: N/A
+2026-01-19 13:22:03,895 - DEBUG -   Line  39: 314.00
+2026-01-19 13:22:03,895 - DEBUG -   Line  40: 314.00
+2026-01-19 13:22:03,896 - DEBUG -   Line  41: 2
+2026-01-19 13:22:03,896 - DEBUG -   Line  42: D1RJ9LL
+2026-01-19 13:22:03,897 - DEBUG -   Line  43: Planning Analytics
+2026-01-19 13:22:03,897 - DEBUG -   Line  44: 209.00
+2026-01-19 13:22:03,898 - DEBUG -   Line  45: N/A
+2026-01-19 13:22:03,898 - DEBUG -   Line  46: 209.00
+2026-01-19 13:22:03,898 - DEBUG -   Line  47: 209.00
+2026-01-19 13:22:03,899 - DEBUG -   Line  48: Subscription Quotation
+2026-01-19 13:22:03,899 - DEBUG -   Line  49: Parts Information
+2026-01-19 13:22:03,900 - DEBUG - 
+Parsing header information...
+2026-01-19 13:22:03,900 - DEBUG -   [Line 2] Customer Name: 'Address: Botswana'
+2026-01-19 13:22:03,901 - DEBUG -   [Line 4] City: 'Country: Botswana'
+2026-01-19 13:22:03,901 - DEBUG -   [Line 5] Country: 'Government Entity (GOE): No'
+2026-01-19 13:22:03,902 - DEBUG -   [Line 6] Government Entity (GOE): 'Bid Request Information'
+2026-01-19 13:22:03,902 - DEBUG -   [Line 8] Bid Number: 'Bid Effective Date: 2025-11-21'
+2026-01-19 13:22:03,902 - DEBUG -   [Line 10] Bid Expiration Date: 'Date Bid Sent: 2025-11-21'
+2026-01-19 13:22:03,903 - DEBUG -   [Line 13] Reseller Name: 'Business Partner of Record: No'
+2026-01-19 13:22:03,904 - DEBUG - 
+Header extraction complete: 7 fields found
+2026-01-19 13:22:03,904 - DEBUG - 
+Extracted header information:
+2026-01-19 13:22:03,906 - DEBUG -   Customer Name                      : Address: Botswana
+2026-01-19 13:22:03,907 - DEBUG -   Bid Number                         : Bid Effective Date: 2025-11-21
+2026-01-19 13:22:03,908 - DEBUG -   PA Agreement Number                : 
+2026-01-19 13:22:03,910 - DEBUG -   PA Site Number                     : 
+2026-01-19 13:22:03,910 - DEBUG -   Select Territory                   : 
+2026-01-19 13:22:03,911 - DEBUG -   Government Entity (GOE)            : Bid Request Information
+2026-01-19 13:22:03,911 - DEBUG -   Reseller Name                      : Business Partner of Record: No
+2026-01-19 13:22:03,912 - DEBUG -   City                               : Country: Botswana
+2026-01-19 13:22:03,912 - DEBUG -   Country                            : Government Entity (GOE): No
+2026-01-19 13:22:03,913 - DEBUG -   Maximum End User Price (MEP)       : 
+2026-01-19 13:22:03,913 - DEBUG -   Total Value Seller Revenue Opportunity: 
+2026-01-19 13:22:03,913 - DEBUG -   Bid Expiration Date                : Date Bid Sent: 2025-11-21
+2026-01-19 13:22:03,914 - DEBUG - ================================================================================
+
+2026-01-19 13:22:03,916 - DEBUG - ================================================================================
+2026-01-19 13:22:03,917 - DEBUG - MIBB TABLE EXTRACTION STARTED
+2026-01-19 13:22:03,917 - DEBUG - ================================================================================
+2026-01-19 13:22:03,918 - DEBUG - PDF opened for table extraction: 5 pages
+2026-01-19 13:22:03,932 - DEBUG - [PAGE SCAN] Candidate page 2: marker_score=2, header_score=6
+2026-01-19 13:22:03,958 - DEBUG - [PAGE SELECT] Using page 2 (marker_score=2, header_score=6)
+2026-01-19 13:22:03,958 - DEBUG - 
+[STRATEGY 1] Attempting PyMuPDF table detection on page 2...
+2026-01-19 13:22:04,312 - DEBUG - [STRATEGY 1 FAILED] PyMuPDF table detection error: object of type 'TableFinder' has no len()
+2026-01-19 13:22:04,313 - DEBUG - Falling back to text-based extraction...
+2026-01-19 13:22:04,313 - DEBUG - 
+[STRATEGY 2] Text-based extraction (fallback) on page 2...
+2026-01-19 13:22:04,319 - DEBUG - Extracted 116 lines from page 2 text
+2026-01-19 13:22:04,319 - DEBUG - 
+First 100 lines of page 2:
+2026-01-19 13:22:04,320 - DEBUG -   Line   0: Page 2 of 5
+2026-01-19 13:22:04,321 - DEBUG -   Line   1: Overage Quotation
+2026-01-19 13:22:04,321 - DEBUG -   Line   2: #
+2026-01-19 13:22:04,322 - DEBUG -   Line   3: Part Number
+2026-01-19 13:22:04,322 - DEBUG -   Line   4: Description
+2026-01-19 13:22:04,323 - DEBUG -   Line   5: Customer Unit Price
+2026-01-19 13:22:04,323 - DEBUG -   Line   6: Quantity
+2026-01-19 13:22:04,325 - DEBUG -   Line   7: Quote Rate
+2026-01-19 13:22:04,325 - DEBUG -   Line   8: Quote Unit Price
+2026-01-19 13:22:04,327 - DEBUG -   Line   9: 1
+2026-01-19 13:22:04,330 - DEBUG -   Line  10: D1RJ7LL
+2026-01-19 13:22:04,331 - DEBUG -   Line  11: Planning Analytics
+2026-01-19 13:22:04,331 - DEBUG -   Line  12: 314.00
+2026-01-19 13:22:04,332 - DEBUG -   Line  13: N/A
+2026-01-19 13:22:04,332 - DEBUG -   Line  14: 314.00
+2026-01-19 13:22:04,333 - DEBUG -   Line  15: 314.00
+2026-01-19 13:22:04,333 - DEBUG -   Line  16: 2
+2026-01-19 13:22:04,333 - DEBUG -   Line  17: D1RJ9LL
+2026-01-19 13:22:04,333 - DEBUG -   Line  18: Planning Analytics
+2026-01-19 13:22:04,334 - DEBUG -   Line  19: 209.00
+2026-01-19 13:22:04,334 - DEBUG -   Line  20: N/A
+2026-01-19 13:22:04,336 - DEBUG -   Line  21: 209.00
+2026-01-19 13:22:04,338 - DEBUG -   Line  22: 209.00
+2026-01-19 13:22:04,338 - DEBUG -   Line  23: Subscription Quotation
+2026-01-19 13:22:04,338 - DEBUG -   Line  24: Parts Information
+2026-01-19 13:22:04,339 - DEBUG -   Line  25: #
+2026-01-19 13:22:04,339 - DEBUG -   Line  26: Part Number
+2026-01-19 13:22:04,340 - DEBUG -   Line  27: Description
+2026-01-19 13:22:04,341 - DEBUG -   Line  28: Transaction Type
+2026-01-19 13:22:04,341 - DEBUG -   Line  29: Billing
+2026-01-19 13:22:04,343 - DEBUG -   Line  30: Points
+2026-01-19 13:22:04,343 - DEBUG -   Line  31: Coverage Start
+2026-01-19 13:22:04,349 - DEBUG -   Line  32: Coverage End
+2026-01-19 13:22:04,351 - DEBUG -   Line  33: Quantity
+2026-01-19 13:22:04,352 - DEBUG -   Line  34: Entitled Unit Entitled Extended
+2026-01-19 13:22:04,353 - DEBUG -   Line  35: Discount%
+2026-01-19 13:22:04,353 - DEBUG -   Line  36: Bid Unit SVP Bid Ext SVP
+2026-01-19 13:22:04,354 - DEBUG -   Line  37: Channel
+2026-01-19 13:22:04,355 - DEBUG -   Line  38: Margin
+2026-01-19 13:22:04,355 - DEBUG -   Line  39: 1
+2026-01-19 13:22:04,356 - DEBUG -   Line  40: D11C4LL
+2026-01-19 13:22:04,361 - DEBUG -   Line  41: Planning Analytics
+2026-01-19 13:22:04,364 - DEBUG -   Line  42: New
+2026-01-19 13:22:04,369 - DEBUG -   Line  43: Upfront
+2026-01-19 13:22:04,373 - DEBUG -   Line  44: 06/11/2025
+2026-01-19 13:22:04,374 - DEBUG -   Line  45: 30/11/2028
+2026-01-19 13:22:04,375 - DEBUG -   Line  46: 1.00
+2026-01-19 13:22:04,378 - DEBUG -   Line  47: 0.00
+2026-01-19 13:22:04,382 - DEBUG -   Line  48: 0.00
+2026-01-19 13:22:04,383 - DEBUG -   Line  49: 0.00
+2026-01-19 13:22:04,384 - DEBUG -   Line  50: 0.00
+2026-01-19 13:22:04,385 - DEBUG -   Line  51: 0.00
+2026-01-19 13:22:04,385 - DEBUG -   Line  52: 8.00
+2026-01-19 13:22:04,386 - DEBUG -   Line  53: 2
+2026-01-19 13:22:04,388 - DEBUG -   Line  54: D1RJ6LL
+2026-01-19 13:22:04,389 - DEBUG -   Line  55: Planning Analytics
+2026-01-19 13:22:04,390 - DEBUG -   Line  56: New
+2026-01-19 13:22:04,390 - DEBUG -   Line  57: Annual
+2026-01-19 13:22:04,390 - DEBUG -   Line  58: 06/11/2025
+2026-01-19 13:22:04,391 - DEBUG -   Line  59: 30/11/2028
+2026-01-19 13:22:04,391 - DEBUG -   Line  60: 2.00
+2026-01-19 13:22:04,391 - DEBUG -   Line  61: 8,676.00
+2026-01-19 13:22:04,392 - DEBUG -   Line  62: 17,352.00
+2026-01-19 13:22:04,398 - DEBUG -   Line  63: 44.24
+2026-01-19 13:22:04,399 - DEBUG -   Line  64: 4,837.51
+2026-01-19 13:22:04,399 - DEBUG -   Line  65: 9,675.02
+2026-01-19 13:22:04,400 - DEBUG -   Line  66: 8.00
+2026-01-19 13:22:04,400 - DEBUG -   Line  67: 3
+2026-01-19 13:22:04,401 - DEBUG -   Line  68: D1RJ8LL
+2026-01-19 13:22:04,401 - DEBUG -   Line  69: Planning Analytics
+2026-01-19 13:22:04,402 - DEBUG -   Line  70: New
+2026-01-19 13:22:04,402 - DEBUG -   Line  71: Annual
+2026-01-19 13:22:04,403 - DEBUG -   Line  72: 06/11/2025
+2026-01-19 13:22:04,403 - DEBUG -   Line  73: 30/11/2028
+2026-01-19 13:22:04,405 - DEBUG -   Line  74: 48.00
+2026-01-19 13:22:04,408 - DEBUG -   Line  75: 5,796.00
+2026-01-19 13:22:04,409 - DEBUG -   Line  76: 278,208.00
+2026-01-19 13:22:04,409 - DEBUG -   Line  77: 44.24
+2026-01-19 13:22:04,410 - DEBUG -   Line  78: 3,231.70
+2026-01-19 13:22:04,414 - DEBUG -   Line  79: 155,121.60
+2026-01-19 13:22:04,415 - DEBUG -   Line  80: 8.00
+2026-01-19 13:22:04,415 - DEBUG -   Line  81: 4
+2026-01-19 13:22:04,416 - DEBUG -   Line  82: D0LW2ZX
+2026-01-19 13:22:04,416 - DEBUG -   Line  83: Planning Analytics
+2026-01-19 13:22:04,417 - DEBUG -   Line  84: New
+2026-01-19 13:22:04,417 - DEBUG -   Line  85: Annual
+2026-01-19 13:22:04,418 - DEBUG -   Line  86: 06/11/2025
+2026-01-19 13:22:04,418 - DEBUG -   Line  87: 30/11/2028
+2026-01-19 13:22:04,419 - DEBUG -   Line  88: 5.00
+2026-01-19 13:22:04,419 - DEBUG -   Line  89: 1,155.60
+2026-01-19 13:22:04,420 - DEBUG -   Line  90: 5,778.00
+2026-01-19 13:22:04,421 - DEBUG -   Line  91: 44.24
+2026-01-19 13:22:04,421 - DEBUG -   Line  92: 644.34
+2026-01-19 13:22:04,421 - DEBUG -   Line  93: 3,221.70
+2026-01-19 13:22:04,421 - DEBUG -   Line  94: 8.00
+2026-01-19 13:22:04,422 - DEBUG -   Line  95: 5
+2026-01-19 13:22:04,422 - DEBUG -   Line  96: D22RMLL
+2026-01-19 13:22:04,422 - DEBUG -   Line  97: Planning Analytics
+2026-01-19 13:22:04,423 - DEBUG -   Line  98: New
+2026-01-19 13:22:04,423 - DEBUG -   Line  99: Annual
+2026-01-19 13:22:04,423 - DEBUG - 
+Searching for table start marker...
+2026-01-19 13:22:04,424 - DEBUG -   Found table start at line 23: 'Subscription Quotation'
+2026-01-19 13:22:04,424 - DEBUG - 
+Searching for header line...
+2026-01-19 13:22:04,426 - DEBUG -   Found header anchor at line 26: 'Part Number'
+2026-01-19 13:22:04,433 - DEBUG - 
+Extracting data rows starting from line 27:
+2026-01-19 13:22:04,438 - DEBUG - 
+  Row 1 (line 40):
+2026-01-19 13:22:04,440 - DEBUG -     Raw line: 'D11C4LL'
+2026-01-19 13:22:04,442 - DEBUG -     Part Number found: 'D11C4LL'
+2026-01-19 13:22:04,442 - DEBUG -     Description: 'Planning Analytics...'
+2026-01-19 13:22:04,442 - DEBUG -     Found dates at line 44: ['06/11/2025']
+2026-01-19 13:22:04,443 - DEBUG -     Found dates at line 45: ['30/11/2028']
+2026-01-19 13:22:04,449 - DEBUG -     Dates found: Start='06/11/2025', End='30/11/2028'
+2026-01-19 13:22:04,453 - DEBUG -     Quantity found at line 46: 1
+2026-01-19 13:22:04,454 - DEBUG -     No price found, using 0.0
+2026-01-19 13:22:04,455 - DEBUG -     Final: Part=D11C4LL, Desc=Planning Analytics, Start=06/11/2025, End=30/11/2028, Qty=1, Price=0.0
+2026-01-19 13:22:04,455 - DEBUG -     ✓ Row added successfully
+2026-01-19 13:22:04,456 - DEBUG - 
+  Row 2 (line 54):
+2026-01-19 13:22:04,466 - DEBUG -     Raw line: 'D1RJ6LL'
+2026-01-19 13:22:04,469 - DEBUG -     Part Number found: 'D1RJ6LL'
+2026-01-19 13:22:04,470 - DEBUG -     Description: 'Planning Analytics...'
+2026-01-19 13:22:04,470 - DEBUG -     Found dates at line 58: ['06/11/2025']
+2026-01-19 13:22:04,471 - DEBUG -     Found dates at line 59: ['30/11/2028']
+2026-01-19 13:22:04,472 - DEBUG -     Dates found: Start='06/11/2025', End='30/11/2028'
+2026-01-19 13:22:04,472 - DEBUG -     Quantity found at line 60: 2
+2026-01-19 13:22:04,473 - DEBUG -     Price candidate at line 61: 8676.0
+2026-01-19 13:22:04,473 - DEBUG -     Price candidate at line 61: 8676.0
+2026-01-19 13:22:04,474 - DEBUG -     Price candidate at line 61: 676.0
+2026-01-19 13:22:04,476 - DEBUG -     Price candidate at line 62: 17352.0
+2026-01-19 13:22:04,482 - DEBUG -     Price candidate at line 62: 17352.0
+2026-01-19 13:22:04,485 - DEBUG -     Price candidate at line 62: 352.0
+2026-01-19 13:22:04,485 - DEBUG -     Price candidate at line 63: 44.24
+2026-01-19 13:22:04,486 - DEBUG -     Price candidate at line 63: 44.24
+2026-01-19 13:22:04,486 - DEBUG -     Price candidate at line 63: 44.24
+2026-01-19 13:22:04,487 - DEBUG -     Price candidate at line 64: 4837.51
+2026-01-19 13:22:04,487 - DEBUG -     Price candidate at line 64: 4837.51
+2026-01-19 13:22:04,487 - DEBUG -     Price candidate at line 64: 837.51
+2026-01-19 13:22:04,488 - DEBUG -     Price candidate at line 65: 9675.02
+2026-01-19 13:22:04,488 - DEBUG -     Price candidate at line 65: 9675.02
+2026-01-19 13:22:04,488 - DEBUG -     Price candidate at line 65: 675.02
+2026-01-19 13:22:04,489 - DEBUG -     Selected Bid Ext SVP: 17352.0 (from line 62)
+2026-01-19 13:22:04,489 - DEBUG -     Final: Part=D1RJ6LL, Desc=Planning Analytics, Start=06/11/2025, End=30/11/2028, Qty=2, Price=17352.0
+2026-01-19 13:22:04,489 - DEBUG -     ✓ Row added successfully
+2026-01-19 13:22:04,490 - DEBUG - 
+  Row 3 (line 68):
+2026-01-19 13:22:04,490 - DEBUG -     Raw line: 'D1RJ8LL'
+2026-01-19 13:22:04,491 - DEBUG -     Part Number found: 'D1RJ8LL'
+2026-01-19 13:22:04,491 - DEBUG -     Description: 'Planning Analytics...'
+2026-01-19 13:22:04,492 - DEBUG -     Found dates at line 72: ['06/11/2025']
+2026-01-19 13:22:04,492 - DEBUG -     Found dates at line 73: ['30/11/2028']
+2026-01-19 13:22:04,492 - DEBUG -     Dates found: Start='06/11/2025', End='30/11/2028'
+2026-01-19 13:22:04,493 - DEBUG -     Quantity found at line 74: 48
+2026-01-19 13:22:04,493 - DEBUG -     Price candidate at line 74: 48.0
+2026-01-19 13:22:04,493 - DEBUG -     Price candidate at line 74: 48.0
+2026-01-19 13:22:04,499 - DEBUG -     Price candidate at line 74: 48.0
+2026-01-19 13:22:04,500 - DEBUG -     Price candidate at line 75: 5796.0
+2026-01-19 13:22:04,500 - DEBUG -     Price candidate at line 75: 5796.0
+2026-01-19 13:22:04,501 - DEBUG -     Price candidate at line 75: 796.0
+2026-01-19 13:22:04,501 - DEBUG -     Price candidate at line 76: 278208.0
+2026-01-19 13:22:04,502 - DEBUG -     Price candidate at line 76: 278208.0
+2026-01-19 13:22:04,502 - DEBUG -     Price candidate at line 76: 208.0
+2026-01-19 13:22:04,502 - DEBUG -     Price candidate at line 77: 44.24
+2026-01-19 13:22:04,503 - DEBUG -     Price candidate at line 77: 44.24
+2026-01-19 13:22:04,503 - DEBUG -     Price candidate at line 77: 44.24
+2026-01-19 13:22:04,503 - DEBUG -     Price candidate at line 78: 3231.7
+2026-01-19 13:22:04,504 - DEBUG -     Price candidate at line 78: 3231.7
+2026-01-19 13:22:04,504 - DEBUG -     Price candidate at line 78: 231.7
+2026-01-19 13:22:04,504 - DEBUG -     Price candidate at line 79: 155121.6
+2026-01-19 13:22:04,505 - DEBUG -     Price candidate at line 79: 155121.6
+2026-01-19 13:22:04,505 - DEBUG -     Price candidate at line 79: 121.6
+2026-01-19 13:22:04,506 - DEBUG -     Selected Bid Ext SVP: 278208.0 (from line 76)
+2026-01-19 13:22:04,507 - DEBUG -     Final: Part=D1RJ8LL, Desc=Planning Analytics, Start=06/11/2025, End=30/11/2028, Qty=48, Price=278208.0
+2026-01-19 13:22:04,507 - DEBUG -     ✓ Row added successfully
+2026-01-19 13:22:04,507 - DEBUG - 
+  Row 4 (line 82):
+2026-01-19 13:22:04,508 - DEBUG -     Raw line: 'D0LW2ZX'
+2026-01-19 13:22:04,508 - DEBUG -     Part Number found: 'D0LW2ZX'
+2026-01-19 13:22:04,509 - DEBUG -     Description: 'Planning Analytics...'
+2026-01-19 13:22:04,509 - DEBUG -     Found dates at line 86: ['06/11/2025']
+2026-01-19 13:22:04,510 - DEBUG -     Found dates at line 87: ['30/11/2028']
+2026-01-19 13:22:04,514 - DEBUG -     Dates found: Start='06/11/2025', End='30/11/2028'
+2026-01-19 13:22:04,515 - DEBUG -     Quantity found at line 88: 5
+2026-01-19 13:22:04,515 - DEBUG -     Price candidate at line 89: 1155.6
+2026-01-19 13:22:04,516 - DEBUG -     Price candidate at line 89: 1155.6
+2026-01-19 13:22:04,516 - DEBUG -     Price candidate at line 89: 155.6
+2026-01-19 13:22:04,517 - DEBUG -     Price candidate at line 90: 5778.0
+2026-01-19 13:22:04,517 - DEBUG -     Price candidate at line 90: 5778.0
+2026-01-19 13:22:04,517 - DEBUG -     Price candidate at line 90: 778.0
+2026-01-19 13:22:04,518 - DEBUG -     Price candidate at line 91: 44.24
+2026-01-19 13:22:04,518 - DEBUG -     Price candidate at line 91: 44.24
+2026-01-19 13:22:04,519 - DEBUG -     Price candidate at line 91: 44.24
+2026-01-19 13:22:04,519 - DEBUG -     Price candidate at line 92: 644.34
+2026-01-19 13:22:04,519 - DEBUG -     Price candidate at line 92: 644.34
+2026-01-19 13:22:04,520 - DEBUG -     Price candidate at line 92: 644.34
+2026-01-19 13:22:04,520 - DEBUG -     Price candidate at line 93: 3221.7
+2026-01-19 13:22:04,521 - DEBUG -     Price candidate at line 93: 3221.7
+2026-01-19 13:22:04,521 - DEBUG -     Price candidate at line 93: 221.7
+2026-01-19 13:22:04,522 - DEBUG -     Selected Bid Ext SVP: 5778.0 (from line 90)
+2026-01-19 13:22:04,522 - DEBUG -     Final: Part=D0LW2ZX, Desc=Planning Analytics, Start=06/11/2025, End=30/11/2028, Qty=5, Price=5778.0
+2026-01-19 13:22:04,522 - DEBUG -     ✓ Row added successfully
+2026-01-19 13:22:04,523 - DEBUG - 
+  Row 5 (line 96):
+2026-01-19 13:22:04,523 - DEBUG -     Raw line: 'D22RMLL'
+2026-01-19 13:22:04,524 - DEBUG -     Part Number found: 'D22RMLL'
+2026-01-19 13:22:04,524 - DEBUG -     Description: 'Planning Analytics...'
+2026-01-19 13:22:04,524 - DEBUG -     Found dates at line 100: ['06/11/2025']
+2026-01-19 13:22:04,524 - DEBUG -     Found dates at line 101: ['30/11/2028']
+2026-01-19 13:22:04,525 - DEBUG -     Dates found: Start='06/11/2025', End='30/11/2028'
+2026-01-19 13:22:04,526 - DEBUG -     Quantity found at line 102: 1
+2026-01-19 13:22:04,531 - DEBUG -     Price candidate at line 103: 19260.0
+2026-01-19 13:22:04,533 - DEBUG -     Price candidate at line 103: 19260.0
+2026-01-19 13:22:04,534 - DEBUG -     Price candidate at line 103: 260.0
+2026-01-19 13:22:04,535 - DEBUG -     Price candidate at line 104: 19260.0
+2026-01-19 13:22:04,535 - DEBUG -     Price candidate at line 104: 19260.0
+2026-01-19 13:22:04,536 - DEBUG -     Price candidate at line 104: 260.0
+2026-01-19 13:22:04,536 - DEBUG -     Price candidate at line 105: 44.24
+2026-01-19 13:22:04,537 - DEBUG -     Price candidate at line 105: 44.24
+2026-01-19 13:22:04,537 - DEBUG -     Price candidate at line 105: 44.24
+2026-01-19 13:22:04,537 - DEBUG -     Price candidate at line 106: 10738.89
+2026-01-19 13:22:04,538 - DEBUG -     Price candidate at line 106: 10738.89
+2026-01-19 13:22:04,538 - DEBUG -     Price candidate at line 106: 738.89
+2026-01-19 13:22:04,538 - DEBUG -     Price candidate at line 107: 10738.89
+2026-01-19 13:22:04,539 - DEBUG -     Price candidate at line 107: 10738.89
+2026-01-19 13:22:04,539 - DEBUG -     Price candidate at line 107: 738.89
+2026-01-19 13:22:04,539 - DEBUG -     Price candidate at line 113: 194301.32
+2026-01-19 13:22:04,539 - DEBUG -     Price candidate at line 113: 194301.32
+2026-01-19 13:22:04,540 - DEBUG -     Price candidate at line 113: 301.32
+2026-01-19 13:22:04,540 - DEBUG -     Price candidate at line 115: 178757.21
+2026-01-19 13:22:04,540 - DEBUG -     Price candidate at line 115: 178757.21
+2026-01-19 13:22:04,541 - DEBUG -     Price candidate at line 115: 757.21
+2026-01-19 13:22:04,542 - DEBUG -     Selected Bid Ext SVP: 194301.32 (from line 113)
+2026-01-19 13:22:04,542 - DEBUG -     Final: Part=D22RMLL, Desc=Planning Analytics, Start=06/11/2025, End=30/11/2028, Qty=1, Price=194301.32
+2026-01-19 13:22:04,542 - DEBUG -     ✓ Row added successfully
+2026-01-19 13:22:04,543 - DEBUG - 
+[STRATEGY 2 COMPLETE] Extracted 5 rows using text-based extraction
+2026-01-19 13:22:04,543 - DEBUG - 
+Final extracted data summary:
+2026-01-19 13:22:04,546 - DEBUG -   Row 1: Part=D11C4LL, Qty=1, Price=0.0
+2026-01-19 13:22:04,548 - DEBUG -   Row 2: Part=D1RJ6LL, Qty=2, Price=17352.0
+2026-01-19 13:22:04,548 - DEBUG -   Row 3: Part=D1RJ8LL, Qty=48, Price=278208.0
+2026-01-19 13:22:04,548 - DEBUG -   Row 4: Part=D0LW2ZX, Qty=5, Price=5778.0
+2026-01-19 13:22:04,549 - DEBUG -   Row 5: Part=D22RMLL, Qty=1, Price=194301.32
+2026-01-19 13:22:04,549 - DEBUG - ================================================================================
+
+2026-01-19 13:22:07,475 - DEBUG - ================================================================================
+2026-01-19 13:22:07,475 - DEBUG - MIBB HEADER EXTRACTION STARTED
+2026-01-19 13:22:07,476 - DEBUG - ================================================================================
+2026-01-19 13:22:07,478 - DEBUG - PDF opened successfully: 5 pages
+2026-01-19 13:22:07,484 - DEBUG - Page 1: Extracted 25 lines
+2026-01-19 13:22:07,489 - DEBUG - Page 2: Extracted 116 lines
+2026-01-19 13:22:07,492 - DEBUG - Page 3: Extracted 102 lines
+2026-01-19 13:22:07,500 - DEBUG - Page 4: Extracted 33 lines
+2026-01-19 13:22:07,507 - DEBUG - Page 5: Extracted 36 lines
+2026-01-19 13:22:07,507 - DEBUG - Total lines extracted: 312
+2026-01-19 13:22:07,507 - DEBUG - 
+First 50 lines of PDF:
+2026-01-19 13:22:07,508 - DEBUG -   Line   0: Page 1 of 5
+2026-01-19 13:22:07,508 - DEBUG -   Line   1: Customer Information
+2026-01-19 13:22:07,508 - DEBUG -   Line   2: Customer Name: Orange Botswana [Pty] Ltd
+2026-01-19 13:22:07,509 - DEBUG -   Line   3: Address: Botswana
+2026-01-19 13:22:07,509 - DEBUG -   Line   4: City: Gaborone
+2026-01-19 13:22:07,510 - DEBUG -   Line   5: Country: Botswana
+2026-01-19 13:22:07,511 - DEBUG -   Line   6: Government Entity (GOE): No
+2026-01-19 13:22:07,511 - DEBUG -   Line   7: Bid Request Information
+2026-01-19 13:22:07,511 - DEBUG -   Line   8: Bid Number: 00358346
+2026-01-19 13:22:07,512 - DEBUG -   Line   9: Bid Effective Date: 2025-11-21
+2026-01-19 13:22:07,512 - DEBUG -   Line  10: Bid Expiration Date: 2025-12-31
+2026-01-19 13:22:07,513 - DEBUG -   Line  11: Date Bid Sent: 2025-11-21
+2026-01-19 13:22:07,513 - DEBUG -   Line  12: Distributor Name: Mindware FZ LLC
+2026-01-19 13:22:07,514 - DEBUG -   Line  13: Reseller Name: CUBEWISE AFRICA SN SAS
+2026-01-19 13:22:07,514 - DEBUG -   Line  14: Business Partner of Record: No
+2026-01-19 13:22:07,514 - DEBUG -   Line  15: Opportunity Owner: Ted Ochola
+2026-01-19 13:22:07,514 - DEBUG -   Line  16: Currency: USD
+2026-01-19 13:22:07,515 - DEBUG -   Line  17: Payment Terms: 30 days
+2026-01-19 13:22:07,516 - DEBUG -   Line  18: Site ID:
+2026-01-19 13:22:07,516 - DEBUG -   Line  19: MIBB INTERNATIONAL FZ-LLC
+2026-01-19 13:22:07,517 - DEBUG -   Line  20: MIBB INTERNATIONAL FZ-LLC
+2026-01-19 13:22:07,518 - DEBUG -   Line  21: Office Park Block D
+2026-01-19 13:22:07,518 - DEBUG -   Line  22: Dubai Internet City
+2026-01-19 13:22:07,519 - DEBUG -   Line  23: Dubai, UAE
+2026-01-19 13:22:07,519 - DEBUG -   Line  24: VAT: Reg no :104336463500001
+2026-01-19 13:22:07,519 - DEBUG -   Line  25: Page 2 of 5
+2026-01-19 13:22:07,519 - DEBUG -   Line  26: Overage Quotation
+2026-01-19 13:22:07,520 - DEBUG -   Line  27: #
+2026-01-19 13:22:07,520 - DEBUG -   Line  28: Part Number
+2026-01-19 13:22:07,520 - DEBUG -   Line  29: Description
+2026-01-19 13:22:07,521 - DEBUG -   Line  30: Customer Unit Price
+2026-01-19 13:22:07,521 - DEBUG -   Line  31: Quantity
+2026-01-19 13:22:07,521 - DEBUG -   Line  32: Quote Rate
+2026-01-19 13:22:07,521 - DEBUG -   Line  33: Quote Unit Price
+2026-01-19 13:22:07,522 - DEBUG -   Line  34: 1
+2026-01-19 13:22:07,522 - DEBUG -   Line  35: D1RJ7LL
+2026-01-19 13:22:07,523 - DEBUG -   Line  36: Planning Analytics
+2026-01-19 13:22:07,523 - DEBUG -   Line  37: 314.00
+2026-01-19 13:22:07,524 - DEBUG -   Line  38: N/A
+2026-01-19 13:22:07,524 - DEBUG -   Line  39: 314.00
+2026-01-19 13:22:07,525 - DEBUG -   Line  40: 314.00
+2026-01-19 13:22:07,525 - DEBUG -   Line  41: 2
+2026-01-19 13:22:07,525 - DEBUG -   Line  42: D1RJ9LL
+2026-01-19 13:22:07,525 - DEBUG -   Line  43: Planning Analytics
+2026-01-19 13:22:07,525 - DEBUG -   Line  44: 209.00
+2026-01-19 13:22:07,526 - DEBUG -   Line  45: N/A
+2026-01-19 13:22:07,526 - DEBUG -   Line  46: 209.00
+2026-01-19 13:22:07,526 - DEBUG -   Line  47: 209.00
+2026-01-19 13:22:07,526 - DEBUG -   Line  48: Subscription Quotation
+2026-01-19 13:22:07,528 - DEBUG -   Line  49: Parts Information
+2026-01-19 13:22:07,528 - DEBUG - 
+Parsing header information...
+2026-01-19 13:22:07,530 - DEBUG -   [Line 2] Customer Name: 'Address: Botswana'
+2026-01-19 13:22:07,530 - DEBUG -   [Line 4] City: 'Country: Botswana'
+2026-01-19 13:22:07,531 - DEBUG -   [Line 5] Country: 'Government Entity (GOE): No'
+2026-01-19 13:22:07,531 - DEBUG -   [Line 6] Government Entity (GOE): 'Bid Request Information'
+2026-01-19 13:22:07,533 - DEBUG -   [Line 8] Bid Number: 'Bid Effective Date: 2025-11-21'
+2026-01-19 13:22:07,533 - DEBUG -   [Line 10] Bid Expiration Date: 'Date Bid Sent: 2025-11-21'
+2026-01-19 13:22:07,533 - DEBUG -   [Line 13] Reseller Name: 'Business Partner of Record: No'
+2026-01-19 13:22:07,535 - DEBUG - 
+Header extraction complete: 7 fields found
+2026-01-19 13:22:07,535 - DEBUG - 
+Extracted header information:
+2026-01-19 13:22:07,536 - DEBUG -   Customer Name                      : Address: Botswana
+2026-01-19 13:22:07,536 - DEBUG -   Bid Number                         : Bid Effective Date: 2025-11-21
+2026-01-19 13:22:07,536 - DEBUG -   PA Agreement Number                : 
+2026-01-19 13:22:07,537 - DEBUG -   PA Site Number                     : 
+2026-01-19 13:22:07,537 - DEBUG -   Select Territory                   : 
+2026-01-19 13:22:07,537 - DEBUG -   Government Entity (GOE)            : Bid Request Information
+2026-01-19 13:22:07,538 - DEBUG -   Reseller Name                      : Business Partner of Record: No
+2026-01-19 13:22:07,539 - DEBUG -   City                               : Country: Botswana
+2026-01-19 13:22:07,539 - DEBUG -   Country                            : Government Entity (GOE): No
+2026-01-19 13:22:07,539 - DEBUG -   Maximum End User Price (MEP)       : 
+2026-01-19 13:22:07,540 - DEBUG -   Total Value Seller Revenue Opportunity: 
+2026-01-19 13:22:07,540 - DEBUG -   Bid Expiration Date                : Date Bid Sent: 2025-11-21
+2026-01-19 13:22:07,541 - DEBUG - ================================================================================
+
+2026-01-19 13:22:07,543 - DEBUG - ================================================================================
+2026-01-19 13:22:07,551 - DEBUG - MIBB TABLE EXTRACTION STARTED
+2026-01-19 13:22:07,556 - DEBUG - ================================================================================
+2026-01-19 13:22:07,561 - DEBUG - PDF opened for table extraction: 5 pages
+2026-01-19 13:22:07,583 - DEBUG - [PAGE SCAN] Candidate page 2: marker_score=2, header_score=6
+2026-01-19 13:22:07,614 - DEBUG - [PAGE SELECT] Using page 2 (marker_score=2, header_score=6)
+2026-01-19 13:22:07,617 - DEBUG - 
+[STRATEGY 1] Attempting PyMuPDF table detection on page 2...
+2026-01-19 13:22:07,978 - DEBUG - [STRATEGY 1 FAILED] PyMuPDF table detection error: object of type 'TableFinder' has no len()
+2026-01-19 13:22:07,979 - DEBUG - Falling back to text-based extraction...
+2026-01-19 13:22:07,979 - DEBUG - 
+[STRATEGY 2] Text-based extraction (fallback) on page 2...
+2026-01-19 13:22:07,984 - DEBUG - Extracted 116 lines from page 2 text
+2026-01-19 13:22:07,985 - DEBUG - 
+First 100 lines of page 2:
+2026-01-19 13:22:07,985 - DEBUG -   Line   0: Page 2 of 5
+2026-01-19 13:22:07,986 - DEBUG -   Line   1: Overage Quotation
+2026-01-19 13:22:07,986 - DEBUG -   Line   2: #
+2026-01-19 13:22:07,987 - DEBUG -   Line   3: Part Number
+2026-01-19 13:22:07,987 - DEBUG -   Line   4: Description
+2026-01-19 13:22:07,987 - DEBUG -   Line   5: Customer Unit Price
+2026-01-19 13:22:07,988 - DEBUG -   Line   6: Quantity
+2026-01-19 13:22:07,988 - DEBUG -   Line   7: Quote Rate
+2026-01-19 13:22:07,988 - DEBUG -   Line   8: Quote Unit Price
+2026-01-19 13:22:07,989 - DEBUG -   Line   9: 1
+2026-01-19 13:22:07,989 - DEBUG -   Line  10: D1RJ7LL
+2026-01-19 13:22:07,990 - DEBUG -   Line  11: Planning Analytics
+2026-01-19 13:22:07,990 - DEBUG -   Line  12: 314.00
+2026-01-19 13:22:07,991 - DEBUG -   Line  13: N/A
+2026-01-19 13:22:07,992 - DEBUG -   Line  14: 314.00
+2026-01-19 13:22:07,992 - DEBUG -   Line  15: 314.00
+2026-01-19 13:22:07,993 - DEBUG -   Line  16: 2
+2026-01-19 13:22:07,993 - DEBUG -   Line  17: D1RJ9LL
+2026-01-19 13:22:07,994 - DEBUG -   Line  18: Planning Analytics
+2026-01-19 13:22:07,994 - DEBUG -   Line  19: 209.00
+2026-01-19 13:22:07,994 - DEBUG -   Line  20: N/A
+2026-01-19 13:22:07,995 - DEBUG -   Line  21: 209.00
+2026-01-19 13:22:07,995 - DEBUG -   Line  22: 209.00
+2026-01-19 13:22:07,995 - DEBUG -   Line  23: Subscription Quotation
+2026-01-19 13:22:07,995 - DEBUG -   Line  24: Parts Information
+2026-01-19 13:22:07,996 - DEBUG -   Line  25: #
+2026-01-19 13:22:07,996 - DEBUG -   Line  26: Part Number
+2026-01-19 13:22:07,996 - DEBUG -   Line  27: Description
+2026-01-19 13:22:07,996 - DEBUG -   Line  28: Transaction Type
+2026-01-19 13:22:07,997 - DEBUG -   Line  29: Billing
+2026-01-19 13:22:07,997 - DEBUG -   Line  30: Points
+2026-01-19 13:22:07,997 - DEBUG -   Line  31: Coverage Start
+2026-01-19 13:22:07,997 - DEBUG -   Line  32: Coverage End
+2026-01-19 13:22:07,998 - DEBUG -   Line  33: Quantity
+2026-01-19 13:22:07,998 - DEBUG -   Line  34: Entitled Unit Entitled Extended
+2026-01-19 13:22:07,998 - DEBUG -   Line  35: Discount%
+2026-01-19 13:22:07,998 - DEBUG -   Line  36: Bid Unit SVP Bid Ext SVP
+2026-01-19 13:22:07,999 - DEBUG -   Line  37: Channel
+2026-01-19 13:22:07,999 - DEBUG -   Line  38: Margin
+2026-01-19 13:22:07,999 - DEBUG -   Line  39: 1
+2026-01-19 13:22:07,999 - DEBUG -   Line  40: D11C4LL
+2026-01-19 13:22:08,000 - DEBUG -   Line  41: Planning Analytics
+2026-01-19 13:22:08,000 - DEBUG -   Line  42: New
+2026-01-19 13:22:08,000 - DEBUG -   Line  43: Upfront
+2026-01-19 13:22:08,000 - DEBUG -   Line  44: 06/11/2025
+2026-01-19 13:22:08,000 - DEBUG -   Line  45: 30/11/2028
+2026-01-19 13:22:08,001 - DEBUG -   Line  46: 1.00
+2026-01-19 13:22:08,001 - DEBUG -   Line  47: 0.00
+2026-01-19 13:22:08,001 - DEBUG -   Line  48: 0.00
+2026-01-19 13:22:08,002 - DEBUG -   Line  49: 0.00
+2026-01-19 13:22:08,002 - DEBUG -   Line  50: 0.00
+2026-01-19 13:22:08,002 - DEBUG -   Line  51: 0.00
+2026-01-19 13:22:08,003 - DEBUG -   Line  52: 8.00
+2026-01-19 13:22:08,003 - DEBUG -   Line  53: 2
+2026-01-19 13:22:08,003 - DEBUG -   Line  54: D1RJ6LL
+2026-01-19 13:22:08,004 - DEBUG -   Line  55: Planning Analytics
+2026-01-19 13:22:08,004 - DEBUG -   Line  56: New
+2026-01-19 13:22:08,004 - DEBUG -   Line  57: Annual
+2026-01-19 13:22:08,004 - DEBUG -   Line  58: 06/11/2025
+2026-01-19 13:22:08,005 - DEBUG -   Line  59: 30/11/2028
+2026-01-19 13:22:08,005 - DEBUG -   Line  60: 2.00
+2026-01-19 13:22:08,005 - DEBUG -   Line  61: 8,676.00
+2026-01-19 13:22:08,005 - DEBUG -   Line  62: 17,352.00
+2026-01-19 13:22:08,006 - DEBUG -   Line  63: 44.24
+2026-01-19 13:22:08,006 - DEBUG -   Line  64: 4,837.51
+2026-01-19 13:22:08,006 - DEBUG -   Line  65: 9,675.02
+2026-01-19 13:22:08,007 - DEBUG -   Line  66: 8.00
+2026-01-19 13:22:08,007 - DEBUG -   Line  67: 3
+2026-01-19 13:22:08,007 - DEBUG -   Line  68: D1RJ8LL
+2026-01-19 13:22:08,007 - DEBUG -   Line  69: Planning Analytics
+2026-01-19 13:22:08,008 - DEBUG -   Line  70: New
+2026-01-19 13:22:08,008 - DEBUG -   Line  71: Annual
+2026-01-19 13:22:08,008 - DEBUG -   Line  72: 06/11/2025
+2026-01-19 13:22:08,009 - DEBUG -   Line  73: 30/11/2028
+2026-01-19 13:22:08,009 - DEBUG -   Line  74: 48.00
+2026-01-19 13:22:08,009 - DEBUG -   Line  75: 5,796.00
+2026-01-19 13:22:08,009 - DEBUG -   Line  76: 278,208.00
+2026-01-19 13:22:08,010 - DEBUG -   Line  77: 44.24
+2026-01-19 13:22:08,011 - DEBUG -   Line  78: 3,231.70
+2026-01-19 13:22:08,012 - DEBUG -   Line  79: 155,121.60
+2026-01-19 13:22:08,013 - DEBUG -   Line  80: 8.00
+2026-01-19 13:22:08,014 - DEBUG -   Line  81: 4
+2026-01-19 13:22:08,014 - DEBUG -   Line  82: D0LW2ZX
+2026-01-19 13:22:08,014 - DEBUG -   Line  83: Planning Analytics
+2026-01-19 13:22:08,015 - DEBUG -   Line  84: New
+2026-01-19 13:22:08,016 - DEBUG -   Line  85: Annual
+2026-01-19 13:22:08,017 - DEBUG -   Line  86: 06/11/2025
+2026-01-19 13:22:08,017 - DEBUG -   Line  87: 30/11/2028
+2026-01-19 13:22:08,018 - DEBUG -   Line  88: 5.00
+2026-01-19 13:22:08,019 - DEBUG -   Line  89: 1,155.60
+2026-01-19 13:22:08,019 - DEBUG -   Line  90: 5,778.00
+2026-01-19 13:22:08,020 - DEBUG -   Line  91: 44.24
+2026-01-19 13:22:08,020 - DEBUG -   Line  92: 644.34
+2026-01-19 13:22:08,021 - DEBUG -   Line  93: 3,221.70
+2026-01-19 13:22:08,022 - DEBUG -   Line  94: 8.00
+2026-01-19 13:22:08,022 - DEBUG -   Line  95: 5
+2026-01-19 13:22:08,023 - DEBUG -   Line  96: D22RMLL
+2026-01-19 13:22:08,024 - DEBUG -   Line  97: Planning Analytics
+2026-01-19 13:22:08,025 - DEBUG -   Line  98: New
+2026-01-19 13:22:08,026 - DEBUG -   Line  99: Annual
+2026-01-19 13:22:08,026 - DEBUG - 
+Searching for table start marker...
+2026-01-19 13:22:08,029 - DEBUG -   Found table start at line 23: 'Subscription Quotation'
+2026-01-19 13:22:08,030 - DEBUG - 
+Searching for header line...
+2026-01-19 13:22:08,031 - DEBUG -   Found header anchor at line 26: 'Part Number'
+2026-01-19 13:22:08,031 - DEBUG - 
+Extracting data rows starting from line 27:
+2026-01-19 13:22:08,032 - DEBUG - 
+  Row 1 (line 40):
+2026-01-19 13:22:08,033 - DEBUG -     Raw line: 'D11C4LL'
+2026-01-19 13:22:08,033 - DEBUG -     Part Number found: 'D11C4LL'
+2026-01-19 13:22:08,034 - DEBUG -     Description: 'Planning Analytics...'
+2026-01-19 13:22:08,034 - DEBUG -     Found dates at line 44: ['06/11/2025']
+2026-01-19 13:22:08,035 - DEBUG -     Found dates at line 45: ['30/11/2028']
+2026-01-19 13:22:08,036 - DEBUG -     Dates found: Start='06/11/2025', End='30/11/2028'
+2026-01-19 13:22:08,036 - DEBUG -     Quantity found at line 46: 1
+2026-01-19 13:22:08,037 - DEBUG -     No price found, using 0.0
+2026-01-19 13:22:08,037 - DEBUG -     Final: Part=D11C4LL, Desc=Planning Analytics, Start=06/11/2025, End=30/11/2028, Qty=1, Price=0.0
+2026-01-19 13:22:08,038 - DEBUG -     ✓ Row added successfully
+2026-01-19 13:22:08,038 - DEBUG - 
+  Row 2 (line 54):
+2026-01-19 13:22:08,040 - DEBUG -     Raw line: 'D1RJ6LL'
+2026-01-19 13:22:08,040 - DEBUG -     Part Number found: 'D1RJ6LL'
+2026-01-19 13:22:08,041 - DEBUG -     Description: 'Planning Analytics...'
+2026-01-19 13:22:08,042 - DEBUG -     Found dates at line 58: ['06/11/2025']
+2026-01-19 13:22:08,042 - DEBUG -     Found dates at line 59: ['30/11/2028']
+2026-01-19 13:22:08,043 - DEBUG -     Dates found: Start='06/11/2025', End='30/11/2028'
+2026-01-19 13:22:08,046 - DEBUG -     Quantity found at line 60: 2
+2026-01-19 13:22:08,048 - DEBUG -     Price candidate at line 61: 8676.0
+2026-01-19 13:22:08,048 - DEBUG -     Price candidate at line 61: 8676.0
+2026-01-19 13:22:08,049 - DEBUG -     Price candidate at line 61: 676.0
+2026-01-19 13:22:08,049 - DEBUG -     Price candidate at line 62: 17352.0
+2026-01-19 13:22:08,050 - DEBUG -     Price candidate at line 62: 17352.0
+2026-01-19 13:22:08,050 - DEBUG -     Price candidate at line 62: 352.0
+2026-01-19 13:22:08,051 - DEBUG -     Price candidate at line 63: 44.24
+2026-01-19 13:22:08,051 - DEBUG -     Price candidate at line 63: 44.24
+2026-01-19 13:22:08,052 - DEBUG -     Price candidate at line 63: 44.24
+2026-01-19 13:22:08,052 - DEBUG -     Price candidate at line 64: 4837.51
+2026-01-19 13:22:08,053 - DEBUG -     Price candidate at line 64: 4837.51
+2026-01-19 13:22:08,053 - DEBUG -     Price candidate at line 64: 837.51
+2026-01-19 13:22:08,053 - DEBUG -     Price candidate at line 65: 9675.02
+2026-01-19 13:22:08,054 - DEBUG -     Price candidate at line 65: 9675.02
+2026-01-19 13:22:08,054 - DEBUG -     Price candidate at line 65: 675.02
+2026-01-19 13:22:08,054 - DEBUG -     Selected Bid Ext SVP: 17352.0 (from line 62)
+2026-01-19 13:22:08,054 - DEBUG -     Final: Part=D1RJ6LL, Desc=Planning Analytics, Start=06/11/2025, End=30/11/2028, Qty=2, Price=17352.0
+2026-01-19 13:22:08,054 - DEBUG -     ✓ Row added successfully
+2026-01-19 13:22:08,055 - DEBUG - 
+  Row 3 (line 68):
+2026-01-19 13:22:08,055 - DEBUG -     Raw line: 'D1RJ8LL'
+2026-01-19 13:22:08,055 - DEBUG -     Part Number found: 'D1RJ8LL'
+2026-01-19 13:22:08,056 - DEBUG -     Description: 'Planning Analytics...'
+2026-01-19 13:22:08,056 - DEBUG -     Found dates at line 72: ['06/11/2025']
+2026-01-19 13:22:08,058 - DEBUG -     Found dates at line 73: ['30/11/2028']
+2026-01-19 13:22:08,059 - DEBUG -     Dates found: Start='06/11/2025', End='30/11/2028'
+2026-01-19 13:22:08,059 - DEBUG -     Quantity found at line 74: 48
+2026-01-19 13:22:08,060 - DEBUG -     Price candidate at line 74: 48.0
+2026-01-19 13:22:08,064 - DEBUG -     Price candidate at line 74: 48.0
+2026-01-19 13:22:08,066 - DEBUG -     Price candidate at line 74: 48.0
+2026-01-19 13:22:08,067 - DEBUG -     Price candidate at line 75: 5796.0
+2026-01-19 13:22:08,068 - DEBUG -     Price candidate at line 75: 5796.0
+2026-01-19 13:22:08,068 - DEBUG -     Price candidate at line 75: 796.0
+2026-01-19 13:22:08,069 - DEBUG -     Price candidate at line 76: 278208.0
+2026-01-19 13:22:08,070 - DEBUG -     Price candidate at line 76: 278208.0
+2026-01-19 13:22:08,071 - DEBUG -     Price candidate at line 76: 208.0
+2026-01-19 13:22:08,072 - DEBUG -     Price candidate at line 77: 44.24
+2026-01-19 13:22:08,074 - DEBUG -     Price candidate at line 77: 44.24
+2026-01-19 13:22:08,075 - DEBUG -     Price candidate at line 77: 44.24
+2026-01-19 13:22:08,076 - DEBUG -     Price candidate at line 78: 3231.7
+2026-01-19 13:22:08,081 - DEBUG -     Price candidate at line 78: 3231.7
+2026-01-19 13:22:08,083 - DEBUG -     Price candidate at line 78: 231.7
+2026-01-19 13:22:08,085 - DEBUG -     Price candidate at line 79: 155121.6
+2026-01-19 13:22:08,086 - DEBUG -     Price candidate at line 79: 155121.6
+2026-01-19 13:22:08,091 - DEBUG -     Price candidate at line 79: 121.6
+2026-01-19 13:22:08,093 - DEBUG -     Selected Bid Ext SVP: 278208.0 (from line 76)
+2026-01-19 13:22:08,100 - DEBUG -     Final: Part=D1RJ8LL, Desc=Planning Analytics, Start=06/11/2025, End=30/11/2028, Qty=48, Price=278208.0
+2026-01-19 13:22:08,102 - DEBUG -     ✓ Row added successfully
+2026-01-19 13:22:08,104 - DEBUG - 
+  Row 4 (line 82):
+2026-01-19 13:22:08,104 - DEBUG -     Raw line: 'D0LW2ZX'
+2026-01-19 13:22:08,105 - DEBUG -     Part Number found: 'D0LW2ZX'
+2026-01-19 13:22:08,105 - DEBUG -     Description: 'Planning Analytics...'
+2026-01-19 13:22:08,105 - DEBUG -     Found dates at line 86: ['06/11/2025']
+2026-01-19 13:22:08,106 - DEBUG -     Found dates at line 87: ['30/11/2028']
+2026-01-19 13:22:08,106 - DEBUG -     Dates found: Start='06/11/2025', End='30/11/2028'
+2026-01-19 13:22:08,107 - DEBUG -     Quantity found at line 88: 5
+2026-01-19 13:22:08,107 - DEBUG -     Price candidate at line 89: 1155.6
+2026-01-19 13:22:08,108 - DEBUG -     Price candidate at line 89: 1155.6
+2026-01-19 13:22:08,108 - DEBUG -     Price candidate at line 89: 155.6
+2026-01-19 13:22:08,108 - DEBUG -     Price candidate at line 90: 5778.0
+2026-01-19 13:22:08,109 - DEBUG -     Price candidate at line 90: 5778.0
+2026-01-19 13:22:08,109 - DEBUG -     Price candidate at line 90: 778.0
+2026-01-19 13:22:08,109 - DEBUG -     Price candidate at line 91: 44.24
+2026-01-19 13:22:08,110 - DEBUG -     Price candidate at line 91: 44.24
+2026-01-19 13:22:08,111 - DEBUG -     Price candidate at line 91: 44.24
+2026-01-19 13:22:08,111 - DEBUG -     Price candidate at line 92: 644.34
+2026-01-19 13:22:08,112 - DEBUG -     Price candidate at line 92: 644.34
+2026-01-19 13:22:08,112 - DEBUG -     Price candidate at line 92: 644.34
+2026-01-19 13:22:08,114 - DEBUG -     Price candidate at line 93: 3221.7
+2026-01-19 13:22:08,114 - DEBUG -     Price candidate at line 93: 3221.7
+2026-01-19 13:22:08,114 - DEBUG -     Price candidate at line 93: 221.7
+2026-01-19 13:22:08,115 - DEBUG -     Selected Bid Ext SVP: 5778.0 (from line 90)
+2026-01-19 13:22:08,115 - DEBUG -     Final: Part=D0LW2ZX, Desc=Planning Analytics, Start=06/11/2025, End=30/11/2028, Qty=5, Price=5778.0
+2026-01-19 13:22:08,116 - DEBUG -     ✓ Row added successfully
+2026-01-19 13:22:08,116 - DEBUG - 
+  Row 5 (line 96):
+2026-01-19 13:22:08,116 - DEBUG -     Raw line: 'D22RMLL'
+2026-01-19 13:22:08,117 - DEBUG -     Part Number found: 'D22RMLL'
+2026-01-19 13:22:08,117 - DEBUG -     Description: 'Planning Analytics...'
+2026-01-19 13:22:08,117 - DEBUG -     Found dates at line 100: ['06/11/2025']
+2026-01-19 13:22:08,118 - DEBUG -     Found dates at line 101: ['30/11/2028']
+2026-01-19 13:22:08,118 - DEBUG -     Dates found: Start='06/11/2025', End='30/11/2028'
+2026-01-19 13:22:08,119 - DEBUG -     Quantity found at line 102: 1
+2026-01-19 13:22:08,119 - DEBUG -     Price candidate at line 103: 19260.0
+2026-01-19 13:22:08,120 - DEBUG -     Price candidate at line 103: 19260.0
+2026-01-19 13:22:08,121 - DEBUG -     Price candidate at line 103: 260.0
+2026-01-19 13:22:08,121 - DEBUG -     Price candidate at line 104: 19260.0
+2026-01-19 13:22:08,122 - DEBUG -     Price candidate at line 104: 19260.0
+2026-01-19 13:22:08,123 - DEBUG -     Price candidate at line 104: 260.0
+2026-01-19 13:22:08,124 - DEBUG -     Price candidate at line 105: 44.24
+2026-01-19 13:22:08,126 - DEBUG -     Price candidate at line 105: 44.24
+2026-01-19 13:22:08,126 - DEBUG -     Price candidate at line 105: 44.24
+2026-01-19 13:22:08,128 - DEBUG -     Price candidate at line 106: 10738.89
+2026-01-19 13:22:08,132 - DEBUG -     Price candidate at line 106: 10738.89
+2026-01-19 13:22:08,133 - DEBUG -     Price candidate at line 106: 738.89
+2026-01-19 13:22:08,133 - DEBUG -     Price candidate at line 107: 10738.89
+2026-01-19 13:22:08,134 - DEBUG -     Price candidate at line 107: 10738.89
+2026-01-19 13:22:08,134 - DEBUG -     Price candidate at line 107: 738.89
+2026-01-19 13:22:08,134 - DEBUG -     Price candidate at line 113: 194301.32
+2026-01-19 13:22:08,135 - DEBUG -     Price candidate at line 113: 194301.32
+2026-01-19 13:22:08,136 - DEBUG -     Price candidate at line 113: 301.32
+2026-01-19 13:22:08,141 - DEBUG -     Price candidate at line 115: 178757.21
+2026-01-19 13:22:08,141 - DEBUG -     Price candidate at line 115: 178757.21
+2026-01-19 13:22:08,142 - DEBUG -     Price candidate at line 115: 757.21
+2026-01-19 13:22:08,142 - DEBUG -     Selected Bid Ext SVP: 194301.32 (from line 113)
+2026-01-19 13:22:08,143 - DEBUG -     Final: Part=D22RMLL, Desc=Planning Analytics, Start=06/11/2025, End=30/11/2028, Qty=1, Price=194301.32
+2026-01-19 13:22:08,143 - DEBUG -     ✓ Row added successfully
+2026-01-19 13:22:08,146 - DEBUG - 
+[STRATEGY 2 COMPLETE] Extracted 5 rows using text-based extraction
+2026-01-19 13:22:08,147 - DEBUG - 
+Final extracted data summary:
+2026-01-19 13:22:08,147 - DEBUG -   Row 1: Part=D11C4LL, Qty=1, Price=0.0
+2026-01-19 13:22:08,147 - DEBUG -   Row 2: Part=D1RJ6LL, Qty=2, Price=17352.0
+2026-01-19 13:22:08,148 - DEBUG -   Row 3: Part=D1RJ8LL, Qty=48, Price=278208.0
+2026-01-19 13:22:08,149 - DEBUG -   Row 4: Part=D0LW2ZX, Qty=5, Price=5778.0
+2026-01-19 13:22:08,149 - DEBUG -   Row 5: Part=D22RMLL, Qty=1, Price=194301.32
+2026-01-19 13:22:08,150 - DEBUG - ================================================================================
+
