@@ -68,39 +68,66 @@ def process_ibm_combo(pdf_file, excel_file=None, master_csv=None, country="UAE")
             result['header_info'] = header_info
             result['ibm_terms_text'] = ibm_terms_text
             if country == "Qatar":
-                # Qatar columns: SKU, Product Description, Quantity, Start Date, End Date, Unit Price in USD, Cost (USD), Partner Discount, Partner Price in USD
                 columns = [
                     "SKU", "Product Description", "Quantity", "Start Date", "End Date",
-                    "Unit Price in USD", "Cost (USD)", "Partner Discount", "Partner Price in USD"
+                    "MEP Unit Price in USD", "Extended MEP Price USD", "Unit Partner Price USD", "Total Partner Price in USD"
                 ]
                 filtered_data = []
+            
+                excel_row = 18  # <-- Data starts on row 2 (change if your sheet starts later)
+            
                 for row in data:
                     sku = row[0] if len(row) > 0 else ""
                     desc = row[1] if len(row) > 1 else ""
-                    qty = row[2] if len(row) > 2 else 0
+                    qty  = row[2] if len(row) > 2 else 0
                     start_date = row[3] if len(row) > 3 else ""
-                    end_date = row[4] if len(row) > 4 else ""
-                    raw_cost = row[5] if len(row) > 5 else 0
-                    try:
-                        cost = float(raw_cost) if raw_cost not in (None, "", "-") else 0
-                    except Exception:
-                        cost = 0
-                    # Unit Price in USD = cost / qty
-                    unit_price = cost / qty if qty else 0
-                    # Partner Discount = unit_price * 0.99 (1% discount)
-                    partner_discount = round(unit_price * 0.99, 2)
-                    # Partner Price in USD = partner_discount * qty
-                    partner_price = partner_discount * qty
+                    end_date   = row[4] if len(row) > 4 else ""
+                    raw_cost   = row[5] if len(row) > 5 else 0  # This is Extended MEP (total)
+            
+                    # Normalize numeric inputs so Excel formulas can compute correctly
+                    def _to_float(x):
+                        try:
+                            return float(x) if x not in (None, "", "-",) else 0.0
+                        except Exception:
+                            return 0.0
+            
+                    qty_num  = _to_float(qty)
+                    cost_num = _to_float(raw_cost)
+            
+                    # Build A1 references for this row
+                    C = f"C{excel_row}"
+                    F = f"F{excel_row}"
+                    G = f"G{excel_row}"
+                    H = f"H{excel_row}"
+                    I = f"I{excel_row}"
+                    J = f"J{excel_row}"
+                    E= f"E{excel_row}"
+            
+                    # Visible Excel formulas
+                    # unit_price_formula    = f"=IF({C}=0,0,{G}/{C})"     # F = unit price
+                    unit_price_formula    = f"=ROUND({I}/{E},2)"        # F = unit price
+                    unit_partner_formula  = f"=ROUND({H}*0.99,2)"       # H = 1% discount applied to unit price
+                    total_partner_formula = f"={J}*{E}"                 # I = H * qty
+            
                     filtered_data.append([
-                        sku, desc, qty, start_date, end_date,
-                        round(unit_price, 2), round(cost, 2), partner_discount, round(partner_price, 2)
+                        sku,                 # A
+                        desc,                # B
+                        qty_num,             # C (numeric)
+                        start_date,          # D
+                        end_date,            # E
+                        unit_price_formula,  # F (formula)
+                        cost_num,            # G (numeric)
+                        unit_partner_formula,# H (formula)
+                        total_partner_formula# I (formula)
                     ])
+                    excel_row += 1
+            
                 result['data'] = filtered_data
                 result['columns'] = columns
             else:
                 result['data'] = data
                 result['columns'] = ["SKU", "Description", "Quantity", "Start Date", "End Date", "Cost"]
-            # MEP/cost check
+        # MEP/cost check
             if header_info and data:
                 result['mep_cost_msg'] = compare_mep_and_cost(header_info, data)
             # Bid number check
@@ -145,47 +172,6 @@ def process_ibm_combo(pdf_file, excel_file=None, master_csv=None, country="UAE")
                         result['columns'] = None
                 else:
                     result['columns'] = None
-
-                # # DEBUG: Print columns and first data row for index mapping
-                # print("[DEBUG] result['columns']:", result['columns'])
-                # if data and len(data) > 0:
-                #     print("[DEBUG] First data row:", data[0])
-
-                # # --- MEP vs Cost logic for Template 2 ---
-                # mep_str = header_info.get("Maximum End User Price (MEP)")
-                # mep_value = None
-                # if mep_str:
-                #     try:
-                #         mep_value = float(mep_str.replace(",", "").replace(" ", ""))
-                #     except Exception:
-                #         mep_value = None
-                # # Sum the cost column (assume cost is at index 6 or 7, try both)
-                # cost_total = 0
-                # if data and isinstance(data[0], (list, tuple)):
-                #     # Try to find the cost column (look for 'Cost' in columns if available)
-                #     cost_idx = 7
-                #     if result['columns']:
-                #         for idx, col in enumerate(result['columns']):
-                #             if col.strip().lower() == 'cost':
-                #                 cost_idx = idx
-                #                 break
-                #     if cost_idx is not None:
-                #         for row in data:
-                #             try:
-                #                 val = row[cost_idx]
-                #                 if isinstance(val, str):
-                #                     val = float(val.replace(",", "").replace(" ", ""))
-                #                 if isinstance(val, (int, float)):
-                #                     cost_total += val
-                #             except Exception:
-                #                 continue
-                # # Compare and set alert/remark if different
-                # if mep_value is not None and cost_total > 0:
-                #     diff = abs(mep_value - cost_total)
-                #     if diff > 1e-2:  # Allow small rounding error
-                #         result['mep_cost_msg'] = f"⚠️ MEP value (USD {mep_value:,.2f}) does not match cost total (USD {cost_total:,.2f})! Please review."
-                #     else:
-                #         result['mep_cost_msg'] = f"MEP value matches cost total (USD {mep_value:,.2f})."
 
                 output = BytesIO()
                 create_styled_excel_template2(

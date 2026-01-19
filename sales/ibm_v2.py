@@ -213,6 +213,8 @@ def create_styled_excel_v2(
 			ws.cell(row=excel_row, column=10).number_format = '"USD"#,##0.00'  # Partner Price in USD
 			for col in range(2, 12):
 				ws.cell(row=excel_row, column=col).fill = row_fill
+            
+             
 		else:
 			# ...existing UAE logic...
 			sku = row[0] if len(row) > 0 else ""
