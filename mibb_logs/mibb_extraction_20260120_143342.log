@@ -1,0 +1,194 @@
+2026-01-20 14:33:50,483 - DEBUG - ================================================================================
+2026-01-20 14:33:50,484 - DEBUG - MIBB HEADER EXTRACTION STARTED
+2026-01-20 14:33:50,484 - DEBUG - ================================================================================
+2026-01-20 14:33:50,499 - DEBUG - PDF opened successfully: 5 pages
+2026-01-20 14:33:50,520 - DEBUG - Page 1: Extracted 25 lines
+2026-01-20 14:33:50,525 - DEBUG - Page 2: Extracted 80 lines
+2026-01-20 14:33:50,526 - DEBUG - Page 3: Extracted 22 lines
+2026-01-20 14:33:50,535 - DEBUG - Page 4: Extracted 33 lines
+2026-01-20 14:33:50,540 - DEBUG - Page 5: Extracted 36 lines
+2026-01-20 14:33:50,540 - DEBUG - Total lines extracted: 196
+2026-01-20 14:33:50,541 - DEBUG - 
+First 50 lines of PDF:
+2026-01-20 14:33:50,541 - DEBUG -   Line   0: Page 1 of 5
+2026-01-20 14:33:50,541 - DEBUG -   Line   1: Customer Information
+2026-01-20 14:33:50,541 - DEBUG -   Line   2: Customer Name: AFRICAN DEVELOPMENT BANK
+2026-01-20 14:33:50,542 - DEBUG -   Line   3: Address: 339 Witch-Hazel Avenue, Highveld Extension 78, Centurion 0157, South Africa
+2026-01-20 14:33:50,542 - DEBUG -   Line   4: City: Abidjan
+2026-01-20 14:33:50,542 - DEBUG -   Line   5: Country: Ivory Coast
+2026-01-20 14:33:50,542 - DEBUG -   Line   6: Government Entity (GOE): No
+2026-01-20 14:33:50,542 - DEBUG -   Line   7: Bid Request Information
+2026-01-20 14:33:50,543 - DEBUG -   Line   8: Bid Number: 00374505
+2026-01-20 14:33:50,543 - DEBUG -   Line   9: Bid Effective Date: 2026-01-19
+2026-01-20 14:33:50,543 - DEBUG -   Line  10: Bid Expiration Date: 2026-03-31
+2026-01-20 14:33:50,543 - DEBUG -   Line  11: Date Bid Sent: 2026-01-19
+2026-01-20 14:33:50,543 - DEBUG -   Line  12: Distributor Name: Mindware FZ LLC
+2026-01-20 14:33:50,544 - DEBUG -   Line  13: Reseller Name: CFAO Technologies Cote-d'Ivoire
+2026-01-20 14:33:50,544 - DEBUG -   Line  14: Business Partner of Record: Yes
+2026-01-20 14:33:50,544 - DEBUG -   Line  15: Opportunity Owner: Ahmed Hamdy
+2026-01-20 14:33:50,544 - DEBUG -   Line  16: Currency: USD
+2026-01-20 14:33:50,544 - DEBUG -   Line  17: Payment Terms: 60 days
+2026-01-20 14:33:50,545 - DEBUG -   Line  18: Site ID:
+2026-01-20 14:33:50,545 - DEBUG -   Line  19: MIBB INTERNATIONAL FZ-LLC
+2026-01-20 14:33:50,545 - DEBUG -   Line  20: MIBB INTERNATIONAL FZ-LLC
+2026-01-20 14:33:50,545 - DEBUG -   Line  21: Office Park Block D
+2026-01-20 14:33:50,545 - DEBUG -   Line  22: Dubai Internet City
+2026-01-20 14:33:50,545 - DEBUG -   Line  23: Dubai, UAE
+2026-01-20 14:33:50,546 - DEBUG -   Line  24: VAT: Reg no :104336463500001
+2026-01-20 14:33:50,546 - DEBUG -   Line  25: Page 2 of 5
+2026-01-20 14:33:50,546 - DEBUG -   Line  26: Perpetual(S&S) Renewal
+2026-01-20 14:33:50,546 - DEBUG -   Line  27: Parts Information
+2026-01-20 14:33:50,546 - DEBUG -   Line  28: #
+2026-01-20 14:33:50,546 - DEBUG -   Line  29: Part Number
+2026-01-20 14:33:50,547 - DEBUG -   Line  30: Description
+2026-01-20 14:33:50,547 - DEBUG -   Line  31: Transaction Type
+2026-01-20 14:33:50,547 - DEBUG -   Line  32: Billing
+2026-01-20 14:33:50,547 - DEBUG -   Line  33: Points
+2026-01-20 14:33:50,547 - DEBUG -   Line  34: Coverage Start
+2026-01-20 14:33:50,547 - DEBUG -   Line  35: Coverage End
+2026-01-20 14:33:50,548 - DEBUG -   Line  36: Quantity
+2026-01-20 14:33:50,548 - DEBUG -   Line  37: Entitled Unit Entitled Extended
+2026-01-20 14:33:50,548 - DEBUG -   Line  38: Discount%
+2026-01-20 14:33:50,548 - DEBUG -   Line  39: Bid Unit SVP Bid Ext SVP
+2026-01-20 14:33:50,549 - DEBUG -   Line  40: Channel
+2026-01-20 14:33:50,549 - DEBUG -   Line  41: Margin
+2026-01-20 14:33:50,549 - DEBUG -   Line  42: 1
+2026-01-20 14:33:50,550 - DEBUG -   Line  43: E097JLL
+2026-01-20 14:33:50,550 - DEBUG -   Line  44: IBM Content Collector for
+2026-01-20 14:33:50,550 - DEBUG -   Line  45: SAP Applications
+2026-01-20 14:33:50,551 - DEBUG -   Line  46: Authorized User Value
+2026-01-20 14:33:50,551 - DEBUG -   Line  47: Unit Annual SW
+2026-01-20 14:33:50,551 - DEBUG -   Line  48: Subscription & Support
+2026-01-20 14:33:50,551 - DEBUG -   Line  49: Renewal
+2026-01-20 14:33:50,551 - DEBUG - 
+Parsing header information...
+2026-01-20 14:33:50,552 - DEBUG -   [Line 2] Customer Name: 'Customer Name: AFRICAN DEVELOPMENT BANK'
+2026-01-20 14:33:50,552 - DEBUG -   [Line 6] Government Entity (GOE): 'Bid Request Information'
+2026-01-20 14:33:50,552 - DEBUG -   [Line 10] Bid Expiration Date: 'Bid Expiration Date: 2026-03-31'
+2026-01-20 14:33:50,553 - DEBUG -   [Line 13] Reseller Name: 'Reseller Name: CFAO Technologies Cote-d'Ivoire'
+2026-01-20 14:33:50,553 - DEBUG - 
+Header extraction complete: 6 fields found
+2026-01-20 14:33:50,554 - DEBUG - 
+Extracted header information:
+2026-01-20 14:33:50,554 - DEBUG -   Customer Name                      : Customer Name: AFRICAN DEVELOPMENT BANK
+2026-01-20 14:33:50,554 - DEBUG -   Bid Number                         : Bid Number: 00374505
+2026-01-20 14:33:50,554 - DEBUG -   Select Territory                   : 
+2026-01-20 14:33:50,554 - DEBUG -   Government Entity (GOE)            : Bid Request Information
+2026-01-20 14:33:50,555 - DEBUG -   Reseller Name                      : Reseller Name: CFAO Technologies Cote-d'Ivoire
+2026-01-20 14:33:50,555 - DEBUG -   City                               : 
+2026-01-20 14:33:50,556 - DEBUG -   Country                            : 
+2026-01-20 14:33:50,556 - DEBUG -   Maximum End User Price (MEP)       : 
+2026-01-20 14:33:50,557 - DEBUG -   Total Value Seller Revenue Opportunity: 
+2026-01-20 14:33:50,558 - DEBUG -   Bid Expiration Date                : Bid Expiration Date: 2026-03-31
+2026-01-20 14:33:50,558 - DEBUG -   Business Partner of Record         : Business Partner of Record: Yes
+2026-01-20 14:33:50,558 - DEBUG - ================================================================================
+
+2026-01-20 14:33:50,559 - DEBUG - ================================================================================
+2026-01-20 14:33:50,559 - DEBUG - MIBB TABLE EXTRACTION STARTED
+2026-01-20 14:33:50,559 - DEBUG - ================================================================================
+2026-01-20 14:33:50,560 - DEBUG - PDF opened for table extraction: 5 pages
+2026-01-20 14:33:50,567 - DEBUG - [PAGE SCAN] Candidate page 2: marker_score=1, header_score=6
+2026-01-20 14:33:50,579 - DEBUG - [PAGE SELECT] Using page 2 (marker_score=1, header_score=6)
+2026-01-20 14:33:50,579 - DEBUG - 
+[STRATEGY 1] Attempting PyMuPDF table detection on page 2...
+2026-01-20 14:33:50,768 - DEBUG - [STRATEGY 1 FAILED] PyMuPDF table detection error: object of type 'TableFinder' has no len()
+2026-01-20 14:33:50,769 - DEBUG - Falling back to text-based extraction...
+2026-01-20 14:33:50,770 - DEBUG - 
+[STRATEGY 2] Text-based extraction (fallback) on page 2...
+2026-01-20 14:33:50,773 - DEBUG - Extracted 80 lines from page 2 text
+2026-01-20 14:33:50,774 - DEBUG - 
+First 100 lines of page 2:
+2026-01-20 14:33:50,774 - DEBUG -   Line   0: Page 2 of 5
+2026-01-20 14:33:50,774 - DEBUG -   Line   1: Perpetual(S&S) Renewal
+2026-01-20 14:33:50,775 - DEBUG -   Line   2: Parts Information
+2026-01-20 14:33:50,775 - DEBUG -   Line   3: #
+2026-01-20 14:33:50,775 - DEBUG -   Line   4: Part Number
+2026-01-20 14:33:50,776 - DEBUG -   Line   5: Description
+2026-01-20 14:33:50,776 - DEBUG -   Line   6: Transaction Type
+2026-01-20 14:33:50,776 - DEBUG -   Line   7: Billing
+2026-01-20 14:33:50,777 - DEBUG -   Line   8: Points
+2026-01-20 14:33:50,777 - DEBUG -   Line   9: Coverage Start
+2026-01-20 14:33:50,778 - DEBUG -   Line  10: Coverage End
+2026-01-20 14:33:50,778 - DEBUG -   Line  11: Quantity
+2026-01-20 14:33:50,779 - DEBUG -   Line  12: Entitled Unit Entitled Extended
+2026-01-20 14:33:50,780 - DEBUG -   Line  13: Discount%
+2026-01-20 14:33:50,782 - DEBUG -   Line  14: Bid Unit SVP Bid Ext SVP
+2026-01-20 14:33:50,782 - DEBUG -   Line  15: Channel
+2026-01-20 14:33:50,783 - DEBUG -   Line  16: Margin
+2026-01-20 14:33:50,784 - DEBUG -   Line  17: 1
+2026-01-20 14:33:50,786 - DEBUG -   Line  18: E097JLL
+2026-01-20 14:33:50,787 - DEBUG -   Line  19: IBM Content Collector for
+2026-01-20 14:33:50,790 - DEBUG -   Line  20: SAP Applications
+2026-01-20 14:33:50,793 - DEBUG -   Line  21: Authorized User Value
+2026-01-20 14:33:50,793 - DEBUG -   Line  22: Unit Annual SW
+2026-01-20 14:33:50,795 - DEBUG -   Line  23: Subscription & Support
+2026-01-20 14:33:50,795 - DEBUG -   Line  24: Renewal
+2026-01-20 14:33:50,796 - DEBUG -   Line  25: Renewal
+2026-01-20 14:33:50,797 - DEBUG -   Line  26: Upfront
+2026-01-20 14:33:50,798 - DEBUG -   Line  27: 01/06/2025
+2026-01-20 14:33:50,799 - DEBUG -   Line  28: 31/05/2026
+2026-01-20 14:33:50,800 - DEBUG -   Line  29: 85.00
+2026-01-20 14:33:50,801 - DEBUG -   Line  30: -
+2026-01-20 14:33:50,801 - DEBUG -   Line  31: -
+2026-01-20 14:33:50,802 - DEBUG -   Line  32: -
+2026-01-20 14:33:50,802 - DEBUG -   Line  33: 186.56
+2026-01-20 14:33:50,802 - DEBUG -   Line  34: 15,857.60
+2026-01-20 14:33:50,802 - DEBUG -   Line  35: 0.00
+2026-01-20 14:33:50,803 - DEBUG -   Line  36: 2
+2026-01-20 14:33:50,803 - DEBUG -   Line  37: E0KEALL
+2026-01-20 14:33:50,804 - DEBUG -   Line  38: IBM Enterprise Records
+2026-01-20 14:33:50,805 - DEBUG -   Line  39: Foundation Add-On
+2026-01-20 14:33:50,805 - DEBUG -   Line  40: Authorized User Value
+2026-01-20 14:33:50,805 - DEBUG -   Line  41: Unit Annual SW
+2026-01-20 14:33:50,806 - DEBUG -   Line  42: Subscription & Support
+2026-01-20 14:33:50,806 - DEBUG -   Line  43: Renewal
+2026-01-20 14:33:50,808 - DEBUG -   Line  44: Renewal
+2026-01-20 14:33:50,808 - DEBUG -   Line  45: Upfront
+2026-01-20 14:33:50,809 - DEBUG -   Line  46: 01/06/2025
+2026-01-20 14:33:50,810 - DEBUG -   Line  47: 31/05/2026
+2026-01-20 14:33:50,811 - DEBUG -   Line  48: 30.00
+2026-01-20 14:33:50,812 - DEBUG -   Line  49: -
+2026-01-20 14:33:50,812 - DEBUG -   Line  50: -
+2026-01-20 14:33:50,814 - DEBUG -   Line  51: -
+2026-01-20 14:33:50,814 - DEBUG -   Line  52: 99.58
+2026-01-20 14:33:50,816 - DEBUG -   Line  53: 2,987.40
+2026-01-20 14:33:50,816 - DEBUG -   Line  54: 0.00
+2026-01-20 14:33:50,817 - DEBUG -   Line  55: 3
+2026-01-20 14:33:50,818 - DEBUG -   Line  56: E0HQTLL
+2026-01-20 14:33:50,818 - DEBUG -   Line  57: IBM Content Foundation
+2026-01-20 14:33:50,819 - DEBUG -   Line  58: Authorized User Value
+2026-01-20 14:33:50,819 - DEBUG -   Line  59: Unit Annual SW
+2026-01-20 14:33:50,820 - DEBUG -   Line  60: Subscription & Support
+2026-01-20 14:33:50,821 - DEBUG -   Line  61: Renewal
+2026-01-20 14:33:50,822 - DEBUG -   Line  62: Renewal
+2026-01-20 14:33:50,823 - DEBUG -   Line  63: Upfront
+2026-01-20 14:33:50,825 - DEBUG -   Line  64: 01/06/2025
+2026-01-20 14:33:50,825 - DEBUG -   Line  65: 31/05/2026
+2026-01-20 14:33:50,826 - DEBUG -   Line  66: 838.00
+2026-01-20 14:33:50,827 - DEBUG -   Line  67: -
+2026-01-20 14:33:50,828 - DEBUG -   Line  68: -
+2026-01-20 14:33:50,828 - DEBUG -   Line  69: -
+2026-01-20 14:33:50,829 - DEBUG -   Line  70: 150.06
+2026-01-20 14:33:50,829 - DEBUG -   Line  71: 125,750.28
+2026-01-20 14:33:50,829 - DEBUG -   Line  72: 0.00
+2026-01-20 14:33:50,830 - DEBUG -   Line  73: Autorenewal: No
+2026-01-20 14:33:50,830 - DEBUG -   Line  74: Bid Extended Total includes any applicable Channel Margin
+2026-01-20 14:33:50,831 - DEBUG -   Line  75: Current Transaction
+2026-01-20 14:33:50,831 - DEBUG -   Line  76: Total Business Partner Price:
+2026-01-20 14:33:50,831 - DEBUG -   Line  77: USD 144,595.28
+2026-01-20 14:33:50,832 - DEBUG -   Line  78: Total Bid Price:
+2026-01-20 14:33:50,833 - DEBUG -   Line  79: USD 144,595.28
+2026-01-20 14:33:50,833 - DEBUG - 
+Searching for table start marker...
+2026-01-20 14:33:50,833 - DEBUG -   Found table start at line 2: 'Parts Information'
+2026-01-20 14:33:50,834 - DEBUG - 
+Searching for header line...
+2026-01-20 14:33:50,834 - DEBUG -   Found header anchor at line 4: 'Part Number'
+2026-01-20 14:33:50,835 - DEBUG - 
+Extracting data rows starting from line 5:
+2026-01-20 14:33:50,835 - DEBUG - 
+[STRATEGY 2 COMPLETE] Extracted 0 rows using text-based extraction
+2026-01-20 14:33:50,836 - DEBUG - 
+Final extracted data summary:
+2026-01-20 14:33:50,837 - DEBUG - ================================================================================
+

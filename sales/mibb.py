@@ -438,7 +438,10 @@ def extract_mibb_table_from_pdf(file_like) -> list:
         return []
     
     # Extract data rows after header
-    part_number_pattern = re.compile(r'\bD[A-Z0-9]{5,7}\b')
+    
+    part_number_pattern = re.compile(r'\b[A-Z][A-Z0-9]{5,7}\b')
+
+
     date_pattern = re.compile(r'\b\d{2}/\d{2}/\d{4}\b')  # Format: DD/MM/YYYY
     
     log_debug(f"\nExtracting data rows starting from line {header_line_idx + 1}:")
