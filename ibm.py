@@ -952,8 +952,8 @@ def create_styled_excel(
     left_labels = ["Date:", "From:", "Email:", "Contact:", "", "Company:", "Attn:", "Email:"]
     left_values = [
         datetime.today().strftime('%d/%m/%Y'),
-        "Sneha Lokhandwala",
-        "s.lokhandwala@mindware.net",
+        "Priyansha Kapoor",
+        "P.Kapoor@mindware.net",
         "+971 55 456 6650",
         "",
         header_info.get('Reseller Name', 'empty'),
