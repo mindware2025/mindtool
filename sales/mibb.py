@@ -613,16 +613,18 @@ def extract_mibb_table_from_pdf(file_like) -> list:
     return extracted_data
 
 
-def get_mibb_terms_section(header_info):
+def get_mibb_terms_section(header_info,data):
     """
     Generate MIBB-specific terms and conditions section.
     Returns list of (cell_address, text, style_dict) tuples.
     """
     quote_validity = header_info.get("Bid Expiration Date", "XXXX")
+    totalprice = sum(float(row[5]) for row in data if len(row) > 5 and row[5])
     terms = [
         ("B29", "Terms and Conditions:", {"bold": True, "size": 11, "color": "1F497D"}),
         ("C30", f"""• 30 Days from POE Date.
 • Quote Validity: {quote_validity} as per the quote
+• Mindware requires full payment of this invoice (BP Price USD {totalprice:,.2f})if WHT is applicable on offshore payment
 • Pricing valid for this transaction only."""),
         ("C31", "1. Compliance Review", {"bold": True}),
         ("C32", """Transaction Agreement Reseller ("Reseller") shall keep and maintain all records necessary to establish its compliance with the Agreement for at least three years after the Agreement end date. IBM and/or VAD or their auditors may periodically review Reseller's compliance with the Agreement, and may do so either remotely, on Reseller's premises during normal business hours, or a combination thereof. In connection with any such review, Reseller's agrees to provide IBM and/or VAD, or their auditor, with relevant records and system tools output on request. IBM and/or VAD may reproduce and retain copies of such records and output.
@@ -840,7 +842,7 @@ def create_mibb_excel(
         summary_row = start_row + 1
 
     # --- Terms and Conditions Section ---
-    terms = get_mibb_terms_section(header_info)
+    terms = get_mibb_terms_section(header_info, data)
     terms_start_row = summary_row + 3
     
     # Adjust terms cell addresses based on where table ends
