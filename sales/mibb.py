@@ -503,80 +503,87 @@ def extract_mibb_table_from_pdf(file_like) -> list:
             end_date = unique_dates[1]
         
         log_debug(f"    Dates found: Start='{start_date}', End='{end_date}'")
-        
-        # Extract quantity - look for decimal quantities (1.00, 2.00, etc.) around line i+6
         qty = 1
-        qty_found = False
-        for j in range(i + 1, min(i + 10, len(lines))):
-            qty_line = lines[j].strip()
-            # Look for decimal quantity pattern (1.00, 2.00, 48.00, etc.)
-            qty_match = re.search(r'^(\d+(?:\.\d+)?)$', qty_line)
-            if qty_match:
-                try:
-                    potential_qty = float(qty_match.group(1))
-                    if 0.1 <= potential_qty <= 10000:
-                        qty = int(potential_qty) if potential_qty.is_integer() else potential_qty
-                        log_debug(f"    Quantity found at line {j}: {qty}")
-                        qty_found = True
-                        break
-                except:
-                    pass
+        qty_extracted = False
         
-        if not qty_found:
-            log_debug(f"    Using default quantity: {qty}")
+        # QTY is ALWAYS the first number after Coverage End
+        # Coverage End is at: i+5 (based on the IBM vertical layout)
+        start_search = i + 6
+        
+        for j in range(start_search, min(i + 15, len(lines))):
+            line_j = lines[j].strip()
+        
+            # Stop if we hit non-numeric placeholder
+            if line_j == "-":
+                break
+        
+            # Match integer or decimal
+            qty_match = re.match(r'^(\d+(?:\.\d+)?)$', line_j)
+            if qty_match:
+                qty_val = float(qty_match.group(1))
+        
+                # QTY in IBM MIBB PDFs is always integer (85, 30, 838)
+                if qty_val.is_integer():
+                    qty = int(qty_val)
+                    log_debug(f"    Extracted QTY at line {j}: {qty}")
+                    qty_extracted = True
+                    break
+        
+        if not qty_extracted:
+            log_debug("    QTY not found, defaulting to 1")
         
         # Extract Bid Ext SVP (Price USD) - this appears after Bid Unit SVP
         # Structure: Entitled Unit -> Entitled Extended -> Discount% -> Bid Unit SVP -> Bid Ext SVP
         price_usd = 0.0
-        price_pattern = re.compile(r'\b(\d{1,3}(?:[.,]\d{3})*[.,]\d{2})\b')  # Matches 9,675.02 or 9.675,02
+        price_pattern = re.compile(r'\b(\d{1,3}(?:[.,]\d{3})*[.,]\d{2})\b')
         
-        # Strategy: Find discount percentage, then take the SECOND price after it (Bid Ext SVP)
-        # The first price after discount is Bid Unit SVP, second is Bid Ext SVP
-        found_discount = False
-        prices_after_discount = []
+        seen_discount = False
+        price_after_discount_count = 0
         
-        for j in range(i + 1, min(i + 25, len(lines))):
-            check_line = lines[j].strip()
-            
-            # Check if this line is a discount percentage (usually small like 44.24)
-            discount_match = re.search(r'^(\d+\.\d{2})$', check_line)
-            if discount_match:
-                disc_val = float(discount_match.group(1))
-                if 0 < disc_val < 100:  # Reasonable discount range
-                    found_discount = True
-                    log_debug(f"    Found discount at line {j}: {disc_val}%")
+        for j in range(i + 1, min(i + 30, len(lines))):
+            line_j = lines[j].strip()
+        
+            # Stop if next part number → next item block
+            if part_number_pattern.search(line_j) and j != i:
+                break
+        
+            # Step 1: detect discount line (xx.xx)
+            if not seen_discount:
+                m = re.match(r'^(\d+\.\d{2})$', line_j)
+                if m:
+                    seen_discount = True
+                    log_debug(f"    Found Discount% at line {j}: {m.group(1)}")
                     continue
-            
-            # After finding discount, collect prices
-            if found_discount:
-                price_matches = price_pattern.findall(check_line)
-                if price_matches:
-                    for match in price_matches:
-                        try:
-                            # Parse format (9,675.02 -> 9675.02)
-                            if ',' in match and '.' in match:
-                                price_str = match.replace(',', '')
-                            elif ',' in match:
-                                price_str = match.replace(',', '.')
-                            else:
-                                price_str = match
-                            price_val = float(price_str)
-                            
-                            # Collect reasonable prices (Bid Unit and Bid Ext SVP)
-                            if 100 <= price_val < 10000000:
-                                prices_after_discount.append((price_val, j))
-                                log_debug(f"    Price after discount at line {j}: {price_val}")
-                        except Exception as e:
-                            pass
-                    
-                    # If we have 2 prices, the second one is Bid Ext SVP
-                    if len(prices_after_discount) >= 2:
-                        price_usd = prices_after_discount[1][0]  # Second price is Bid Ext SVP
-                        log_debug(f"    Selected Bid Ext SVP (2nd price after discount): {price_usd} (from line {prices_after_discount[1][1]})")
-                        break
- 
-        if price_usd == 0.0:
-            log_debug(f"    No Bid Ext SVP found, using 0.0")
+        
+            # Step 2: after discount, collect prices
+            if seen_discount:
+                matches = price_pattern.findall(line_j)
+                if not matches:
+                    continue
+        
+                raw = matches[0]
+        
+                # Clean "15,857.60" or "125.750,28"
+                if "," in raw and "." in raw:
+                    cleaned = raw.replace(",", "")
+                else:
+                    cleaned = raw.replace(",", ".")
+        
+                try:
+                    val = float(cleaned)
+                except:
+                    continue
+        
+                price_after_discount_count += 1
+        
+                if price_after_discount_count == 1:
+                    log_debug(f"    Unit SVP found at line {j}: {val}")
+                    continue
+        
+                if price_after_discount_count == 2:
+                    price_usd = val
+                    log_debug(f"    Bid Ext SVP found at line {j}: {price_usd}")
+                    break
         
         log_debug(f"    Final: Part={part_number}, Desc={description[:30]}, Start={start_date}, End={end_date}, Qty={qty}, Price={price_usd}")
         
@@ -775,7 +782,7 @@ def create_mibb_excel(
 
     # --- Table Headers ---
     headers = [
-        "Sl", "Part Number", "Description", "Start Date", "End Date", "QTY", "Price USD"
+        "Sl", "Part Number", "Description", "Start Date", "End Date", "QTY","Partner Price USD", "Price USD"
     ]
     
     header_fill = PatternFill(start_color="F2F2F2", end_color="F2F2F2", fill_type="solid")
@@ -809,10 +816,17 @@ def create_mibb_excel(
         ws.cell(row=excel_row, column=5, value=start_date).font = Font(size=11, color="1F497D")
         ws.cell(row=excel_row, column=6, value=end_date).font = Font(size=11, color="1F497D")
         ws.cell(row=excel_row, column=7, value=qty).font = Font(size=11, color="1F497D")
-        ws.cell(row=excel_row, column=8, value=price_usd).font = Font(size=11, color="1F497D")
+        partner_formula = f"=ROUNDUP(I{excel_row}*0.99, 2)"   # H = Price USD column
+        ws.cell(row=excel_row, column=8, value=partner_formula)
+        ws.cell(row=excel_row, column=8).font = Font(size=11, color="1F497D")
+        ws.cell(row=excel_row, column=8).number_format = '"USD"#,##0.00'
+        ws.cell(row=excel_row, column=8).alignment = Alignment(horizontal="center", vertical="center")
+        
+        ws.cell(row=excel_row, column=9, value=price_usd).font = Font(size=11, color="1F497D")
         
         # Format price as USD currency
-        ws.cell(row=excel_row, column=8).number_format = '"USD"#,##0.00'
+        ws.cell(row=excel_row, column=9).number_format = '"USD"#,##0.00'
+        
         
         for col in range(2, 9):
             ws.cell(row=excel_row, column=col).fill = row_fill
