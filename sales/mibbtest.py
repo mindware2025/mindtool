@@ -620,72 +620,63 @@ def extract_mibb_table_from_pdf(file_like) -> list:
     return extracted_data
 
 
-
-def get_mibb_terms_section(header_info, data):
+def get_mibb_terms_section(header_info,data):
     """
     Generate MIBB-specific terms and conditions section.
     Returns list of (cell_address, text, style_dict) tuples.
     """
     quote_validity = header_info.get("Bid Expiration Date", "XXXX")
     totalprice = sum(float(row[5]) for row in data if len(row) > 5 and row[5])
-
     terms = [
         ("B29", "Terms and Conditions:", {"bold": True, "size": 11, "color": "1F497D"}),
-
-        ("C30", 
-f"""• 30 Days from POE Date.
+        ("C30", f"""• 30 Days from POE Date.
 • Quote Validity: {quote_validity} as per the quote
-• Mindware requires full payment of this invoice (BP Price USD {totalprice:,.2f}) if WHT is applicable on offshore payment
-• Pricing valid for this transaction only.
-"""
-        ),
-
-        ("C31", "Definitions", {"bold": True}),
-
-        ("C32",
-"""“Company” refers to the MIBB entity identified at the top of the first page of this Legal Quotation.
-“Partner” refers to the distributor entity identified in the “Distributor Name” section on the first page of this Legal Quotation.
-“End User” refers to the end-user customer entity identified in the “Customer Name” section on the first page of this Legal Quotation, which is purchasing from or through Partner for its own internal use only.
-“T&M Services” refers to time-based engagements sold by half or full-day SKUs with corresponding Company SOWs.
-“Packaged Services” refers to standardized offerings tied to IBM part codes and IBM service descriptions.
-“Bespoke Services” refers to tailored solutions governed by SOWs through unique Company SKUs and supporting SOWs.
-“SOW” refers to the applicable statement of work accompanying this Legal Quotation.
-
-Acceptance of this Legal Quotation requires Partner to issue a valid Purchase Order (“PO”) as indicated in this Legal Quotation or, where available, to select and complete the e-sign option.
-The PO must (i) reference this Legal Quotation number, (ii) include the email address of the End User contact, and (iii) include the Partner email address to which the invoice(s) will be sent (or a physical address if required by applicable law).
-
-This Legal Quotation includes (i) the applicable contractual discount, if any, or (ii) the special pricing agreed for this transaction. Prices are exclusive of applicable taxes, which will be borne by Partner.
-Invoices will be sent by email unless otherwise required by law, and shall be paid to Company within 30 days from invoice date.
-
-Unless otherwise specified, software products will be delivered electronically and deemed accepted upon delivery of access/download availability.
-Licenses under this Legal Quotation are for End User’s internal use only, unless otherwise agreed in writing.
-The governing terms consist of Company’s standard distributor/partner contract terms, MIBB General Terms for IBM Cloud Offerings, and the MIBB Service Description for Ordered Cloud Services (as applicable), unless superseded by a separate signed agreement (“Governing Terms”). Software and services are sold strictly for resale.
-
-Unless otherwise agreed in writing, products/services are purchased solely under IBM License Terms including IBM Passport Advantage and IBM Cloud Offerings (https://www.ibm.com). In the event of inconsistencies, IBM License Terms prevail.
-
-Where applicable, and unless explicitly agreed, licenses/S&S acquired under this Legal Quotation may not be used to resolve prior non-compliance, nor authorize deployment prior to the order date.
-Sub-capacity licensing details: https://www.ibm.com/software/passportadvantage/subcaplicensing.html
-Container licensing details: https://www.ibm.com/software/passportadvantage/containerlicenses.html
-
-For all professional services, SOW or service descriptions define scope, deliverables, timelines. Changes require written agreement. Scheduling depends on resource availability. Applicable expenses (travel, accommodation, subsistence) must be pre-defined in the quote or included in the SOW.
-
-T&M Services are offered per half/full day via predefined SKUs with SOW. Packaged Services follow standard descriptions. Bespoke deliverables belong to End User unless SOW states otherwise. IBM proprietary materials remain IBM property.
-
-Commodities included in this quotation are subject to export laws and may be delivered only to the destination shown.
-Subscription licenses and software maintenance begin with delivery of keys or provisioning. SaaS, education subscriptions, and managed services begin upon provisioning. Renewal pricing may change.
-
-Multi-year subscriptions commit Partner to the full term value, even where payment is annual. In case of non-payment beyond 30 days, all future installments become immediately due. All orders are subject to Company acceptance. Purchases are final unless explicitly provided under applicable terms.
-
-By accepting this Legal Quotation, Partner agrees no other terms apply, including those on Partner/End User POs.
-Each party shall protect confidential information using reasonable care.
-Liability is capped at the aggregate fees paid; indirect or consequential damages are excluded. Limitations do not apply to IP, confidentiality, or compliance breaches where prohibited by law.
-
-Governing law: England and Wales.
-Jurisdiction: Dubai International Financial Centre (non-exclusive).
-The UN Convention on Contracts for the International Sale of Goods does not apply."""
-        ),
+• Mindware requires full payment of this invoice (BP Price USD {totalprice:,.2f})if WHT is applicable on offshore payment
+• Pricing valid for this transaction only."""),
+        ("C31", "1. Compliance Review", {"bold": True}),
+        ("C32", """Transaction Agreement Reseller ("Reseller") shall keep and maintain all records necessary to establish its compliance with the Agreement for at least three years after the Agreement end date. IBM and/or VAD or their auditors may periodically review Reseller's compliance with the Agreement, and may do so either remotely, on Reseller's premises during normal business hours, or a combination thereof. In connection with any such review, Reseller's agrees to provide IBM and/or VAD, or their auditor, with relevant records and system tools output on request. IBM and/or VAD may reproduce and retain copies of such records and output.
+If, during any such review, it is determined that Reseller has failed to comply with any material term of this Agreement, in addition to IBM's and or VAD's rights under law and the terms of this Agreement, for transactions that are the subject of the breach, Reseller agrees to refund the amount equal to the discount or fees, if any, that IBM gave Reseller through VAD for the applicable Products or Services, or IBM and or VAD may offset any amounts due to Reseller from VAD.
+IBM's audit rights with respect to special bids are set forth further in Section 6."""),
+        ("C33", "2. Compliance with Laws", {"bold": True}),
+        ("C34", """Each party will comply with all laws and regulations applicable to its business and content, including, without limitation, those prohibiting corruption and bribery, such as the U.S. Foreign Corrupt Practices Act and those governing transactions with government and public entities, antitrust and competition, taxes and export insider trading, securities, and financial reporting, consumer transactions, and regarding data privacy. Each party will procure all licenses and pay all fees and other charges required for such compliance."""),
+        ("C35", "3. Prohibition of Inappropriate Conduct", {"bold": True}),
+        ("C36", """Reseller will not directly or indirectly make or give, offer or promise to make or give, or authorize the making or giving of any payment, gift, or other thing of value or advantage (including, for example, accommodations, air fare, entertainment or meals) to any person or entity for (a) the purpose of (i) wrongfully influencing any act or decision, (ii) inducing any act or omission to act in violation of a lawful duty; (iii) inducing a misuse of influence or (iv) securing any improper advantage, or (b) any purpose that is otherwise unlawful under any applicable anti-corruption or anti-bribery law, including the U.S. Foreign Corrupt Practices Act. VAD may terminate this Agreement immediately if Reseller breaches this Section or if VAD reasonably believes such a breach has occurred or is likely to occur."""),
+        ("C37", "4. Code of Conduct", {"bold": True}),
+        ("C38", """Reseller agrees to comply with the IBM Code of Conduct, a current version of which is available on the following IBM Internet website: 
+https://www.ibm.com/investor/att/pdf/IBM_Business_Conduct_Guidelines .pdf
+Reseller agrees to comply with the Midis Group Code of Conduct, a current version of which is available on the Midis Group Website: 
+https://www.midisgroup.com/wp-content/uploads/2024/08/Code-of-Conduct-2023-English.pdf """),
+        ("C39", """Definitions:
+"Company" refers to the MIBB entity identified at the top of the first page of this Legal Quotation.
+"Partner" refers to the distributor entity identified in the "Distributor Name" section on the first page of this Legal Quotation.
+"End User" refers to the end-user customer entity identified in the "Customer Name" section on the first page of this Legal Quotation, which is purchasing from or through Partner for its own internal use only.
+"T&M Services" refers to time-based engagements sold by half or full-day SKUs with corresponding Company SOWs.
+"Packaged Services" refers to standardized offerings tied to IBM part codes and IBM service descriptions.
+"Bespoke Services" refers to tailored solutions governed by SOWs through unique Company SKUs and supporting SOWs.
+"SOW" refers to the applicable statement of work accompanying this Legal Quotation."""),
+        ("C40", """Acceptance of this Legal Quotation requires Partner to issue a valid Purchase Order ("PO") as indicated in this Legal Quotation or, where available, to select and complete the e-sign option.
+The PO must (i) reference this Legal Quotation number, (ii) include the email address of the End User contact, and (iii) include the Partner email address to which the invoice(s) will be sent (or a physical address if a physical invoice is required by applicable law).
+This Legal Quotation includes (i) the applicable contractual discount, if any, or (ii) the special pricing, if any, for this particular transaction, as agreed by Company and Partner, which special pricing will take precedence over the otherwise applicable contractual discount. Prices are exclusive of use, sales, value added, and other applicable taxes, which will be paid or reimbursed by Partner.
+Invoices will be sent by email except where otherwise required by applicable law, and shall be paid to Company by Partner within 30 days of the invoice date or as otherwise specified elsewhere in this Legal Quotation or Partner Agreement."""),
+        ("C41", """Unless otherwise specified, all software products will be delivered electronically and deemed accepted upon delivery of access to such software products (i.e. making such software products available for download).
+The software licenses within this Legal Quotation shall be for End User's internal use only, even if the installation location in the quote detail for a license specifies an entity that is different than the End User, except as may be otherwise set forth in a separate signed written agreement between End User and Company.
+The governing terms for this Legal Quotation consist of Company's standard distributor or partner contract terms and conditions (as applicable), unless superseded by a separate signed agreement ("Governing Terms"). The software, services and support hereunder are sold to Partner strictly for the purpose of resale and not for any internal or other use by Partner.
+	Unless otherwise agreed in writing, the products and services are purchased solely under the terms and conditions of the IBM License Terms including but not limited to IBM Passport Advantage and IBM Cloud Offerings available at https://www.ibm.com. No other terms apply. In the event of any inconsistencies between the existing agreement and License Terms, the terms of the License Terms prevail."""),
+        ("C42", """For all professional services, the scope, deliverables, and timelines shall be defined in the applicable SOW or service description accompanying this Legal Quotation. Changes to the scope of services after acceptance of this Legal Quotation must be agreed in writing by Company and may result in additional charges or revised delivery timelines.
+Scheduling of professional services is subject to resource availability. Company will make reasonable efforts to accommodate requested dates but reserves the right to propose alternatives.
+Any expected expenses for the delivery of professional services, including but not limited to travel, accommodation and subsistence, are defined as an explicit cost on the above quote, or incorporated in the agreed fee for the Statement of Work."""),
+        ("C43", """T&M Services are offered on a half-day or full-day basis under predefined SKUs. Each engagement is supported by a corresponding SOW, which outlines the scope, estimated effort, and associated deliverables. Time-based billing shall apply, and services will be invoiced according to actual time spent.
+For Packaged Services, the standard service description shall apply unless otherwise agreed in writing.
+Bespoke service deliverables shall be owned by the End User, unless otherwise specified in the SOW. IBM proprietary materials and intellectual property remains the property of IBM."""),
+        ("C44", """Commodities included on this quotation are subject to shipping restrictions under applicable laws, including but not limited to United States and/or European Union export laws, and are authorized for delivery only to the destination shown. Diversion contrary to such applicable laws is prohibited.
+Subscription licenses and software maintenance are not perpetual and begin with delivery of license keys. SaaS and education subscriptions and managed services begin when the service is provisioned. Support subscription rates and SaaS subscription rates are subject to change upon renewal."""),
+        ("C45", """If you purchase a multi-year subscription license, SaaS or education subscription, managed service or software maintenance, or multi-year renewal, your purchase is for the full value of all years of the offering, even if required payments are annual. Partner irrevocably commits to pay such fees to Company for the entirety of the Term. In the event you fail to pay any annual payment, and such default shall continue for a period of thirty (30) days, then any and all remaining amounts for the relevant offering shall become immediately due and payable. All Orders, including renewals, are subject to acceptance by Company in its discretion. All purchases are final, with no right to a refund, except as expressly provided under the applicable license or service terms."""),
+        ("C46", """By accepting this Legal Quotation, Partner agrees that no other terms and conditions apply to this transaction, including, without limitation, those on a PO or other document issued by Partner, End User or any other third party.
+Each party shall keep all confidential information it receives using the same protections that it applies to its own information of like importance, but in no event less than reasonable care, and may use such information solely for the purposes contemplated by this transaction or as otherwise agreed mutually in writing by both parties."""),
+        ("C47", """Under no circumstances shall either party's liability arising out of or in connection with the Products or a party's performance with this Agreement exceed the aggregate amount of the fees paid by Partner and all orders regardless of whether such claim for liability is alleged to arise in contract, tort (including negligence) or otherwise. In no event shall either party be liable for indirect, special, incidental, or punitive damages including, without limitation, damages resulting from loss of use, loss of data, loss of profits, or loss of business arising out of, or in connection with, the products, services and/or solutions or Partner's performance of any of its obligations under this Agreement. Limitation of liability in this clause does not apply to intellectual property, confidentiality, compliance breaches by Partner and any other liability which cannot be excluded or limited under applicable law.
+These General Terms and Conditions are governed by and construed according to the laws of England and Wales and each party irrevocably and unconditionally submits to the non-exclusive jurisdiction of the courts of Dubai International Financial Centre. The 1980 U.N. Convention on Contracts for the International Sale of Goods shall not apply."""),
     ]
-
+    
     return terms
 
 
