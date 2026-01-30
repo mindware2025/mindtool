@@ -75,6 +75,8 @@ if tool_choice == "IBM Excel to Excel+ pdf to excel":
                 st.info(result['mep_cost_msg'])
             if result['bid_number_error']:
                 st.error(result['bid_number_error'])
+            if result.get('date_validation_msg'):
+                st.info(f"📅 Date Validation:\n{result['date_validation_msg']}")
             if result['data']:
                 if result.get('columns'):
                     st.dataframe(pd.DataFrame(result['data'], columns=result['columns']))
