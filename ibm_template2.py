@@ -40,11 +40,17 @@ logger.propagate = False
 debug_info = []
 
 # Constants: conversion rate and currency by country
-USD_TO_AED = 3.6725  # UAE, Qatar
-USD_TO_SAR = 3.75   # KSA
+USD_TO_AED = 3.6725  # UAE
+USD_TO_SAR = 3.75    # KSA
+# Qatar Template 2: keep USD (rate 1), same as Template 1 Qatar
 
 def _usd_to_local_rate(country: str):
-    return USD_TO_SAR if (country and str(country).upper() == "KSA") else USD_TO_AED
+    c = (country or "").strip().upper()
+    if c == "KSA":
+        return USD_TO_SAR
+    if c == "QATAR":
+        return 1.0  # no conversion, keep USD
+    return USD_TO_AED
 
 def add_debug(message):
     """Add debug info to both in-memory list and log file"""

@@ -39,17 +39,18 @@ def get_terms_section(header_info, total_price_sum):
 • Customer Price should not exceed {formatted_price}
 • Pricing valid for this transaction only."""
         ),
-        # Additional terms
-        ("C31", """• Business Partner has to clearly understand IBM's Terms and Conditions governing Software and Software as a Service offerings and comply with their contractual requirements at the time of placing the order (Example: Business Partner Agreement for SVP, IBM Cloud Offerings).
+        # Additional terms (Qatar: no conversion line; UAE/KSA: show conversion rate)
+        ("C31", (
+            f"""• Business Partner has to clearly understand IBM's Terms and Conditions governing Software and Software as a Service offerings and comply with their contractual requirements at the time of placing the order (Example: Business Partner Agreement for SVP, IBM Cloud Offerings).
 • Business Partner will notify Mindware & IBM in case there is a Non-Disclosure Agreement between Business Partner and the End User.
 • Prices quoted are End-User Price in US Dollars. As per IBM compliance rules, Business Partner understands that he/she cannot resell to the End User at a price higher than the one quoted above. Business Partner's quotation and invoice to the End User customer must mention the part number, description, quantity, prices as per above.
 • IBM Program incentives are only eligible if the opportunity meets all the programs requirement as captured in Programs Operations Guide. For more info, follow the link below: http://www.ibm.biz/PartnerPlusIncentiveProgramBPs. If IBM rejects the incentive because of any insufficient requirement/criteria, Mindware will revoke the incentive that is passed and revert to normal margin.
 • Business Partner is responsible to ensure that the above Bill of Material is in line with the End User requirements. No order cancellation will be accepted once your PO is received.
 • Documents & Media shipping, insurance, clearing and customs duties not included
 • Applicable duties, charges & taxes not included
-• Attached quote does not include installation services and training
-• Conversion Rate $1 US = {rate} {currency}"""
-        ),
+• Attached quote does not include installation services and training"""
+            + (f"\n• Conversion Rate $1 US = {rate} {currency}" if c != "QATAR" else "")
+        )),
         # Compliance statement
         ("C32", f"""Please include the following phrase as per IBM Compliance within your PO:
 This is to confirm that {company_name} has accepted a firm and final order from {end_user} 

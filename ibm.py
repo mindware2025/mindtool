@@ -1330,10 +1330,18 @@ def create_styled_excel_template2(
     """
     Template 2 Excel generation - Clean 8-column layout ONLY
     data rows: [sku, desc, qty, duration, start_date, end_date, bid_unit_aed, bid_total_aed, partner_price_aed]
-    country: UAE/Qatar -> AED (3.6725); KSA -> SAR (3.75)
+    country: UAE -> AED (3.6725); Qatar -> USD (1.0, same as Template 1); KSA -> SAR (3.75)
     """
-    currency_label = "SAR" if (country and str(country).upper() == "KSA") else "AED"
-    usd_to_local = 3.75 if (country and str(country).upper() == "KSA") else 3.6725
+    c = (country or "").strip().upper()
+    if c == "KSA":
+        currency_label = "SAR"
+        usd_to_local = 3.75
+    elif c == "QATAR":
+        currency_label = "USD"
+        usd_to_local = 1.0
+    else:
+        currency_label = "AED"
+        usd_to_local = 3.6725
     add_debug(f"[TEMPLATE2 EXCEL] Creating Template 2 Excel with {len(data)} rows - 8 COLUMNS ONLY")
     print(f"🔥 TEMPLATE 2 FUNCTION CALLED! Creating {len(data)} rows with 8 columns only!")
     
