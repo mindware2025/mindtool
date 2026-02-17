@@ -4,6 +4,7 @@ Combo logic for IBM Excel-to-Excel (Template 1) and PDF-to-Excel (Template 2) in
 - Template 2: PDF-to-Excel logic from ibm.py
 """
 
+from extract_ibm_terms import extract_ibm_terms_text
 from sales.ibm_v2 import (
     compare_mep_and_cost,
     check_bid_number_match,
@@ -17,7 +18,6 @@ from ibm import (
     extract_last_page_text
 )
 from ibm_template2 import extract_ibm_template2_from_pdf
-from extract_ibm_terms import extract_ibm_terms_text
 from template_detector import detect_ibm_template
 from io import BytesIO
 import logging
@@ -209,7 +209,7 @@ def process_ibm_combo(pdf_file, excel_file=None, master_csv=None, country="UAE")
         elif template in ('2', 'template2'):
             # Template 2: PDF-to-Excel logic (ibm_template2.py)
             try:
-                data, header_info = extract_ibm_template2_from_pdf(pdf_file)
+                data, header_info = extract_ibm_template2_from_pdf(pdf_file, country=country)
                 pdf_file.seek(0)
                 ibm_terms_text = extract_ibm_terms_text(pdf_file)
                 result['header_info'] = header_info
@@ -233,7 +233,8 @@ def process_ibm_combo(pdf_file, excel_file=None, master_csv=None, country="UAE")
                     logo_path="image.png",
                     output=output,
                     compliance_text="",
-                    ibm_terms_text=ibm_terms_text
+                    ibm_terms_text=ibm_terms_text,
+                    country=country
                 )
                 result['excel_bytes'] = output.getvalue()
             except Exception as e:

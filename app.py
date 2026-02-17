@@ -26,7 +26,7 @@ tool_choice = st.radio(
     "Select Tool:",
     [
        
-        "IBM Excel to Excel+ pdf to excel",
+        "IBM Quotation",
         "IBM PDF to Excel (Template 2 Only) Disabled for now",  # Disabled for now
         "IBM Excel to Excel (Template 1 Only) Disabled for now",  # Disabled for now
         "MIBB Quotations"
@@ -43,13 +43,13 @@ def load_master_map(master_file):
     return dict(zip(df["part"], df["desc"]))
 
 
-if tool_choice == "IBM Excel to Excel+ pdf to excel":
+if tool_choice == "IBM Quotation":
 
     st.header("🆕 IBM Excel to Excel + PDF to Excel (Combo)")
     st.info("Upload an IBM quotation PDF and (optionally) an Excel file. The tool will auto-detect the template and use the best logic for each.")
 
     # Country selection
-    country = st.selectbox("Choose a country:", ["UAE", "Qatar"])
+    country = st.selectbox("Choose a country:", ["UAE", "Qatar", "KSA"])
 
     logo_path = "image.png"
     compliance_text = ""  # Add compliance text if needed
@@ -71,8 +71,8 @@ if tool_choice == "IBM Excel to Excel+ pdf to excel":
     if uploaded_pdf:
         from sales.ibm_v2_combo import process_ibm_combo
         import io
-        pdf_bytes = BytesIO(uploaded_pdf.getbuffer())
-        excel_bytes = BytesIO(uploaded_excel.getbuffer()) if uploaded_excel else None
+        pdf_bytes = io.BytesIO(uploaded_pdf.getbuffer())
+        excel_bytes = io.BytesIO(uploaded_excel.getbuffer()) if uploaded_excel else None
         result = process_ibm_combo(pdf_bytes, excel_bytes, country=country)
 
         if result['error']:
@@ -95,7 +95,9 @@ if tool_choice == "IBM Excel to Excel+ pdf to excel":
                     label="📥 Download Styled Excel File",
                     data=result['excel_bytes'],
                     file_name="Styled_Quotation.xlsx",
-                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    
+                    
                 )
 elif tool_choice == "MIBB Quotations":
     st.header("📋 MIBB Quotations")
