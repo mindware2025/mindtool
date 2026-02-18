@@ -485,7 +485,7 @@ def get_mibb_terms_section(header_info, data):
         ("B29", "Terms and Conditions:", {"bold": True, "size": 11, "color": "1F497D"}),
 
         ("C30", 
-f"""• Payement terms as per mindware.
+f"""• 30 Days from POE Date.
 • Quote Validity: {quote_validity} as per the quote
 • Mindware requires full payment of this invoice (BP Price USD {totalprice:,.2f}) if WHT is applicable on offshore payment
 • Pricing valid for this transaction only.
