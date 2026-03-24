@@ -49,7 +49,7 @@ if tool_choice == "IBM Quotation":
     st.info("Upload an IBM quotation PDF and (optionally) an Excel file. The tool will auto-detect the template and use the best logic for each.")
 
     # Country selection
-    country = st.selectbox("Choose a country:", ["UAE", "Qatar", "KSA"])
+    country = st.selectbox("Choose a country:", ["UAE", "Qatar" ])
 
     logo_path = "image.png"
     compliance_text = ""  # Add compliance text if needed
