@@ -104,6 +104,14 @@ elif tool_choice == "MIBB Quotations":
     st.info("Upload a MIBB quotation PDF. The tool will extract header information and table data automatically.")
 
     logo_path = "image.png"
+    margin_pct = st.number_input(
+        "Margin (%)",
+        min_value=0.0,
+        max_value=99.0,
+        value=1.0,
+        step=0.1,
+        help="Used in the generated Excel formulas."
+    )
 
     st.subheader("📤 Upload MIBB Quotation PDF")
     uploaded_pdf = st.file_uploader(
@@ -160,7 +168,8 @@ elif tool_choice == "MIBB Quotations":
                 data=table_data,
                 header_info=header_info,
                 logo_path=logo_path,
-                output=output
+                output=output,
+                margin_pct=margin_pct
             )
 
             st.success("✅ Excel file generated successfully!")
