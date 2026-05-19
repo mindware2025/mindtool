@@ -177,6 +177,16 @@ def extract_mibb_header_from_pdf(file_like) -> dict:
             header_info["Customer Name"] = value
             log_debug(f"  [Line {i}] Customer Name: '{value}'")
             fields_found += 1
+        if "City:" in line:
+            value = value_after_colon(lines[i])
+            header_info["City"] = value
+            log_debug(f"  [Line {i}] City: '{value}'")
+            fields_found += 1
+        if "Country:" in line:
+            value = value_after_colon(lines[i])
+            header_info["Country"] = value
+            log_debug(f"  [Line {i}] Country: '{value}'")
+            fields_found += 1
         if "Reseller Name:" in line:
             value = value_after_colon(lines[i])
             header_info["Reseller Name"] = value
@@ -746,13 +756,16 @@ def extract_mibb_table_from_pdf(file_like) -> list:
     return all_extracted
 
 
-def get_mibb_terms_section(header_info, data):
+def get_mibb_terms_section(header_info, data, margin_pct: float = 0.0):
     """
     Generate MIBB-specific terms and conditions section.
     Returns list of (cell_address, text, style_dict) tuples.
     """
     quote_validity = subtract_days_from_date(header_info.get("Bid Expiration Date", "XXXX"), days=2)
-    totalprice = sum(float(row[5]) for row in data if len(row) > 5 and row[5])
+    margin_decimal = max(0.0, min(float(margin_pct or 0), 99.0)) / 100
+    original_total = sum(float(row[5]) for row in data if len(row) > 5 and row[5])
+    bp_total = original_total / (1 - margin_decimal) if margin_decimal < 1 else original_total
+    totalprice = bp_total
 
     terms = [
         ("B29", "Terms and Conditions:", {"bold": True, "size": 11, "color": "1F497D"}),
@@ -1147,14 +1160,23 @@ def create_mibb_excel(
             ws[f"D{row}"] = value
             ws[f"D{row}"].font = Font(color="1F497D")
 
-    right_labels = ["Customer Name:", "Bid Number:", "Business Partner of Record:", "Payment Terms:"]
+    right_labels = [
+        "Customer Name:",
+        "Bid Number:",
+        "Business Partner of Record:",
+        "Payment Terms:",
+        "GOE",
+        "Country",
+    ]
     right_values = [
         header_info.get("Customer Name", ""),
         header_info.get("Bid Number", ""),
         header_info.get("Business Partner of Record", ""),
         "As aligned with Mindware",
+        header_info.get("Government Entity (GOE)", ""),
+        header_info.get("Country", ""),
     ]
-    for row, label, value in zip([5, 6, 7, 8], right_labels, right_values):
+    for row, label, value in zip([5, 6, 7, 8, 9, 10], right_labels, right_values):
         ws.merge_cells(f"H{row}:L{row}")
         ws[f"H{row}"] = f"{label} {value}"
         ws[f"H{row}"].font = Font(bold=True, color="1F497D")
@@ -1167,8 +1189,8 @@ def create_mibb_excel(
         "Start Date",
         "End Date",
         "QTY",
-        "unit price USD",
-        "total price",
+        "Unit BP price\nUSD",
+        "Total BP price\nUSD",
         "original total price",
         "margin",
     ]
@@ -1231,7 +1253,21 @@ def create_mibb_excel(
     else:
         summary_row = start_row + 1
 
-    terms = get_mibb_terms_section(header_info, data)
+    terms = get_mibb_terms_section(header_info, data, margin_pct=margin_pct)
+    total_bp_text = sum(
+        (float(row[5]) / (1 - margin_decimal)) if len(row) > 5 and row[5] and margin_decimal < 1 else float(row[5])
+        for row in data
+        if len(row) > 5 and row[5]
+    )
+    if len(terms) > 1:
+        terms[1] = (
+            "C30",
+            f"""• Payment Terms as aligned with Mindware
+• Quote Validity: {subtract_days_from_date(header_info.get("Bid Expiration Date", "XXXX"), days=2)} as per the quote
+• Mindware requires full payment of this invoice (Total Price USD {total_bp_text:,.2f}) if WHT is applicable on offshore payment
+• Pricing valid for this transaction only.
+""",
+        )
     terms_start_row = summary_row + 3
 
     adjusted_terms = []
