@@ -16,6 +16,17 @@ from openpyxl.drawing.image import Image
 from openpyxl.utils import get_column_letter
 import logging
 from pathlib import Path
+from xml.etree import ElementTree as ET
+
+try:
+    import xlrd
+except Exception:  # pragma: no cover - optional dependency fallback
+    xlrd = None
+
+try:
+    from openpyxl import load_workbook
+except Exception:  # pragma: no cover - defensive import
+    load_workbook = None
 
 # Configure MIBB-specific logging
 # MIBB_LOG_DIR = Path("mibb_logs")
@@ -96,6 +107,20 @@ def parse_euro_number(value: str):
         else:
             s = s.replace(",", ".")
         return float(s)
+    except Exception:
+        return None
+
+
+def parse_decimal_number(value):
+    """Parse decimal strings with optional thousand separators."""
+    if value is None:
+        return None
+    text = str(value).strip()
+    if not text:
+        return None
+    text = text.replace(",", "")
+    try:
+        return float(text)
     except Exception:
         return None
 
@@ -838,6 +863,385 @@ def estimate_line_count(text, max_chars_per_line=80):
             wrapped = len(line) // max_chars_per_line + (1 if (len(line) % max_chars_per_line) else 0)
             total_lines += max(1, wrapped)
     return total_lines
+
+
+def extract_mibb_terms_from_pdf(file_like) -> str:
+    """
+    Extract the General Terms and Conditions section from the PDF as plain text.
+    """
+    try:
+        raw = file_like.read()
+        doc = fitz.open(stream=raw, filetype="pdf")
+    except Exception:
+        return ""
+
+    terms_pages = []
+    started = False
+    for page in doc:
+        page_text = page.get_text("text") or page.get_text() or ""
+        if not started and "General Terms and Conditions" not in page_text:
+            continue
+        started = True
+        lines = [line.rstrip() for line in page_text.splitlines() if line.strip()]
+        if lines and lines[0].startswith("Page "):
+            lines = lines[1:]
+        terms_pages.append("\n".join(lines))
+
+    return "\n\n".join(terms_pages).strip()
+
+
+def _normalize_header_name(value) -> str:
+    return re.sub(r"[^A-Z0-9]+", " ", str(value or "").upper()).strip()
+
+
+def _parse_spreadsheetml_2003_rows(raw_bytes: bytes) -> list[list]:
+    ns = {
+        "ss": "urn:schemas-microsoft-com:office:spreadsheet",
+    }
+    root = ET.fromstring(raw_bytes)
+    worksheet = root.find("ss:Worksheet", ns)
+    if worksheet is None:
+        return []
+    table = worksheet.find("ss:Table", ns)
+    if table is None:
+        return []
+
+    rows = []
+    for row_elem in table.findall("ss:Row", ns):
+        row_values = []
+        current_idx = 1
+        for cell in row_elem.findall("ss:Cell", ns):
+            cell_index = cell.attrib.get("{urn:schemas-microsoft-com:office:spreadsheet}Index")
+            if cell_index:
+                target_idx = int(cell_index)
+                while current_idx < target_idx:
+                    row_values.append("")
+                    current_idx += 1
+
+            data_elem = cell.find("ss:Data", ns)
+            row_values.append(data_elem.text.strip() if data_elem is not None and data_elem.text else "")
+            current_idx += 1
+
+        rows.append(row_values)
+    return rows
+
+
+def _read_first_sheet_rows(file_like) -> list[list]:
+    if hasattr(file_like, "seek"):
+        file_like.seek(0)
+    raw = file_like.read() if hasattr(file_like, "read") else file_like
+    if hasattr(file_like, "seek"):
+        file_like.seek(0)
+
+    if not raw:
+        return []
+
+    prefix = raw[:512].lstrip()
+    if prefix.startswith(b"<?xml") or b"schemas-microsoft-com:office:spreadsheet" in raw[:2048]:
+        return _parse_spreadsheetml_2003_rows(raw)
+
+    if raw[:2] == b"PK" and load_workbook is not None:
+        wb = load_workbook(BytesIO(raw), data_only=True, read_only=True)
+        ws = wb[wb.sheetnames[0]]
+        return [list(row) for row in ws.iter_rows(values_only=True)]
+
+    if xlrd is not None:
+        book = xlrd.open_workbook(file_contents=raw)
+        sheet = book.sheet_by_index(0)
+        return [sheet.row_values(i) for i in range(sheet.nrows)]
+
+    raise ValueError("Unsupported Excel format.")
+
+
+def _find_label_value(rows: list[list], target_labels: set[str]) -> str:
+    for row in rows:
+        normalized_row = [str(cell).strip() for cell in row]
+        for idx, cell in enumerate(normalized_row):
+            if cell in target_labels:
+                for next_cell in normalized_row[idx + 1:]:
+                    if str(next_cell).strip():
+                        return str(next_cell).strip()
+    return ""
+
+
+def _normalize_quote_number(value: str) -> str:
+    return str(value or "").strip().lstrip("0")
+
+
+def check_mibb_hardware_quote_match(excel_file, pdf_bid_number):
+    """
+    Ensure uploaded hardware Excel belongs to the same quote as the PDF.
+    """
+    try:
+        rows = _read_first_sheet_rows(excel_file)
+        excel_quote_id = _find_label_value(rows, {"Quote Id:", "Quote number:", "Quote Id", "Quote number"})
+        if _normalize_quote_number(excel_quote_id) == _normalize_quote_number(pdf_bid_number):
+            return True, None
+        return False, "Your uploaded PDF and Excel do not match. Please verify the quote files."
+    except Exception as e:
+        return False, f"Error checking quote match: {e}"
+
+
+def extract_mibb_hardware_table_from_excel(file_like) -> list:
+    """
+    Extract hardware rows from the uploaded Excel/XML quotation.
+    Returns rows in the format:
+    [part_number, description, qty, list_ext_svp, bid_ext_svp]
+    """
+    rows = _read_first_sheet_rows(file_like)
+    if not rows:
+        return []
+
+    header_idx = None
+    header_map = {}
+    required_headers = {
+        "PART NUMBER": "part_number",
+        "DESCRIPTION": "description",
+        "QTY": "qty",
+        "LIST EXT SVP": "list_ext_svp",
+        "BID EXT SVP": "bid_ext_svp",
+    }
+
+    for idx, row in enumerate(rows):
+        normalized = [_normalize_header_name(cell) for cell in row]
+        if "PART NUMBER" in normalized and "DESCRIPTION" in normalized and "BID EXT SVP" in normalized:
+            header_idx = idx
+            for col_idx, cell in enumerate(normalized):
+                if cell in required_headers:
+                    header_map[required_headers[cell]] = col_idx
+            break
+
+    if header_idx is None:
+        return []
+
+    extracted = []
+    empty_streak = 0
+    for row in rows[header_idx + 1:]:
+        part_number = str(row[header_map["part_number"]]).strip() if len(row) > header_map["part_number"] and row[header_map["part_number"]] is not None else ""
+        description = str(row[header_map["description"]]).strip() if len(row) > header_map["description"] and row[header_map["description"]] is not None else ""
+
+        if not part_number and not description:
+            empty_streak += 1
+            if empty_streak >= 3:
+                break
+            continue
+        empty_streak = 0
+
+        if _normalize_header_name(part_number).startswith("TOTAL"):
+            break
+
+        qty_raw = row[header_map["qty"]] if len(row) > header_map["qty"] else None
+        list_ext_raw = row[header_map["list_ext_svp"]] if len(row) > header_map["list_ext_svp"] else None
+        bid_ext_raw = row[header_map["bid_ext_svp"]] if len(row) > header_map["bid_ext_svp"] else None
+
+        qty_value = parse_decimal_number(qty_raw) or 0
+        list_ext_value = parse_decimal_number(list_ext_raw) or 0
+        bid_ext_value = parse_decimal_number(bid_ext_raw) or 0
+
+        extracted.append([
+            part_number,
+            description,
+            int(qty_value) if float(qty_value).is_integer() else qty_value,
+            list_ext_value,
+            bid_ext_value,
+        ])
+
+    return extracted
+
+
+def create_mibb_hardware_excel(
+    data: list,
+    header_info: dict,
+    logo_path: str,
+    output: BytesIO,
+    margin_pct: float = 1.0,
+    terms_text: str = "",
+):
+    """
+    Create MIBB hardware quotation Excel file.
+    Final table:
+    Sl | Part Number | Description | Qty | List Ext SVP | BP Unit Price USD |
+    BP Extended price USD | mindware extended cost USD | Margin
+    """
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Quotation"
+    ws.sheet_view.showGridLines = False
+
+    ws.merge_cells("B1:C2")
+    if logo_path and os.path.exists(logo_path):
+        img = Image(logo_path)
+        img.width = 1.87 * 96
+        img.height = 0.56 * 96
+        ws.add_image(img, "B1")
+        ws.row_dimensions[1].height = 25
+        ws.row_dimensions[2].height = 25
+
+    ws.merge_cells("D3:G3")
+    ws["D3"] = "Quotation"
+    ws["D3"].font = Font(size=20, color="1F497D")
+    ws["D3"].alignment = Alignment(horizontal="center", vertical="center")
+
+    column_widths = {
+        2: 8,
+        3: 18,
+        4: 48,
+        5: 10,
+        6: 16,
+        7: 18,
+        8: 20,
+        9: 22,
+        10: 12,
+    }
+    for col_idx, width in column_widths.items():
+        ws.column_dimensions[get_column_letter(col_idx)].width = width
+
+    left_labels = ["Date:", "From:", "Email:", "Contact:", "", "Company:", "Attn:", "Email:"]
+    left_values = [
+        datetime.today().strftime('%d/%m/%Y'),
+        "Eliana Youssef",
+        "E.youssef@mindware.net",
+        "+961 123 456 758",
+        "",
+        header_info.get("Reseller Name", "empty"),
+        "empty",
+        "empty",
+    ]
+    for row, label, value in zip([5, 6, 7, 8, 9, 10, 11, 12], left_labels, left_values):
+        if label:
+            ws[f"C{row}"] = label
+            ws[f"C{row}"].font = Font(bold=True, color="1F497D")
+        if value:
+            ws[f"D{row}"] = value
+            ws[f"D{row}"].font = Font(color="1F497D")
+
+    right_labels = [
+        "Customer Name:",
+        "Bid Number:",
+        "Business Partner of Record:",
+        "Payment Terms:",
+        "GOE",
+        "Country",
+    ]
+    right_values = [
+        header_info.get("Customer Name", ""),
+        header_info.get("Bid Number", ""),
+        header_info.get("Business Partner of Record", ""),
+        "As aligned with Mindware",
+        header_info.get("Government Entity (GOE)", ""),
+        header_info.get("Country", ""),
+    ]
+    for row, label, value in zip([5, 6, 7, 8, 9, 10], right_labels, right_values):
+        ws.merge_cells(f"H{row}:L{row}")
+        ws[f"H{row}"] = f"{label} {value}"
+        ws[f"H{row}"].font = Font(bold=True, color="1F497D")
+        ws[f"H{row}"].alignment = Alignment(horizontal="left", vertical="center")
+
+    headers = [
+        "Sl",
+        "Part Number",
+        "Description",
+        "Qty",
+        "List Ext SVP",
+        "BP Unit Price USD",
+        "BP Extended price USD",
+        "mindware extended cost USD",
+        "Margin",
+    ]
+    header_fill = PatternFill(start_color="F2F2F2", end_color="F2F2F2", fill_type="solid")
+    for col, header in enumerate(headers, start=2):
+        ws.merge_cells(start_row=16, start_column=col, end_row=17, end_column=col)
+        cell = ws.cell(row=16, column=col, value=header)
+        cell.font = Font(bold=True, size=13, color="1F497D")
+        cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+        cell.fill = header_fill
+
+    row_fill = PatternFill(start_color="FFFFCC", end_color="FFFFCC", fill_type="solid")
+    start_row = 18
+    margin_decimal = max(0.0, min(float(margin_pct or 0), 99.0)) / 100
+
+    for idx, row in enumerate(data, start=1):
+        excel_row = start_row + idx - 1
+        part_number = row[0] if len(row) > 0 else ""
+        description = row[1] if len(row) > 1 else ""
+        qty = row[2] if len(row) > 2 else 0
+        list_ext_svp = row[3] if len(row) > 3 else 0
+        mindware_extended_cost = row[4] if len(row) > 4 else 0
+
+        ws.cell(row=excel_row, column=2, value=idx)
+        ws.cell(row=excel_row, column=3, value=part_number)
+        ws.cell(row=excel_row, column=4, value=description)
+        ws.cell(row=excel_row, column=5, value=qty)
+        ws.cell(row=excel_row, column=6, value=list_ext_svp)
+        ws.cell(row=excel_row, column=7, value=f'=IFERROR(H{excel_row}/E{excel_row},0)')
+        ws.cell(row=excel_row, column=8, value=f'=IFERROR(I{excel_row}/(1-J{excel_row}),0)')
+        ws.cell(row=excel_row, column=9, value=mindware_extended_cost)
+        ws.cell(row=excel_row, column=10, value=margin_decimal)
+
+        for col in range(2, 11):
+            cell = ws.cell(row=excel_row, column=col)
+            cell.font = Font(size=11, color="1F497D")
+            cell.fill = row_fill
+            if col == 4:
+                cell.alignment = Alignment(wrap_text=True, horizontal="left", vertical="center")
+            else:
+                cell.alignment = Alignment(horizontal="center", vertical="center")
+
+        for price_col in [6, 7, 8, 9]:
+            ws.cell(row=excel_row, column=price_col).number_format = '"USD"#,##0.00'
+        ws.cell(row=excel_row, column=10).number_format = "0.0%"
+
+    if data:
+        data_end_row = start_row + len(data) - 1
+        summary_row = data_end_row + 2
+        ws.merge_cells(f"C{summary_row}:G{summary_row}")
+        ws[f"C{summary_row}"] = "Total Price USD"
+        ws[f"C{summary_row}"].font = Font(bold=True, color="1F497D")
+        ws[f"C{summary_row}"].alignment = Alignment(horizontal="right")
+        ws[f"H{summary_row}"] = f"=SUM(H{start_row}:H{data_end_row})"
+        ws[f"H{summary_row}"].number_format = '"USD"#,##0.00'
+        ws[f"H{summary_row}"].font = Font(bold=True, color="1F497D")
+        ws[f"H{summary_row}"].fill = PatternFill(start_color="DDDDDD", end_color="DDDDDD", fill_type="solid")
+    else:
+        summary_row = start_row + 1
+
+    terms_title_row = summary_row + 3
+    ws.merge_cells(f"B{terms_title_row}:L{terms_title_row}")
+    ws[f"B{terms_title_row}"] = "Shipping Freight and Clearance Charges are excluded from the BP Price"
+    ws[f"B{terms_title_row}"].font = Font(bold=True, size=11, color="1F497D")
+    ws[f"B{terms_title_row}"].alignment = Alignment(horizontal="left", vertical="center")
+
+    terms_header_row = terms_title_row + 1
+    ws[f"B{terms_header_row}"] = "Terms and Conditions:"
+    ws[f"B{terms_header_row}"].font = Font(bold=True, size=11, color="1F497D")
+
+    terms_body_row = terms_header_row + 1
+    body_text = terms_text.strip() if terms_text else "No terms extracted from PDF."
+    ws.merge_cells(f"C{terms_body_row}:L{terms_body_row + 15}")
+    ws[f"C{terms_body_row}"] = body_text
+    ws[f"C{terms_body_row}"].alignment = Alignment(wrap_text=True, vertical="top")
+    ws[f"C{terms_body_row}"].font = Font(size=10, color="1F497D")
+    ws.row_dimensions[terms_body_row].height = max(80, estimate_line_count(body_text, max_chars_per_line=95) * 15)
+
+    last_row = terms_body_row + 15
+    ws.print_area = f"A1:K{last_row}"
+    ws.page_setup.orientation = ws.ORIENTATION_LANDSCAPE
+    ws.page_setup.fitToWidth = 1
+    ws.page_setup.fitToHeight = 0
+    ws.page_margins.left = 0.15
+    ws.page_margins.right = 0.15
+    ws.page_margins.top = 0.25
+    ws.page_margins.bottom = 0.25
+    ws.page_margins.header = 0.15
+    ws.page_margins.footer = 0.15
+    ws.page_setup.paperSize = ws.PAPERSIZE_A4
+    ws.page_setup.draft = False
+    ws.page_setup.blackAndWhite = False
+    ws.sheet_properties.pageSetUpPr.fitToPage = True
+
+    wb.calculation.fullCalcOnLoad = True
+    wb.save(output)
+    output.seek(0)
 
 
 def create_mibb_excel(
