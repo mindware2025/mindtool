@@ -898,7 +898,13 @@ def _parse_spreadsheetml_2003_rows(raw_bytes: bytes) -> list[list]:
     ns = {
         "ss": "urn:schemas-microsoft-com:office:spreadsheet",
     }
-    root = ET.fromstring(raw_bytes)
+    cleaned = raw_bytes.lstrip()
+    cleaned = re.sub(
+        rb"&(?!amp;|lt;|gt;|apos;|quot;|#\d+;|#x[0-9A-Fa-f]+;)",
+        b"&amp;",
+        cleaned,
+    )
+    root = ET.fromstring(cleaned)
     worksheet = root.find("ss:Worksheet", ns)
     if worksheet is None:
         return []
